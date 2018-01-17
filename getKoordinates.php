@@ -2,26 +2,19 @@
 
 $address = $_GET["address"];
 
-//           \[location] => stdClass Object \( \[lat] => (.+?)(?= \[lng])     get lat
-//          \[location] => stdClass Object \( \[lat] => \d*.\d* \[lng] => (.+?)(?= \))      get lon
-$web = "http://localhost/tankpreise/googleAPI.php" . "?address=$address";
+$http_content = file_get_contents("http://localhost/tankpreise/googleAPI.php" . "?address=$address");
 
-$http_content = file_get_contents($web);
-print_r ($http_content);
+preg_match('/\[location] => stdClass Object\n *\(\n *\[lat] => (.+?)(?=\n)/' , $http_content, $latitude);
+preg_match('/\[location] => stdClass Object\n *\(\n *\[lat] => \d*.\d*\n *\[lng] => (.+?)(?=\n)/', $http_content, $longitude);
 
-preg_match('/\[location] => stdClass Object \( \[lat] => (.+?)(?= \[lng])/' , $http_content, $latitude);
-preg_match('/\[location] => stdClass Object \( \[lat] => \d*.\d* \[lng] => (.+?)(?= \))/', $http_content, $longitude);
-
-
-echo "<br>";
-print_r ($longitude);
+echo $longitude[1];
 echo "</br>";
-print_r ($latitude);
+echo $latitude[1];
+echo "</br>";
 //https://maps.googleapis.com/maps/api/geocode/json?address=Drebber&key=AIzaSyD4uZglg9MtITh2LuBsAeYpbH2yXAiYBGw
-
+include_once "getPrice.php";
+getPrice($longitude[1], $latitude[1]);
 
 ///$key = AIzaSyD4uZglg9MtITh2LuBsAeYpbH2yXAiYBGw
-
-
 
  ?>
