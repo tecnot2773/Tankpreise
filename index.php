@@ -17,6 +17,7 @@
 		<header>
 			<div class="container">
 				<a href="index.php">
+					<img src="images/Header.png" alt="logo" class="logo" />
 				</a>
 				<nav>
 					<ul>
@@ -33,7 +34,7 @@
 				</div>
 				<div id="griddiv-left" class="test">
 					<div id="rowend" class="row">
-						<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Ihr Standort"><br>
+						<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Standort"><br>
 					</div>
 					<div id="buttonrow" class="row">
 						<input class="button" type="submit" name="submit" value="Eingabe">
