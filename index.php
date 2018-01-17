@@ -28,7 +28,7 @@
 		<form action="index.php" method="post">
 			<div id="main-area" class="container">
 				<div id="heading" class="page-header">
-					<h1>Suchen Sie die günstigste Tankstelle</h1>
+					<h1>Suchen Sie die günstigste Tankstelle in ihrer Nähe</h1>
 				</div>
 				<div id="griddiv-left" class="test">
 					<div id="rowend" class="row">
@@ -40,9 +40,9 @@
 				</div>
 				<div id="griddiv-right" class="test">
 					<div id="rowstart" class="row">
-						TODO: list
+						TODO: list or map
 
-						<br><br><br>
+						<br><br><br><br>
 					</div>
 					<div id="rowend" class="row">
 					</div>
