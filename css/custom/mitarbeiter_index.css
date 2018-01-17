@@ -1,0 +1,25 @@
+.row-bottom{
+	padding-top: 25px;
+}
+
+.row-radio {
+padding-bottom: 15px;
+}
+.row-data {
+}
+#first-row {
+	padding-bottom: 35px;
+}
+#execute {
+	margin-top: 25px;
+	padding: 8px 80px !important;
+}
+#text-time-entry{
+	color: gray;
+}
+#text-time-exit{
+	color: gray;
+}
+label {
+	cursor: pointer;
+}

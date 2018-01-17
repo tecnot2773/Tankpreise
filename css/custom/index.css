@@ -1,0 +1,92 @@
+body {
+	background: url(../../images/background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow-x:hidden;
+  background-color: transparent;
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  /* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+
+body {
+	margin: 0;
+	/*background: #222;*/
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 400;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header {
+  background: #f2f2f2;
+	height: 65px;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+	height: 65px;
+}
+
+#griddiv-left {
+background-color: white;
+opacity: 0.8;
+border-radius: 20px;
+width: 49%;
+float: left;
+}
+#griddiv-right {
+background-color: white;
+opacity: 0.8;
+border-radius: 20px;
+width: 49%;
+float: right;
+}
+#rowstart {
+padding-top:  50px;
+padding-left: 50px;
+padding-right: 50px;
+}
+#rowend {
+padding-top: 15px;
+padding-left: 50px;
+padding-right: 50px;
+}
+#buttonrow {
+padding-top: 15px;
+padding-bottom: 50px;
+padding-left: 50px;
+padding-right: 50px;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 148px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+	background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+	border-radius: 12px;
+}
+
+.button:hover {
+    background-color: #008CBA;
+    color: white;
+}

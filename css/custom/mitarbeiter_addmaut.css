@@ -1,0 +1,20 @@
+#first-row {
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 15px;
+padding-bottom: 15px;
+}
+#second-row {
+background-color: white;
+opacity: 0.8;
+border-radius: 20px;
+width: 100%;
+margin-top: 25px;
+}
+#third-row {
+background-color: white;
+opacity: 0.8;
+border-radius: 20px;
+width: 100%;
+margin-top: 25px;
+}
