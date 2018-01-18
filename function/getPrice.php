@@ -6,12 +6,12 @@
 		//$sort = $_GET["sort"];
 		$type = "all";
 		$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
-		    ."?lat=$lat"     // geographische Breite
-		    ."&lng=$lng"     //               Länge
+		    ."?lat=$lat"
+		    ."&lng=$lng"
 		    ."&rad=$radius"  // Suchradius in km
 		    //."&sort=$sort"   // Sortierung: 'price' oder 'dist' - bei type=all diesen Parameter weglassen
 		    ."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
-		    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key ersetzen!
+		    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 		//print_r($http_content);				//debug
 		$data = json_decode($http_content);
 		//print_r($data);					//debug
@@ -25,8 +25,6 @@
 
 		echo "\n";
 
-		//echo strtolower(strip_tags($name[1][1])) . "<br>";
-		//echo strtolower(strip_tags($town[1][1])) . "<br>";
 		$count = count($town[1]);
 		for ($i = 0; $i < $count; $i++) {
 			$street[1][$i] = preg_replace('/(?=\\\\u00df)(.+?)(?<=f)/', 'ß', $street[1][$i]);;
