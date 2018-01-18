@@ -28,23 +28,26 @@
 		</header>
 		<!--main contents          -->
 		<form action="index.php" method="post">
-			<div id="main-area" class="container">
-				<div id="heading" class="page-header">
-					<h1>Suchen Sie die günstigste Tankstelle in ihrer Nähe</h1>
+			<div id="heading" class="page-header">
+				<h1>Suchen Sie die günstigste Tankstelle in ihrer Nähe</h1>
+			</div>
+			<div id="griddiv-search" class="container">
+				<div id="searchrow" class="row">
+					<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Standort">
+					<input class="button" type="submit" name="submit" value="Eingabe">
 				</div>
+			</div>
+			<div id="main-area" class="container">
 				<div id="griddiv-left" class="test">
-					<div id="rowend" class="row">
-						<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Standort"><br>
+					<div id="rowstart" class="row">
+						TODO: list or map
 					</div>
-					<div id="buttonrow" class="row">
-						<input class="button" type="submit" name="submit" value="Eingabe">
+					<div id="rowend" class="row">
 					</div>
 				</div>
 				<div id="griddiv-right" class="test">
 					<div id="rowstart" class="row">
 						TODO: list or map
-
-						<br><br><br><br>
 					</div>
 					<div id="rowend" class="row">
 					</div>

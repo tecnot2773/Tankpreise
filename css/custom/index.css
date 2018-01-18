@@ -22,9 +22,23 @@ padding-top: 35px;
 padding-left: 50px;
 padding-right: 50px;
 }
-#buttonrow {
-padding-top: 15px;
-padding-bottom: 50px;
+#griddiv-search {
+background-color: white;
+opacity: 0.8;
+border-radius: 20px;
+width: 75%;
+text-align: center;
+margin-top: 0px;
+margin-bottom: 25px;
 padding-left: 50px;
 padding-right: 50px;
+}
+#heading{
+	padding-left: 200px;
+}
+#searchrow{
+	padding-top:  20px;
+	padding-bottom: 20px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
