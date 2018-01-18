@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<body>
-
-	<p>Button JUNGE</p>
-
-	<button onclick="getLocation()">Try It</button>
-
-	<p id="demo"></p>
+	<p id="test"></p>
 
 	<script>
-		var x = document.getElementById("demo");
+		var x = document.getElementById("test");
 
 		function getLocation() {
 		    if (navigator.geolocation) {
 		        navigator.geolocation.getCurrentPosition(showPosition);
 		    } else {
-		        x.innerHTML = "Geolocation is not supported by this browser.";
+		        x.innerHTML = "Geolocation is not supported.";
 		    }
 		}
 
@@ -25,5 +19,6 @@
 		}
 	</script>
 
+	<body onload="getLocation()">
 	</body>
 </html>
