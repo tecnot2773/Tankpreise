@@ -7,4 +7,6 @@ $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json'
     ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 $data = json_decode($json);
 print_r($data);
+
+//https://maps.googleapis.com/maps/api/geocode/json?address=Drebber&key=AIzaSyD4uZglg9MtITh2LuBsAeYpbH2yXAiYBGw
 ?>

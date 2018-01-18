@@ -40,7 +40,7 @@
 			<div id="main-area" class="container">
 				<div id="griddiv-left" class="test">
 					<div id="rowstart" class="row">
-						TODO: list or map
+						<?php include_once "function/getKoordinates.php"; ?>
 					</div>
 					<div id="rowend" class="row">
 					</div>
