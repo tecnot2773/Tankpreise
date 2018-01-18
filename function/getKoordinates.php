@@ -15,7 +15,7 @@
 			include_once "getPrice.php";
 			getPrice($longitude[1], $latitude[1]);
 		}else{
-			echo "reload page GoogleAPI overflow";
+			echo "GoogleAPI overflow <br> Please reload the Page";
 		}
 	}
 ?>
