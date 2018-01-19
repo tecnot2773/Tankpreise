@@ -48,7 +48,7 @@
 				</div>
 				<div id="griddiv-right" class="test">
 					<div id="rowstart" class="row">
-						TODO: list or map
+						<?php if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];} ?>
 					</div>
 					<div id="rowend" class="row">
 					</div>

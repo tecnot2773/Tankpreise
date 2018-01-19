@@ -13,9 +13,8 @@
 		    ."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
 		    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 		//print_r($http_content);				//debug
-		$data = json_decode($http_content);
+		//$data = json_decode($http_content);
 		//print_r($data);					//debug
-		echo "<br><br>";
 
 		preg_match_all('/"place":"(.+?)(?=")/', $http_content, $town);
 		preg_match_all('/"brand":"(.+?)(?=")/', $http_content, $brand);
@@ -33,11 +32,15 @@
 			echo "Tankstelle: " . $brand[1][$i] . "<br>\n";
 			echo "Stadt: " . $town[1][$i] . "<br>\n";
 			echo "Straße: " . $street[1][$i] . "<br>\n";
-			echo "Super-Benzin: " . $e5[1][$i] . " Euro <br>\n";
+			if($e5[1][$i] != "null"){
+				echo "Super-Benzin: " . $e5[1][$i] . " Euro <br>\n";
+			}
 			if($e10[1][$i] != "null"){
 				echo "E10: " . $e10[1][$i] . " Euro <br>\n";
 			}
-			echo "Diesel: " . $diesel[1][$i] . " Euro <br> <br>\n";
+			if($diesel[1][$i] != "null"){
+				echo "Diesel: " . $diesel[1][$i] . " Euro <br> <br>\n";
+			}
 		}
 
 	}
