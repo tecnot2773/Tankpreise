@@ -21,6 +21,7 @@
 				</a>
 				<nav>
 					<ul>
+						<li><a href="#">Registrieren</a></li>
 						<li><a href="#">Login</a></li>
 					</ul>
 				</nav>

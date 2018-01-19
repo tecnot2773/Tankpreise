@@ -21,6 +21,7 @@
 		preg_match_all('/"brand":"(.+?)(?=")/', $http_content, $brand);
 		preg_match_all('/"street":"(.+?)(?=")/', $http_content, $street);
 		preg_match_all('/"e5":(.+?)(?=,)/', $http_content, $e5);
+		preg_match_all('/"e10":(.+?)(?=,)/', $http_content, $e10);
 		preg_match_all('/"diesel":(.+?)(?=,)/', $http_content, $diesel);
 
 		echo "\n";
@@ -33,6 +34,9 @@
 			echo "Stadt: " . $town[1][$i] . "<br>\n";
 			echo "Straße: " . $street[1][$i] . "<br>\n";
 			echo "Super-Benzin: " . $e5[1][$i] . " Euro <br>\n";
+			if($e10[1][$i] != "null"){
+				echo "E10: " . $e10[1][$i] . " Euro <br>\n";
+			}
 			echo "Diesel: " . $diesel[1][$i] . " Euro <br> <br>\n";
 		}
 
