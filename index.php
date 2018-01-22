@@ -32,30 +32,26 @@
 			<div id="heading" class="page-header">
 				<h1>Suchen Sie die günstigste Tankstelle in ihrer Nähe</h1>
 			</div>
-			<div id="griddiv-search" class="container">
-				<div id="searchrow" class="row">
-					<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Standort">
-					<input class="button" type="submit" name="submit" value="Eingabe">
-				</div>
-			</div>
-			<div id="main-area" class="container">
-				<div id="griddiv-left" class="test">
-					<div id="rowstart" class="row">
-						<?php include_once "function/getKoordinates.php"; ?>
-					</div>
-					<div id="rowend" class="row">
+				<div id="griddiv-search" class="white">
+					<div id="searchrow" class="white">
+						<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Standort">
+						<input class="button" type="submit" name="submit" value="Eingabe">
 					</div>
 				</div>
-				<div id="griddiv-right" class="test">
-					<div id="rowstart" class="row">
-						<?php if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];} ?>
+					<div id="griddiv-left" class="white">
+						<div id="rowstart" class="white">
+							<?php include_once "function/getKoordinates.php"; ?>
+						</div>
+						<div id="rowend" class="white">
+						</div>
 					</div>
-					<div id="rowend" class="row">
+					<div id="griddiv-right" class="white">
+						<div id="rowstart" class="white">
+							<?php if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];} ?>
+						</div>
+						<div id="rowend" class="white">
+						</div>
 					</div>
-					<div id="resultstring" class="alert alert-info">
-					</div>
-				</div>
-			</div>
 		</form>
 	</body>
 </html>

@@ -1,44 +1,35 @@
 #griddiv-left {
-background-color: white;
-opacity: 0.8;
-border-radius: 20px;
-width: 49%;
+width: 39.5%;
 float: left;
+margin-left: 10%;
+margin-top: 1%;
 }
 #griddiv-right {
-background-color: white;
-opacity: 0.8;
-border-radius: 20px;
-width: 49%;
+width: 39.5%;
 float: right;
+margin-right: 10%;
+margin-top: 1%;
 }
 #rowstart {
-padding-top:  50px;
-padding-left: 50px;
-padding-right: 50px;
+padding-top:  5%;
+padding-left: 5%;
+padding-right: 5%;
 }
 #rowend {
-padding-top: 35px;
-padding-left: 50px;
-padding-right: 50px;
+padding-top: 3.5%;
+padding-left: 5%;
+padding-right: 5%;
 }
 #griddiv-search {
-background-color: white;
-opacity: 0.8;
-border-radius: 20px;
-width: 75%;
+width: 80%;
 text-align: center;
-margin-top: 0px;
-margin-bottom: 25px;
-padding-left: 50px;
-padding-right: 50px;
+margin-bottom: 2.5%;
+margin: 0 auto;
 }
 #heading{
-	padding-left: 200px;
+	padding-left: 10%;
 }
 #searchrow{
-	padding-top:  20px;
-	padding-bottom: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-top:  1.5%;
+	padding-bottom: 1.5%;
 }
