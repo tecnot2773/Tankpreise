@@ -34,7 +34,7 @@
 			</div>
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">
-						<input id="text-address" name="text-address" class="enjoy-css" type="text" placeholder="Standort">
+						<input name="text-address" class="enjoy-css" type="text" placeholder="Standort">
 						<input class="button" type="submit" name="submit" value="Eingabe">
 					</div>
 				</div>

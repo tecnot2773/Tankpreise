@@ -11,10 +11,11 @@
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-	background-color: white;
+		background-color: white;
     color: black;
     border: 2px solid #ff0000;
-	border-radius: 12px;
+		border-radius: 12px;
+		width: 23.25%;
 }
 .button:hover {
     background-color: #ff0000;
