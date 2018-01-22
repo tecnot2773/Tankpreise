@@ -38,20 +38,20 @@
 						<input class="button" type="submit" name="submit" value="Eingabe">
 					</div>
 				</div>
-					<div id="griddiv-left" class="white">
-						<div id="rowstart" class="white">
-							<?php include_once "function/getKoordinates.php"; ?>
-						</div>
-						<div id="rowend" class="white">
-						</div>
+				<div id="griddiv-left" class="white">
+					<div id="rowstart" class="white">
+						<?php include_once "function/getKoordinates.php"; ?>
 					</div>
-					<div id="griddiv-right" class="white">
-						<div id="rowstart" class="white">
-							<?php if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];} ?>
-						</div>
-						<div id="rowend" class="white">
-						</div>
+					<div id="rowend" class="white">
 					</div>
+				</div>
+				<div id="griddiv-right" class="white">
+					<div id="rowstart" class="white">
+						<?php if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];} ?>
+					</div>
+					<div id="rowend" class="white">
+					</div>
+				</div>
 		</form>
 	</body>
 </html>
