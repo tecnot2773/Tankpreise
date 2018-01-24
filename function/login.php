@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = ($_POST['text-password']);
   }
 
-	if(empty($username_err) && empty($password_err)){
+	if(empty($username_error) && empty($password_error)){
 		$sql = "SELECT name, password FROM user WHERE name = ?";
 
 		if($stmt = mysqli_prepare($conn, $sql)){
