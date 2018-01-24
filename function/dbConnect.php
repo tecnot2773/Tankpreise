@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";														//server name
 $username = "gasDB";															//login name
-$password = "RChwl8DMfgeDi3CR";														//login password
+$password = "680u43O9fJbNTnMq";														//login password
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
