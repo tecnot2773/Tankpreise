@@ -52,12 +52,16 @@
 					<div id="searchrow" class="white">
 						<input name="text-address" class="enjoy-css" type="text" placeholder="Standort">
 						<select name='text-radius' class='enjoy-css'>
-							<option value='' disabled='' selected='' hidden=''>Radius</option>
-							<option value="5">5km</option>
-							<option value="10">10km</option>
-							<option value="15">15km</option>
-							<option value="20">20km</option>
-							<option value="25">25km</option>
+							<option value="5">Radius 5km</option>
+							<option value="10">Radius 10km</option>
+							<option value="15">Radius 15km</option>
+							<option value="20">Radius 20km</option>
+							<option value="25">Radius 25km</option>
+						</select>
+						<select name='text-type' class='enjoy-css'>
+							<option value="diesel">Diesel</option>
+							<option value="e5">E5</option>
+							<option value="e10">E10</option>
 						</select>
 						<input class="button" type="submit" name="submit" value="Eingabe">
 					</div>
@@ -71,7 +75,17 @@
 				</div>
 				<div id="griddiv-right" class="white">
 					<div id="rowstart" class="white">
-						<?php if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];} ?>
+						<?php //if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];}?>
+						<iframe
+  						width="100%"
+  						height="450"
+  						frameborder="0" style="border:0"
+							<?php if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $town_new . "," . $street_new . "' allowfullscreen>";
+							}else{
+							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";
+							} ?>
+						</iframe>
 					</div>
 					<div id="rowend" class="white">
 					</div>
