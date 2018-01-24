@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.9
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Jan 2018 um 11:54
--- Server-Version: 5.6.21
--- PHP-Version: 5.6.3
+-- Erstellungszeit: 24. Jan 2018 um 17:57
+-- Server-Version: 10.1.28-MariaDB
+-- PHP-Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Datenbank: `gas`
@@ -29,7 +31,7 @@ USE `gas`;
 --
 
 DROP TABLE IF EXISTS `city`;
-CREATE TABLE IF NOT EXISTS `city` (
+CREATE TABLE `city` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
   `latitude` float NOT NULL,
@@ -43,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `city` (
 --
 
 DROP TABLE IF EXISTS `gasstation`;
-CREATE TABLE IF NOT EXISTS `gasstation` (
+CREATE TABLE `gasstation` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
   `street` varchar(40) NOT NULL,
@@ -60,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `gasstation` (
 --
 
 DROP TABLE IF EXISTS `stats`;
-CREATE TABLE IF NOT EXISTS `stats` (
+CREATE TABLE `stats` (
   `ID` int(11) NOT NULL,
   `diesel` float NOT NULL,
   `E5` float NOT NULL,
@@ -76,12 +78,12 @@ CREATE TABLE IF NOT EXISTS `stats` (
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
   `password` varchar(40) NOT NULL,
-  `consumption` float NOT NULL,
-  `cityID` int(11) NOT NULL
+  `consumption` float DEFAULT NULL,
+  `cityID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -121,21 +123,26 @@ ALTER TABLE `user`
 --
 ALTER TABLE `city`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT für Tabelle `gasstation`
 --
 ALTER TABLE `gasstation`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT für Tabelle `stats`
 --
 ALTER TABLE `stats`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

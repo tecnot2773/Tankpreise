@@ -9,6 +9,7 @@
 	font-size: 15px;
 	margin: 4px 8px;
 	-webkit-transition-duration: 0.4s; /* Safari */
+	font: normal 18px/normal "Coda", Helvetica, sans-serif;
 	transition-duration: 0.4s;
 	cursor: pointer;
 	background-color: white;
