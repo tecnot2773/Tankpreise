@@ -24,5 +24,6 @@
 		else{
 			echo "Bitte füllen Sie alle Felder aus.";
 		}
+		mysqli_close($conn);
 	}
  ?>

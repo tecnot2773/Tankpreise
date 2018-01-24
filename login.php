@@ -28,7 +28,7 @@
 			</div>
 		</header>
 		<!--main contents          -->
-		<form action="register.php" method="post">
+		<form action="login.php" method="post">
 			<div id="heading" class="page-header">
 				<h1>Login</h1>
 			</div>
