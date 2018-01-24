@@ -24,7 +24,16 @@
 					<ul>
 						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
 						<li><a href="#">Statistik</a></li>
-						<li><a href="function/logout.php">Logout <?php echo $_SESSION['username'] ?></a></li>
+						<li>
+							<div class="dropdown">
+								<a><?php echo $_SESSION['username'] ?></a>
+								<div class="dropdown-content">
+									<a href="user/index.php">Benutzer Seite</a>
+									<a href="user/userConfig.php">Einstellungen</a>
+									<a href="function/logout.php">Logout</a>
+								</div>
+							</div>
+						</li>
 					<?php  }else{ ?>
 						<li><a href="#">Statistik</a></li>
 						<li><a href="register.php">Registrieren</a></li>
