@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	include_once "dbConnect.php";
 
 	if(empty(trim($_POST["text-username"]))){
-  	$username_error = 'Please enter username.';
+  	$username_error = 'Bitte geben Sie ihren Benutzernamen ein.';
 		echo $username_error;
   }
 	else{
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
 	if(empty(trim($_POST['text-password']))){
-    $password_error = 'Please enter your password.';
+    $password_error = 'Bitte geben Sie ihr Passwort ein.';
 		echo $password_error;
   }
 	else{

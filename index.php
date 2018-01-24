@@ -26,9 +26,9 @@
 						<li><a href="#">Statistik</a></li>
 						<li><a href="function/logout.php">Logout <?php echo $_SESSION['username'] ?></a></li>
 					<?php  }else{ ?>
+						<li><a href="#">Statistik</a></li>
 						<li><a href="register.php">Registrieren</a></li>
 						<li><a href="login.php">Login</a></li>
-						<li><a href="#">Statistik</a></li>
 					<?php } ?>
 					</ul>
 				</nav>
