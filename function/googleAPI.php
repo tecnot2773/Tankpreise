@@ -1,5 +1,5 @@
 <?php
-
+/*
 $address = $_GET["address"];
 
 $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json'
@@ -9,4 +9,5 @@ $data = json_decode($json);
 print_r($data);
 
 //https://maps.googleapis.com/maps/api/geocode/json?address=Drebber&key=AIzaSyD4uZglg9MtITh2LuBsAeYpbH2yXAiYBGw
+*/
 ?>
