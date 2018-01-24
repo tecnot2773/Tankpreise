@@ -22,7 +22,7 @@
 				<nav>
 					<ul>
 						<li><a href="register.php">Registrieren</a></li>
-						<li><a href="#">Login</a></li>
+						<li><a href="login.php">Login</a></li>
 					</ul>
 				</nav>
 			</div>
