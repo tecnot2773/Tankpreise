@@ -2,7 +2,12 @@
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$address = $_POST["text-address"];
 
-		$http_content = file_get_contents("http://tanken.criticalmission.de/tankpreise/function/googleAPI.php" . "?address=$address");
+		$json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json'
+		    ."?address=$address"   // adress
+		    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
+		$data = json_decode($json);
+
+		$http_content = $json;
 
 		preg_match('/\[location] => stdClass Object\n *\(\n *\[lat] => (.+?)(?=\n)/' , $http_content, $latitude);
 		preg_match('/\[location] => stdClass Object\n *\(\n *\[lat] => \d*.\d*\n *\[lng] => (.+?)(?=\n)/', $http_content, $longitude);
