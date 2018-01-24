@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {header("location: index.php");}else{ ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -49,3 +50,4 @@
 			</div>
 	</body>
 </html>
+<?php } ?>
