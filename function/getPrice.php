@@ -1,8 +1,7 @@
 <?php
 
-	function getPrice($lng, $lat)
+	function getPrice($lng, $lat, $radius)
 	{
-		$radius = "5";
 		//$sort = $_GET["sort"];
 		$type = "all";
 		$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'

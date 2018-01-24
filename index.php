@@ -35,6 +35,14 @@
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">
 						<input name="text-address" class="enjoy-css" type="text" placeholder="Standort">
+						<select name='text-radius' class='enjoy-css'>
+							<option value='' disabled='' selected='' hidden=''>Radius</option>
+							<option value="5">5km</option>
+							<option value="10">10km</option>
+							<option value="15">15km</option>
+							<option value="20">20km</option>
+							<option value="25">25km</option>
+						</select>
 						<input class="button" type="submit" name="submit" value="Eingabe">
 					</div>
 				</div>
