@@ -26,11 +26,11 @@
 		preg_match_all('/"houseNumber":"\K(.+?)(?=")/', $http_content, $houseNumber);
 		preg_match_all('/"price":\K(.+?)(?=,)/', $http_content, $price);
 		echo "\n";
-		
+
 		$count = count($town[1]);
 		$move = 0;
 		for ($i = 0; $i < $count; $i++) {
-			if($price[1][$i] != "null"){
+			if($price[1][$i] != "null" && $price[1][$i] != "0" ){
 				$houseNumber[1][$i] = preg_replace('/",/', '', $houseNumber[1][$i]);
 
 				echo "Tankstelle: " . $brand[1][$i] . "<br>\n";
