@@ -18,9 +18,9 @@
 			include_once "getPrice.php";
 			getPrice($longitude[1], $latitude[1], $radius, $type);
 
-			$town_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $town[1][0]);
-			$street_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $street[1][0]);
-			$number_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $houseNumber[1][0]);
+			$town_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $town[1][$move]);
+			$street_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $street[1][$move]);
+			$number_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $houseNumber[1][$move]);
 		}else{
 			echo "GoogleAPI overflow <br> Please reload the Page";
 		}
