@@ -25,6 +25,7 @@ width: 80%;
 text-align: center;
 margin-bottom: 2.5%;
 margin: 0 auto;
+text-transform: capitalize;
 }
 #heading{
 	padding-left: 10%;

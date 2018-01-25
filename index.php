@@ -26,7 +26,7 @@
 						<li><a href="#">Statistik</a></li>
 						<li>
 							<div class="dropdown">
-								<a><?php echo $_SESSION['username'] ?></a>
+								<a><?php echo $_SESSION['username'] ?>&#8609;</a>
 								<div class="dropdown-content">
 									<a href="user/index.php">Benutzer Seite</a>
 									<a href="user/userConfig.php">Einstellungen</a>
