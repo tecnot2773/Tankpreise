@@ -81,7 +81,7 @@
   						height="450"
   						frameborder="0" style="border:0"
 							<?php if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $town_new . "," . $street_new . "' allowfullscreen>";
+							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $town_new . "," . $street_new . "," . $number_new . "' allowfullscreen>";
 							}else{
 							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";
 							} ?>

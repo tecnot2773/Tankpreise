@@ -14,7 +14,7 @@
 		    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 		//print_r($http_content);				//debug
 		//$data = json_decode($http_content);
-		global $town, $street;
+		global $town, $street, $houseNumber;
 		preg_match_all('/"place":"(.+?)(?=")/', $http_content, $town);
 		preg_match_all('/"brand":"(.+?)(?=")/', $http_content, $brand);
 		preg_match_all('/"street":"(.+?)(?=")/', $http_content, $street);
