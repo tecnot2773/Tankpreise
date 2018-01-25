@@ -44,26 +44,36 @@
 			</div>
 		</header>
 		<!--main contents          -->
-		<form action="index.php" method="post">
+		<form action="index.php" method="get">
 			<div id="heading" class="page-header">
 				<h1>Suchen Sie die günstigste Tankstelle in ihrer Nähe</h1>
 			</div>
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">
-						<input name="text-address" class="enjoy-css" type="text" placeholder="Standort">
-						<select name='text-radius' class='enjoy-css'>
+						<?php if(isset($_GET["address"])){ ?>
+							<input name="address" class="enjoy-css" type="text" placeholder="<?php echo $_GET["address"]; ?>" value="<?php echo $_GET["address"]; ?>">
+						<?php }else{ ?>
+							<input name="address" class="enjoy-css" type="text" placeholder="Standort">
+						<?php } ?>
+						<select name='radius' class='enjoy-css'>
+							<?php if(isset($_GET["radius"])){ ?>
+							<option value="<?php echo $_GET["radius"]; ?>" selected hidden>Radius <?php echo $_GET["radius"]; ?>km</option>
+							<?php } ?>
 							<option value="5">Radius 5km</option>
 							<option value="10">Radius 10km</option>
 							<option value="15">Radius 15km</option>
 							<option value="20">Radius 20km</option>
 							<option value="25">Radius 25km</option>
 						</select>
-						<select name='text-type' class='enjoy-css'>
+						<select name='type' class='enjoy-css'>
+							<?php if(isset($_GET["type"])){ ?>
+							<option value="<?php echo $_GET["type"]; ?>" selected hidden><?php echo $_GET["type"]; ?></option>
+							<?php } ?>
 							<option value="diesel">Diesel</option>
 							<option value="e5">E5</option>
 							<option value="e10">E10</option>
 						</select>
-						<input class="button" type="submit" name="submit" value="Eingabe">
+						<input class="button" type="submit" value="Eingabe">
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
@@ -80,7 +90,7 @@
   						width="100%"
   						height="450"
   						frameborder="0" style="border:0"
-							<?php if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+							<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $town_new . "," . $street_new . "," . $number_new . "' allowfullscreen>";
 							}else{
 							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";

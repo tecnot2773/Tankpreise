@@ -1,8 +1,9 @@
 <?php
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		$address = $_POST["text-address"];
-		$radius = $_POST["text-radius"];
-		$type = $_POST["text-type"];
+	//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
+		$address = $_GET["address"];
+		$radius = $_GET["radius"];
+		$type = $_GET["type"];
 
 		include_once("dbConnect.php");
 
