@@ -23,7 +23,7 @@
 				</a>
 				<nav>
 					<ul>
-						<li><a href="#">Statistik</a></li>
+						<li><a href="statistics.php">Statistik</a></li>
 						<li><a href="register.php">Registrieren</a></li>
 						<li><a href="login.php">Login</a></li>
 					</ul>

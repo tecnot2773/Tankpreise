@@ -23,7 +23,7 @@
 				<nav>
 					<ul>
 						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
-						<li><a href="#">Statistik</a></li>
+						<li><a href="statistics.php">Statistik</a></li>
 						<li>
 							<div class="dropdown">
 								<a><?php echo $_SESSION['username'] ?>&#8609;</a>
@@ -35,7 +35,7 @@
 							</div>
 						</li>
 					<?php  }else{ ?>
-						<li><a href="#">Statistik</a></li>
+						<li><a href="statistics.php">Statistik</a></li>
 						<li><a href="register.php">Registrieren</a></li>
 						<li><a href="login.php">Login</a></li>
 					<?php } ?>
