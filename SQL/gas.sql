@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Jan 2018 um 17:57
+-- Erstellungszeit: 26. Jan 2018 um 23:03
 -- Server-Version: 10.1.28-MariaDB
 -- PHP-Version: 7.1.10
 
@@ -47,12 +47,13 @@ CREATE TABLE `city` (
 DROP TABLE IF EXISTS `gasstation`;
 CREATE TABLE `gasstation` (
   `ID` int(11) NOT NULL,
-  `name` varchar(15) NOT NULL,
+  `brand` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `street` varchar(40) NOT NULL,
-  `diesel` float NOT NULL,
-  `E5` float NOT NULL,
-  `E10` float NOT NULL,
-  `cityID` int(11) NOT NULL
+  `place` varchar(20) NOT NULL,
+  `lat` float NOT NULL,
+  `lon` float NOT NULL,
+  `UUID` varchar(50) NOT NULL COMMENT 'Unique id from provider'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -122,7 +123,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `city`
 --
 ALTER TABLE `city`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `gasstation`
@@ -140,7 +141,7 @@ ALTER TABLE `stats`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

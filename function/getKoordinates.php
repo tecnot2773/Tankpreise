@@ -41,5 +41,6 @@
 		}else{
 			echo "GoogleAPI overflow <br> Please reload the Page";
 		}
+		mysqli_close($conn);
 	}
 ?>

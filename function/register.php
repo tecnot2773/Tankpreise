@@ -12,6 +12,7 @@
 					mysqli_query($conn, "INSERT INTO `user`(`name`, `password`, `consumption`, `cityID`) VALUES ('$username','$hashed_password',NULL,NULL);");
 
 					echo "Benutzer wurde erfolgreich angelegt.";
+					header("location: ../login.php");
 				}
 				else{
 					echo "Die Passwörter stimmen nicht überein.";
