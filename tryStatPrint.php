@@ -3,7 +3,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#ff0000;}
 .tg .tg-yw4l{vertical-align:top}
 </style>
 <table class="tg" style="undefined;table-layout: fixed; width: 643px">
@@ -62,7 +62,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <th class="tg-yw4l">24</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">Montag</td>
+    <th class="tg-yw4l">Montag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -89,7 +89,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <td class="tg-yw4l">Dienstag</td>
+    <th class="tg-yw4l">Dienstag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -116,7 +116,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <td class="tg-yw4l">Mittwoch</td>
+    <th class="tg-yw4l">Mittwoch</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -143,7 +143,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <td class="tg-yw4l">Donnerstag</td>
+    <th class="tg-yw4l">Donnerstag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -170,7 +170,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <td class="tg-yw4l">Freitag</td>
+    <th class="tg-yw4l">Freitag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -197,7 +197,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <td class="tg-yw4l">Samstag</td>
+    <th class="tg-yw4l">Samstag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -224,7 +224,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <td class="tg-yw4l">Sonntag</td>
+    <th class="tg-yw4l">Sonntag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
