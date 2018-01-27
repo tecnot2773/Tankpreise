@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 26. Jan 2018 um 23:03
--- Server-Version: 10.1.28-MariaDB
--- PHP-Version: 7.1.10
+-- Host: localhost
+-- Erstellungszeit: 27. Jan 2018 um 01:17
+-- Server-Version: 5.7.21-0ubuntu0.16.04.1
+-- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,9 +65,9 @@ CREATE TABLE `gasstation` (
 DROP TABLE IF EXISTS `stats`;
 CREATE TABLE `stats` (
   `ID` int(11) NOT NULL,
-  `diesel` float NOT NULL,
-  `E5` float NOT NULL,
-  `E10` float NOT NULL,
+  `diesel` varchar(6) DEFAULT NULL,
+  `E5` varchar(6) DEFAULT NULL,
+  `E10` varchar(6) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `gasStationID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -123,7 +123,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `city`
 --
 ALTER TABLE `city`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `gasstation`
@@ -141,7 +141,7 @@ ALTER TABLE `stats`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

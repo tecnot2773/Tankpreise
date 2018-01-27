@@ -46,17 +46,22 @@
 		$lon_new = $lon[1][$i];
 		$brand_new = $brand[1][$i];
 
-		$wtf = "INSERT INTO `gasstation`(`brand`, `name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES ('$brand_new','$name_new','$street_new','$town_new','$lat_new','$lon_new','$UUID_new')";
-		print_r($wtf);
-		echo "<br>";
 		$checkStation = mysqli_query($conn, "SELECT * FROM gasstation WHERE UUID = '$UUID_new';");
 		if(mysqli_num_rows($checkStation) == 0){
 			mysqli_query($conn, "INSERT INTO `gasstation`(`brand`,`name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES ('$brand_new','$name_new','$street_new','$town_new','$lat_new','$lon_new','$UUID_new');");
+
+			//$wtf = "INSERT INTO `gasstation`(`brand`, `name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES ('$brand_new','$name_new','$street_new','$town_new','$lat_new','$lon_new','$UUID_new')";
+			//print_r($wtf);
+			//echo "<br>";
 		}
+		//echo "SELECT ID FROM gasstation WHERE `UUID` = '$UUID_new'";
+		//echo "<br>";
 		$get_stationID = mysqli_query($conn, "SELECT ID FROM gasstation WHERE `UUID` = '$UUID_new'");
 		while($data = mysqli_fetch_array($get_stationID)){
 			$stationID = $data['ID'];
 		}
+		//echo "INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES ('$diesel_new','$e5_new','$e10_new','$stationID')";
+		//echo "<br>";
 		mysqli_query($conn,"INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES ('$diesel_new','$e5_new','$e10_new','$stationID')");
 	}
 	mysqli_close($conn);
