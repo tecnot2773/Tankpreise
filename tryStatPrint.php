@@ -1,4 +1,11 @@
-for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
+<?php
+include_once "function/dbConnect.php";
+$month = date("m", strtotime("last Saturday"));
+$year = date("Y", strtotime("last Saturday"));
+$day = date("d", strtotime("last Saturday"));
+echo "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC"
+
+?>
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
@@ -62,7 +69,7 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <th class="tg-yw4l">24</th>
   </tr>
   <tr>
-    <th class="tg-yw4l">Montag</th>
+		<th class="tg-yw4l">Montag</th>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
@@ -196,32 +203,12 @@ for Database Select echo date("Y-m-d H:i:s", strtotime("last Saturday"));
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
   </tr>
+	<?php $saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;"); ?>
   <tr>
     <th class="tg-yw4l">Samstag</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
+		<?php while($data = mysqli_fetch_array($saturdayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['E5']; ?></td>
+		<?php } ?>
   </tr>
   <tr>
     <th class="tg-yw4l">Sonntag</th>
