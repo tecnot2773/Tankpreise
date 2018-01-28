@@ -2,9 +2,6 @@
 include_once "function/dbConnect.php";
 $month = date("m", strtotime("last Saturday"));
 $year = date("Y", strtotime("last Saturday"));
-$day = date("d", strtotime("last Saturday"));
-echo "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC"
-
 ?>
 
 <style type="text/css">
@@ -43,6 +40,7 @@ echo "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$mont
 	</colgroup>
   <tr>
     <th class="tg-yw4l">\</th>
+    <th class="tg-yw4l">0</th>
     <th class="tg-yw4l">1</th>
     <th class="tg-yw4l">2</th>
     <th class="tg-yw4l">3</th>
@@ -66,7 +64,6 @@ echo "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$mont
     <th class="tg-yw4l">21</th>
     <th class="tg-yw4l">22</th>
     <th class="tg-yw4l">23</th>
-    <th class="tg-yw4l">24</th>
   </tr>
   <tr>
 		<th class="tg-yw4l">Montag</th>
@@ -203,38 +200,24 @@ echo "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$mont
     <td class="tg-yw4l"></td>
     <td class="tg-yw4l"></td>
   </tr>
-	<?php $saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;"); ?>
+	<?php
+	$day = date("d", strtotime("last Saturday"));
+	$saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
   <tr>
     <th class="tg-yw4l">Samstag</th>
 		<?php while($data = mysqli_fetch_array($saturdayData)){ ?>
 			<td class="tg-yw4l"><?php echo $data['E5']; ?></td>
 		<?php } ?>
   </tr>
+	<?php
+	$day = date("d", strtotime("this Sunday"));
+	$sundayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
   <tr>
     <th class="tg-yw4l">Sonntag</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
+		<?php while($data = mysqli_fetch_array($sundayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['E5']; ?></td>
+		<?php } ?>
   </tr>
 </table>
