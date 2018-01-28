@@ -1,5 +1,9 @@
 <?php
 include_once "function/dbConnect.php";
+
+$stationID = $_GET["ID"];
+$type = $_GET["type"];
+
 $month = date("m", strtotime("last Saturday"));
 $year = date("Y", strtotime("last Saturday"));
 ?>
@@ -65,159 +69,82 @@ $year = date("Y", strtotime("last Saturday"));
     <th class="tg-yw4l">22</th>
     <th class="tg-yw4l">23</th>
   </tr>
+
+	<?php
+	$day = date("d", strtotime("last Monday"));
+	$mondayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
   <tr>
-		<th class="tg-yw4l">Montag</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
+    <th class="tg-yw4l">Monday</th>
+		<?php while($data = mysqli_fetch_array($mondayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+		<?php } ?>
   </tr>
-  <tr>
-    <th class="tg-yw4l">Dienstag</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <th class="tg-yw4l">Mittwoch</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <th class="tg-yw4l">Donnerstag</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <th class="tg-yw4l">Freitag</th>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-    <td class="tg-yw4l"></td>
-  </tr>
+
+	<?php
+	$day = date("d", strtotime("last Tuesday"));
+	$tuesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
+	<tr>
+		<th class="tg-yw4l">Diestag</th>
+		<?php while($data = mysqli_fetch_array($tuesdayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+		<?php } ?>
+	</tr>
+
+	<?php
+	$day = date("d", strtotime("last Wednesday"));
+	$wednesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
+	<tr>
+		<th class="tg-yw4l">Mittwoch</th>
+		<?php while($data = mysqli_fetch_array($wednesdayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+		<?php } ?>
+	</tr>
+
+	<?php
+	$day = date("d", strtotime("last Thursday"));
+	$thursdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
+	<tr>
+		<th class="tg-yw4l"></th>
+		<?php while($data = mysqli_fetch_array($thursdayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+		<?php } ?>
+	</tr>
+
+	<?php
+	$day = date("d", strtotime("last Friday"));
+	$fridayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	?>
+	<tr>
+		<th class="tg-yw4l"></th>
+		<?php while($data = mysqli_fetch_array($fridayData)){ ?>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+		<?php } ?>
+	</tr>
+
 	<?php
 	$day = date("d", strtotime("last Saturday"));
-	$saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	$saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 	?>
   <tr>
     <th class="tg-yw4l">Samstag</th>
 		<?php while($data = mysqli_fetch_array($saturdayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['E5']; ?></td>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
 		<?php } ?>
   </tr>
+
 	<?php
-	$day = date("d", strtotime("this Sunday"));
-	$sundayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '1' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+	$day = date("d", strtotime("last Sunday"));
+	$sundayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 	?>
   <tr>
     <th class="tg-yw4l">Sonntag</th>
 		<?php while($data = mysqli_fetch_array($sundayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['E5']; ?></td>
+			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
 		<?php } ?>
   </tr>
+
 </table>
