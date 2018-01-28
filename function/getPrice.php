@@ -20,11 +20,13 @@
 		$http_content = convert($http_content);
 
 		global $town, $street, $houseNumber, $move;
+		preg_match_all('/"name":"\K(.+?)(?=")/', $http_content, $name);
 		preg_match_all('/"place":"\K(.+?)(?=")/', $http_content, $town);
 		preg_match_all('/"brand":"\K(.+?)(?=")/', $http_content, $brand);
 		preg_match_all('/"street":"\K(.+?)(?=")/', $http_content, $street);
 		preg_match_all('/"houseNumber":"\K(.+?)(?=")/', $http_content, $houseNumber);
 		preg_match_all('/"price":\K(.+?)(?=,)/', $http_content, $price);
+		preg_match_all('/"id":"\K(.+?)(?=",)/', $http_content, $UUID);
 		echo "\n";
 
 		$count = count($town[1]);
@@ -32,8 +34,8 @@
 		for ($i = 0; $i < $count; $i++) {
 			if($price[1][$i] != "null" && $price[1][$i] != "0" ){
 				$houseNumber[1][$i] = preg_replace('/",/', '', $houseNumber[1][$i]);
-
-				echo "Tankstelle: " . $brand[1][$i] . "<br>\n";
+				echo "<a href=\"station/index.php?id=" . $UUID[1][$i] . "\">" . $name[1][$i] . "</a>\r\n <br>";
+				echo "Marke: " . $brand[1][$i] . "<br>\n";
 				echo "Stadt: " . $town[1][$i] . "<br>\n";
 				echo "Straße: " . $street[1][$i] . " ";
 				if(!empty($houseNumber[1][$i])){ echo $houseNumber[1][$i]; }
@@ -45,6 +47,8 @@
 				unset($street[1][$i]);
 				unset($houseNumber[1][$i]);
 				unset($price[1][$i]);
+				unset($UUID[1][$i]);
+				unset($name[1][$i]);
 				$move++;
 			}
 		}
