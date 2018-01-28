@@ -77,7 +77,7 @@ $year = date("Y", strtotime("last Saturday"));
   <tr>
     <th class="tg-yw4l">Monday</th>
 		<?php while($data = mysqli_fetch_array($mondayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
   </tr>
 
@@ -88,7 +88,7 @@ $year = date("Y", strtotime("last Saturday"));
 	<tr>
 		<th class="tg-yw4l">Diestag</th>
 		<?php while($data = mysqli_fetch_array($tuesdayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
 	</tr>
 
@@ -99,7 +99,7 @@ $year = date("Y", strtotime("last Saturday"));
 	<tr>
 		<th class="tg-yw4l">Mittwoch</th>
 		<?php while($data = mysqli_fetch_array($wednesdayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
 	</tr>
 
@@ -110,7 +110,7 @@ $year = date("Y", strtotime("last Saturday"));
 	<tr>
 		<th class="tg-yw4l">Donnerstag</th>
 		<?php while($data = mysqli_fetch_array($thursdayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
 	</tr>
 
@@ -121,7 +121,7 @@ $year = date("Y", strtotime("last Saturday"));
 	<tr>
 		<th class="tg-yw4l">Freitag</th>
 		<?php while($data = mysqli_fetch_array($fridayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
 	</tr>
 
@@ -132,7 +132,7 @@ $year = date("Y", strtotime("last Saturday"));
   <tr>
     <th class="tg-yw4l">Samstag</th>
 		<?php while($data = mysqli_fetch_array($saturdayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
   </tr>
 
@@ -143,7 +143,7 @@ $year = date("Y", strtotime("last Saturday"));
   <tr>
     <th class="tg-yw4l">Sonntag</th>
 		<?php while($data = mysqli_fetch_array($sundayData)){ ?>
-			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
+			<td class="tg-yw4l"><?php echo $data[$type]; ?></td>
 		<?php } ?>
   </tr>
 
