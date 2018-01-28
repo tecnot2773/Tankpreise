@@ -108,7 +108,7 @@ $year = date("Y", strtotime("last Saturday"));
 	$thursdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 	?>
 	<tr>
-		<th class="tg-yw4l"></th>
+		<th class="tg-yw4l">Donnerstag</th>
 		<?php while($data = mysqli_fetch_array($thursdayData)){ ?>
 			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
 		<?php } ?>
@@ -119,7 +119,7 @@ $year = date("Y", strtotime("last Saturday"));
 	$fridayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 	?>
 	<tr>
-		<th class="tg-yw4l"></th>
+		<th class="tg-yw4l">Freitag</th>
 		<?php while($data = mysqli_fetch_array($fridayData)){ ?>
 			<td class="tg-yw4l"><?php echo $data['$type']; ?></td>
 		<?php } ?>
