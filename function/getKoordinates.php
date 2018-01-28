@@ -8,7 +8,7 @@
 		if($radius > 25){
 			$radius = 25;
 		}
-		if($type != "diesel" OR $type != "e5" OR $type != "e10"){
+		if($type != "diesel" && $type != "e5" && $type != "e10"){
 			$type = "diesel";
 		}
 		include_once "dbConnect.php";
