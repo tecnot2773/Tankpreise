@@ -5,7 +5,13 @@
 		$radius = $_GET["radius"];
 		$type = $_GET["type"];
 
-		include_once("dbConnect.php");
+		if($radius > 25){
+			$radius = 25;
+		}
+		if($type != "diesel" OR $type != "e5" OR $type != "e10"){
+			$type = "diesel";
+		}
+		include_once "dbConnect.php";
 
 		$address = strtolower($address);
 		$koordinates = mysqli_query($conn, "SELECT latitude, longitude FROM city WHERE name = '$address';");
