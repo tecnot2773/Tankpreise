@@ -12,6 +12,7 @@
 		<link href="css/generic/textbox.css" type="text/css" rel="stylesheet" />
 		<link href="css/generic/navbar.css" type="text/css" rel="stylesheet" />
 		<link href="css/generic/buttons.css" type="text/css" rel="stylesheet" />
+		<link href="css/generic/icons.css" rel="stylesheet" />
 		<title>Tankstellen Preise</title>
 	</head>
 	<body>
@@ -37,9 +38,11 @@
 			</div>
 			<div id="griddiv-register" class="white">
 				<div id="inputrow-top" class="white">
+					<span class="icon icon-user"></span>
 					<input id="textbox-large" name="text-username" class="enjoy-css" type="text" placeholder="Benutzername">
 				</div>
 				<div id="inputrow-middle" class="white">
+					<span class="icon icon-lock"></span>
 					<input id="textbox-large" name="text-password" class="enjoy-css" type="password" placeholder="Passwort">
 				</div>
 				<div id="inputrow-middle" class="white">

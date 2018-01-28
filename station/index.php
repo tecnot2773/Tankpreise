@@ -11,6 +11,7 @@
 		<link href="../css/generic/textbox.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/navbar.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/buttons.css" type="text/css" rel="stylesheet" />
+		<link href="../css/generic/icons.css" rel="stylesheet" />
 		<title>Tankstellen Preise</title>
 	</head>
 	<body>
@@ -26,7 +27,8 @@
 						<li><a href="../statistics.php">Statistik</a></li>
 						<li>
 							<div class="dropdown">
-								<a><?php echo $_SESSION['username'] ?>&#8609;</a>
+								<a><?php echo $_SESSION['username'] ?></a>
+								<span class="icon icon-arrow-down2"></span>
 								<div class="dropdown-content">
 									<a href="../user/index.php">Benutzer Seite</a>
 									<a href="../user/userConfig.php">Einstellungen</a>
