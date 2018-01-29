@@ -102,9 +102,11 @@
 			<div id="printrow-middle" class="white">
 				Diesel Preis: <?php echo $diesel[1][0]; ?> Euro
 			</div>
+			<?php if(!empty($id)){ ?>
 			<div id="printrow-middle" class="white">
 				<a href="stats.php?id=<?php echo $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
 			</div>
+		<?php } ?>
 		</div>
 		<div id="griddiv-right" class="white">
 			<div id="rowstart" class="white">
