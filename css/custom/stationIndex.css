@@ -1,0 +1,42 @@
+#heading{
+	padding-left: 28%;
+}
+#griddiv-detail {
+width: 45%;
+margin-bottom: 2.5%;
+margin: 0 auto;
+}
+#printrow-middle{
+	padding-top:  1.5%;
+	padding-bottom: 1.5%;
+	margin-left: 2%;
+	font-size: 130%;
+}
+#printrow-top{
+	padding-top:  3%;
+	padding-bottom: 1.5%;
+	margin-left: 2%;
+	font-size: 130%;
+}
+#griddiv-left {
+width: 39.5%;
+float: left;
+margin-left: 10%;
+margin-top: 1%;
+}
+#griddiv-right {
+width: 39.5%;
+float: right;
+margin-right: 10%;
+margin-top: 1%;
+}
+#rowstart {
+padding-top:  5%;
+padding-left: 5%;
+padding-right: 5%;
+}
+#rowend {
+padding-top: 3.5%;
+padding-left: 5%;
+padding-right: 5%;
+}

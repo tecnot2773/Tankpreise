@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+	session_start();
+	include_once "../function/dbConnect.php";
+	include_once "../station/statPrint.php";
+	include_once "../function/getStationDetail.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -46,21 +51,81 @@
 			</div>
 		</header>
 		<!--main contents          -->
-<?php
-	include_once "../function/dbConnect.php";
-	include_once "../station/statPrint.php";
-	$UUID = $_GET["id"];
-	$id = mysqli_fetch_array(mysqli_query($conn, "SELECT ID FROM gasstation WHERE UUID = '$UUID';"))['ID'];
-?>
+		<?php
+			$UUID = $_GET["id"];
+			$id = mysqli_fetch_array(mysqli_query($conn, "SELECT ID FROM gasstation WHERE UUID = '$UUID';"))['ID'];
 
-
-
-<?php
-	echo "UUID: " . $UUID . "<br>";
-	echo "<h3>Diesel</h3>";
-	statPrint("$id","diesel");
-	echo "<h3>E5</h3>";
-	statPrint("$id","E5");
-	echo "<h3>E10</h3>";
-	statPrint("$id","E10");
- ?>
+			$http_content = Detail::getDetail($UUID);
+			$name = Detail::getName($http_content);
+			$brand = Detail::getBrand($http_content);
+			$place = Detail::getPlace($http_content);
+			$street = Detail::getStreet($http_content);
+			$housenumber = Detail::getHousenumber($http_content);
+			$openingTimes = Detail::getOpeningtimes($http_content);
+			$isopen = Detail::getIsopen($http_content);
+			$e5 = Detail::getE5($http_content);
+			$e10 = Detail::getE10($http_content);
+			$diesel = Detail::getDiesel($http_content);
+		?>
+		<div id="heading" class="page-header">
+			<h1><?php echo $name[1][0]; ?></h1>
+		</div>
+		<div id="griddiv-left" class="white">
+			<div id="printrow-top" class="white">
+				Marke: <?php echo $brand[1][0]; ?>
+			</div>
+			<div id="printrow-middle" class="white">
+				Addresse: <?php echo $place[1][0] . ", " . $street[1][0] . " " . $housenumber[1][0]; ?>
+			</div>
+			<div id="printrow-middle" class="white">
+				Öffnungszeiten: <?php echo $openingTimes[0]; ?>
+			</div>
+			<?php if(isset($openingTimes[1])){ ?>
+			<div id="printrow-middle" class="white">
+				Öffnungszeiten: <?php echo $openingTimes[1]; ?>
+			</div>
+			<?php } ?>
+			<?php if(isset($openingTimes[2])){ ?>
+			<div id="printrow-middle" class="white">
+				Öffnungszeiten: <?php echo $openingTimes[2]; ?>
+			</div>
+			<?php } ?>
+			<div id="printrow-middle" class="white">
+				Derzeit geöffnet: <?php echo $isopen; ?>
+			</div>
+			<div id="printrow-middle" class="white">
+				E5 Preis: <?php echo $e5[1][0]; ?> Euro
+			</div>
+			<div id="printrow-middle" class="white">
+				E10 Preis: <?php echo $e10[1][0]; ?> Euro
+			</div>
+			<div id="printrow-middle" class="white">
+				Diesel Preis: <?php echo $diesel[1][0]; ?> Euro
+			</div>
+			<div id="printrow-middle" class="white">
+				<a href="stats.php?id=<?php echo $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
+			</div>
+		</div>
+		<div id="griddiv-right" class="white">
+			<div id="rowstart" class="white">
+				<?php
+				$place_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $place[1][0]);
+				$street_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $street[1][0]);
+				$number_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $housenumber[1][0]);
+				?>
+				<iframe
+					width="100%"
+					height="450"
+					frameborder="0" style="border:0"
+					<?php if(isset($place_new) && isset($street_new)){
+					echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $place_new . "," . $street_new . "," . $number_new . "' allowfullscreen>";
+					}else{
+					echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";
+					} ?>
+				</iframe>
+			</div>
+			<div id="rowend" class="white">
+			</div>
+		</div>
+	</body>
+</html>
