@@ -48,7 +48,7 @@
 		<!--main contents          -->
 		<form action="index.php" method="get">
 			<div id="heading" class="page-header">
-				<h1>Suchen Sie die günstigste Tankstelle in ihrer Nähe</h1>
+				<h1> </h1>
 			</div>
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">

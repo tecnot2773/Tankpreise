@@ -68,10 +68,13 @@
 			$diesel = Detail::getDiesel($http_content);
 		?>
 		<div id="heading" class="page-header">
-			<h1><?php echo $name[1][0]; ?></h1>
+			<h1> </h1>
 		</div>
 		<div id="griddiv-left" class="white">
 			<div id="printrow-top" class="white">
+				Name: <?php echo $name[1][0]; ?>
+			</div>
+			<div id="printrow-middle" class="white">
 				Marke: <?php echo $brand[1][0]; ?>
 			</div>
 			<div id="printrow-middle" class="white">
