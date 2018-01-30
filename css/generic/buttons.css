@@ -16,7 +16,7 @@
 	color: black;
 	border: 2px solid #ff0000;
 	border-radius: 12px;
-	width: 23.25%;
+	width: auto;
 }
 .button:hover {
 	background-color: #ff0000;
