@@ -36,11 +36,7 @@
 								</div>
 							</div>
 						</li>
-					<?php  }else{ ?>
-						<li><a href="../statistics.php">Statistik</a></li>
-						<li><a href="../register.php">Registrieren</a></li>
-						<li><a href="../login.php">Login</a></li>
-					<?php } ?>
+					<?php }else{ header("location: ../login.php"); } ?>
 					</ul>
 				</nav>
 			</div>
