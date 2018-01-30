@@ -80,7 +80,7 @@
 			$tuesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
-				<th id="tg-yw4l">Diestag</th>
+				<th id="tg-yw4l">Dienstag</th>
 				<?php while($data = mysqli_fetch_array($tuesdayData)){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
 				<?php } ?>
