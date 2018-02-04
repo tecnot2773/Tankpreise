@@ -96,15 +96,21 @@
 			<div id="printrow-middle" class="white">
 				Derzeit geöffnet: <?php echo $isopen; ?>
 			</div>
+			<?php if($e5 != "null"){ ?>
 			<div id="printrow-middle" class="white">
-				E5 Preis: <?php echo $e5[1][0]; ?> Euro
+				<?php echo $e5; ?>
 			</div>
+			<?php } ?>
+			<?php if($e10 != "null"){ ?>
 			<div id="printrow-middle" class="white">
-				E10 Preis: <?php echo $e10[1][0]; ?> Euro
+				<?php echo $e10; ?>
 			</div>
+			<?php } ?>
+			<?php if($diesel != "null"){ ?>
 			<div id="printrow-middle" class="white">
-				Diesel Preis: <?php echo $diesel[1][0]; ?> Euro
+				<?php echo $diesel; ?>
 			</div>
+			<?php } ?>
 			<?php if(!empty($id)){ ?>
 			<div id="printrow-middle" class="white">
 				<a href="stats.php?id=<?php echo $id; ?>">Statistiken der Preise der letzten 7 Tage</a>

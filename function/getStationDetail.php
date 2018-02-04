@@ -74,16 +74,34 @@
 		public static function getE5($content)
 		{
 			preg_match_all('/"e5":\K(.+?)(?=,)/', $content, $e5);
+			if($e5[1][0] != "null"){
+				$e5 = "E5 Preis: " . $e5[1][0] . " Euro";
+			}
+			else{
+				$e10 = "null";
+			}
 			return $e5;
 		}
 		public static function getE10($content)
 		{
 			preg_match_all('/"e10":\K(.+?)(?=,)/', $content, $e10);
+			if($e10[1][0] != "null"){
+				$e10 = "E10 Preis: " . $e10[1][0] . " Euro";
+			}
+			else{
+				$e10 = "null";
+			}
 			return $e10;
 		}
 		public static function getDiesel($content)
 		{
 			preg_match_all('/"diesel":\K(.+?)(?=,)/', $content, $diesel);
+			if($diesel[1][0] != "null"){
+				$diesel = "Diesel Preis: " . $diesel[1][0] . " Euro";
+			}
+			else{
+				$diesel = "null";
+			}
 			return $diesel;
 		}
 
