@@ -3,8 +3,6 @@
 
 		include "../function/dbConnect.php";
 
-		$month = date("m", strtotime("last Saturday"));
-		$year = date("Y", strtotime("last Saturday"));
 		?>
 		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
 
@@ -66,6 +64,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Monday"));
+			$month = date("m", strtotime("last Monday"));
+			$year = date("Y", strtotime("last Monday"));
 			$mondayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 		  <tr>
@@ -77,6 +77,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Tuesday"));
+			$month = date("m", strtotime("last Tuesday"));
+			$year = date("Y", strtotime("last Tuesday"));
 			$tuesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
@@ -88,6 +90,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Wednesday"));
+			$month = date("m", strtotime("last Wednesday"));
+			$year = date("Y", strtotime("last Wednesday"));
 			$wednesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
@@ -99,6 +103,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Thursday"));
+			$month = date("m", strtotime("last Thursday"));
+			$year = date("Y", strtotime("last Thursday"));
 			$thursdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
@@ -110,6 +116,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Friday"));
+			$month = date("m", strtotime("last Friday"));
+			$year = date("Y", strtotime("last Friday"));
 			$fridayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
@@ -121,6 +129,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Saturday"));
+			$month = date("m", strtotime("last Saturday"));
+			$year = date("Y", strtotime("last Saturday"));
 			$saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 		  <tr>
@@ -132,6 +142,8 @@
 
 			<?php
 			$day = date("d", strtotime("last Sunday"));
+			$month = date("m", strtotime("last Sunday"));
+			$year = date("Y", strtotime("last Sunday"));
 			$sundayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 		  <tr>
