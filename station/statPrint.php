@@ -2,7 +2,7 @@
 	function statPrint($stationID, $type){
 
 		include "../function/dbConnect.php";
-
+		$query = "SELECT * FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? ORDER BY timestamp ASC;";
 		?>
 		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
 
@@ -63,16 +63,19 @@
 		  </tr>
 
 			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Monday"));
 			$month = date("m", strtotime("last Monday"));
 			$year = date("Y", strtotime("last Monday"));
-			$mondayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$stmt->execute();
+			$result = $stmt->get_result();
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Monday</th>
-				<?php while($data = mysqli_fetch_array($mondayData)){ ?>
+				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
+				<?php } }?>
 		  </tr>
 
 			<?php
