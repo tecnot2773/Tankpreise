@@ -2,29 +2,39 @@
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		include_once "dbConnect.php";
 		if(!empty($_POST["text-username"]) && !empty($password = $_POST["text-password"]) && !empty($repassword = $_POST["text-repassword"])){
-			$username = $_POST["text-username"];
-			$password = $_POST["text-password"];
-			$repassword = $_POST["text-repassword"];
+			$username = $mysqli->real_escape_string($_POST["text-username"]);
+			$password = $mysqli->real_escape_string($_POST["text-password"]);
+			$repassword = $mysqli->real_escape_string($_POST["text-repassword"]);
 
-			if(mysqli_num_rows(mysqli_query($conn, "SELECT name FROM user WHERE name = '$username';")) == 0){
-				if($password == $repassword){
-					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-					mysqli_query($conn, "INSERT INTO `user`(`name`, `password`, `consumption`, `cityID`) VALUES ('$username','$hashed_password',NULL,NULL);");
+			if($stmt = $mysqli->prepare("SELECT name FROM user WHERE name = ?;")){
+				$stmt->bind_param("s", $username);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				if($result->num_rows == 0){
+					$stmt->reset();
+					if($password == $repassword){
+						$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+						if($stmt = $mysqli->prepare("INSERT INTO `user`(`name`, `hashed_password`) VALUES (?, ?);")){
+							$stmt->bind_param("ss", $username, $hashed_password);
+							$stmt->execute();
 
-					echo "Benutzer wurde erfolgreich angelegt.";
-					header("location: ../login.php");
+							echo "Benutzer wurde erfolgreich angelegt.";
+							header("location: login.php");
+							$stmt->close();
+						}
+					}
+					else{
+						echo "Die Passwörter stimmen nicht überein.";
+					}
 				}
 				else{
-					echo "Die Passwörter stimmen nicht überein.";
+					echo "Der Benutzername ist bereits Vergeben.";
 				}
-			}
-			else{
-				echo "Der Benutzername ist bereits Vergeben.";
 			}
 		}
 		else{
 			echo "Bitte füllen Sie alle Felder aus.";
 		}
-		mysqli_close($conn);
+		mysqli_close($mysqli);
 	}
  ?>

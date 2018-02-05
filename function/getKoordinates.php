@@ -1,9 +1,11 @@
 <?php
 	//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
-		$address = $_GET["address"];
-		$radius = $_GET["radius"];
-		$type = $_GET["type"];
+		include_once "dbConnect.php";
+
+		$address = $mysqli->real_escape_string($_GET["address"]);
+		$radius = $mysqli->real_escape_string($_GET["radius"]);
+		$type = $mysqli->real_escape_string($_GET["type"]);
 
 		if($radius > 25){
 			$radius = 25;
@@ -11,29 +13,35 @@
 		if($type != "diesel" && $type != "e5" && $type != "e10"){
 			$type = "diesel";
 		}
-		include_once "dbConnect.php";
 
-		$address = strtolower($address);
-		$koordinates = mysqli_query($conn, "SELECT latitude, longitude FROM city WHERE name = '$address';");
-		if(mysqli_num_rows($koordinates) > 0){
-			while($data = mysqli_fetch_array($koordinates)){
-				$latitude[1] = $data["latitude"];
-				$longitude[1] = $data["longitude"];
+		$query = "SELECT latitude, longitude FROM city WHERE name = ?;";
+		if ($stmt = $mysqli->prepare($query)) {
+			$address = strtolower($address);
+			$stmt->bind_param("s", $address);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			if($result->num_rows > 0){
+				while($data = $result->fetch_array()){
+					$latitude[1] = $data["latitude"];
+					$longitude[1] = $data["longitude"];
+				}
 			}
+			$stmt->close();
 		}
-		else{
+		if(empty($latitude) && empty($longitude)){
 			$json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json'
 			    ."?address=$address"   // adress
 			    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
-			//$data = json_decode($json);
-			//print_r($json);
-			//preg_match('/\[location] => stdClass Object\n *\(\n *\[lat] => (.+?)(?=\n)/' , $json, $latitude);
-			//preg_match('/\[location] => stdClass Object\n *\(\n *\[lat] => \d*.\d*\n *\[lng] => (.+?)(?=\n)/', $json, $longitude);
 
 			preg_match('/"location" : {\n\s*"lat" : (.+?)(?=,)/' , $json, $latitude);
 			preg_match('/"location" : {\n\s*"lat" : \d*.\d*,\n\s*"lng" : (.+?)(?=\n)/', $json, $longitude);
 			if(isset($longitude[1])){
-				mysqli_query($conn, "INSERT INTO `city`(`name`, `latitude`, `longitude`) VALUES ('$address','$latitude[1]','$longitude[1]');");
+				$query = "INSERT INTO `city`(`name`, `latitude`, `longitude`) VALUES (?, ?, ?);";
+				if ($stmt = $mysqli->prepare($query)) {
+					$stmt->bind_param("sdd", $address, $latitude[1], $longitude[1]);
+					$stmt->execute();
+					$stmt->close();
+				}
 			}
 		}
 
@@ -47,6 +55,6 @@
 		}else{
 			echo "GoogleAPI overflow <br> Please reload the Page";
 		}
-		mysqli_close($conn);
+		$mysqli->close();
 	}
 ?>

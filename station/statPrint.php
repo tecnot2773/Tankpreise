@@ -66,7 +66,7 @@
 			$day = date("d", strtotime("last Monday"));
 			$month = date("m", strtotime("last Monday"));
 			$year = date("Y", strtotime("last Monday"));
-			$mondayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$mondayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Monday</th>
@@ -79,7 +79,7 @@
 			$day = date("d", strtotime("last Tuesday"));
 			$month = date("m", strtotime("last Tuesday"));
 			$year = date("Y", strtotime("last Tuesday"));
-			$tuesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$tuesdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
 				<th id="tg-yw4l">Dienstag</th>
@@ -92,7 +92,7 @@
 			$day = date("d", strtotime("last Wednesday"));
 			$month = date("m", strtotime("last Wednesday"));
 			$year = date("Y", strtotime("last Wednesday"));
-			$wednesdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$wednesdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
 				<th id="tg-yw4l">Mittwoch</th>
@@ -105,7 +105,7 @@
 			$day = date("d", strtotime("last Thursday"));
 			$month = date("m", strtotime("last Thursday"));
 			$year = date("Y", strtotime("last Thursday"));
-			$thursdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$thursdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
 				<th id="tg-yw4l">Donnerstag</th>
@@ -118,7 +118,7 @@
 			$day = date("d", strtotime("last Friday"));
 			$month = date("m", strtotime("last Friday"));
 			$year = date("Y", strtotime("last Friday"));
-			$fridayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$fridayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 			<tr>
 				<th id="tg-yw4l">Freitag</th>
@@ -131,7 +131,7 @@
 			$day = date("d", strtotime("last Saturday"));
 			$month = date("m", strtotime("last Saturday"));
 			$year = date("Y", strtotime("last Saturday"));
-			$saturdayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$saturdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Samstag</th>
@@ -144,7 +144,7 @@
 			$day = date("d", strtotime("last Sunday"));
 			$month = date("m", strtotime("last Sunday"));
 			$year = date("Y", strtotime("last Sunday"));
-			$sundayData = mysqli_query($conn, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$sundayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Sonntag</th>

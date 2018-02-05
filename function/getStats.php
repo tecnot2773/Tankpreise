@@ -33,6 +33,17 @@
 	preg_match_all('/"brand":"\K(.+?)(?=",)/', $http_content, $brand);
 
 	$count = count($town[1]);
+
+	$stmtgetStation = $mysqli->prepare("SELECT * FROM gasstation WHERE UUID = ?;");				//prepare statement to check if the Station is in the DB
+
+	$queryStation = "INSERT INTO `gasstation`(`brand`,`name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+	$stmtStation = $mysqli->prepare($queryStation);																				//prepare statement to insert missing station
+
+	$stmtgetID = $mysqli->prepare("SELECT ID FROM gasstation WHERE `UUID` = ?");					//prepare statement to search for station in local DB
+
+	$queryStats = "INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES (?, ?, ?, ?)";
+	$stmtStats = $mysqli->prepare($queryStats);																						//prepare statement to insert current stats
+
 	for ($i = 0; $i < $count; $i++) {
 		$town_new = $town[1][$i];
 		$brand_new = $brand[1][$i];
@@ -46,23 +57,28 @@
 		$lon_new = $lon[1][$i];
 		$brand_new = $brand[1][$i];
 
-		$checkStation = mysqli_query($conn, "SELECT * FROM gasstation WHERE UUID = '$UUID_new';");
-		if(mysqli_num_rows($checkStation) == 0){
-			mysqli_query($conn, "INSERT INTO `gasstation`(`brand`,`name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES ('$brand_new','$name_new','$street_new','$town_new','$lat_new','$lon_new','$UUID_new');");
+		$stmtgetStation->bind_param("d", $UUID_new);			//bind parameter
+		$stmtgetStation->execute();												//execute prepared statement
+		$result = $stmtgetStation->get_result();					//write result in $result
+		if($result->num_rows == 0){												//if num_rows == 0 means the Station is not in the local DB
+			$stmtStation->bind_param("ssssdds", $brand_new, $name_new, $street_new, $town_new, $lat_new, $lon_new, $UUID_new);	//bind parameter
+			$stmtStation->execute();												//execute prepared statement to insert missing Station
+		}
+		$result->free();																	//free result
 
-			//$wtf = "INSERT INTO `gasstation`(`brand`, `name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES ('$brand_new','$name_new','$street_new','$town_new','$lat_new','$lon_new','$UUID_new')";
-			//print_r($wtf);
-			//echo "<br>";
+		$stmtgetID->bind_param("d", $UUID_new);						//bind parameter
+		$stmtgetID->execute();														//execute prepared statement
+		$result = $stmtgetID->get_result();								//write result in $result
+		while($data = $result->fetch_array()){						//fetch array
+			$stationID = $data['ID'];												//write ID in $stationID
 		}
-		//echo "SELECT ID FROM gasstation WHERE `UUID` = '$UUID_new'";
-		//echo "<br>";
-		$get_stationID = mysqli_query($conn, "SELECT ID FROM gasstation WHERE `UUID` = '$UUID_new'");
-		while($data = mysqli_fetch_array($get_stationID)){
-			$stationID = $data['ID'];
-		}
-		//echo "INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES ('$diesel_new','$e5_new','$e10_new','$stationID')";
-		//echo "<br>";
-		mysqli_query($conn,"INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES ('$diesel_new','$e5_new','$e10_new','$stationID')");
+
+		$stmtStats->bind_param("dddd", $diesel_new, $e5_new, $e10_new, $stationID);		//bind parameter
+		$stmtStats->execute();														//insert stats into DB
 	}
-	mysqli_close($conn);
+	$stmtStats->close();
+	$stmtgetID->close();		
+	$stmtStation->close();		
+	$stmtgetStation->close();		
+	$mysqli->close();																		//close DB connection
  ?>

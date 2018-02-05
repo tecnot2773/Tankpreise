@@ -53,7 +53,8 @@
 		<!--main contents          -->
 		<?php
 			$UUID = $_GET["id"];
-			$id = mysqli_fetch_array(mysqli_query($conn, "SELECT ID FROM gasstation WHERE UUID = '$UUID';"))['ID'];
+			$UUID = mysqli_real_escape_string($mysqli, $UUID);
+			$id = mysqli_fetch_array(mysqli_query($mysqli, "SELECT ID FROM gasstation WHERE UUID = '$UUID';"))['ID'];
 
 			$http_content = Detail::getDetail($UUID);
 			$name = Detail::getName($http_content);
@@ -120,9 +121,9 @@
 		<div id="griddiv-right" class="white">
 			<div id="rowstart" class="white">
 				<?php
-				$place_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $place[1][0]);
-				$street_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $street[1][0]);
-				$number_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $housenumber[1][0]);
+				$place_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $place);
+				$street_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $street);
+				$number_new = preg_replace('/(?=\s)(.+?)(?=\w)/', '+', $housenumber);
 				?>
 				<iframe
 					width="100%"

@@ -14,26 +14,26 @@
 		public static function getName($content)
 		{
 			preg_match_all('/"name":"\K(.+?)(?=")/', $content, $name);
-			$name = $name[0][1];
+			$name = $name[1][0];
 			return $name;
 		}
 		public static function getBrand($content)
 		{
 			preg_match_all('/"brand":"\K(.+?)(?=")/', $content, $brand);
-			$brand = $brand[0][1];
+			$brand = $brand[1][0];
 			return $brand;
 		}
 		public static function getPlace($content)
 		{
 			preg_match_all('/"place":"\K(.+?)(?=")/', $content, $town);
-			$town = $town[0][1];
+			$town = $town[1][0];
 			$town = str_replace('",','',$town);
 			return $town;
 		}
 		public static function getStreet($content)
 		{
 			preg_match_all('/"street":"\K(.+?)(?=")/', $content, $street);
-			$street = $street[0][1];
+			$street = $street[1][0];
 			$street = str_replace('",','',$street);
 			return $street;
 		}
@@ -41,7 +41,7 @@
 		{
 			preg_match_all('/"houseNumber":"\K(.+?)(?=")/', $content, $houseNumber);
 			if(!empty($houseNumber[1][0])){
-				$houseNumber = $houseNumber[0][1];
+				$houseNumber = $houseNumber[1][0];
 				return $houseNumber;
 			}
 			else{
@@ -111,7 +111,5 @@
 			}
 			return $diesel;
 		}
-
-
 	}
  ?>
