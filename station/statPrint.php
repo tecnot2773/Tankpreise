@@ -75,11 +75,10 @@
 		    <th id="tg-yw4l">Montag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php }?>
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Tuesday"));
 			$month = date("m", strtotime("last Tuesday"));
@@ -91,11 +90,10 @@
 		    <th id="tg-yw4l">Dienstag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php }?>
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Wednesday"));
 			$month = date("m", strtotime("last Wednesday"));
@@ -107,11 +105,10 @@
 		    <th id="tg-yw4l">Mittwoch</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php }?>
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Thursday"));
 			$month = date("m", strtotime("last Thursday"));
@@ -123,11 +120,10 @@
 		    <th id="tg-yw4l">Donnerstag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php }?>
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Friday"));
 			$month = date("m", strtotime("last Friday"));
@@ -139,11 +135,10 @@
 		    <th id="tg-yw4l">Freitag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php }?>
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Saturday"));
 			$month = date("m", strtotime("last Saturday"));
@@ -155,11 +150,10 @@
 		    <th id="tg-yw4l">Samstag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php }?>
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Sunday"));
 			$month = date("m", strtotime("last Sunday"));
@@ -171,7 +165,7 @@
 		    <th id="tg-yw4l">Sonntag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } $stmt->reset();}?>
+				<?php } $stmt->close();}?>
 		  </tr>
 
 		</table>
