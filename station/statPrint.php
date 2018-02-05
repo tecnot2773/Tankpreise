@@ -72,88 +72,106 @@
 			$result = $stmt->get_result();
 			?>
 		  <tr>
-		    <th id="tg-yw4l">Monday</th>
+		    <th id="tg-yw4l">Montag</th>
 				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } }?>
+				<?php } $stmt->reset();}?>
 		  </tr>
 
 			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Tuesday"));
 			$month = date("m", strtotime("last Tuesday"));
 			$year = date("Y", strtotime("last Tuesday"));
-			$tuesdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
-			?>
-			<tr>
-				<th id="tg-yw4l">Dienstag</th>
-				<?php while($data = mysqli_fetch_array($tuesdayData)){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
-			</tr>
-
-			<?php
-			$day = date("d", strtotime("last Wednesday"));
-			$month = date("m", strtotime("last Wednesday"));
-			$year = date("Y", strtotime("last Wednesday"));
-			$wednesdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
-			?>
-			<tr>
-				<th id="tg-yw4l">Mittwoch</th>
-				<?php while($data = mysqli_fetch_array($wednesdayData)){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
-			</tr>
-
-			<?php
-			$day = date("d", strtotime("last Thursday"));
-			$month = date("m", strtotime("last Thursday"));
-			$year = date("Y", strtotime("last Thursday"));
-			$thursdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
-			?>
-			<tr>
-				<th id="tg-yw4l">Donnerstag</th>
-				<?php while($data = mysqli_fetch_array($thursdayData)){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
-			</tr>
-
-			<?php
-			$day = date("d", strtotime("last Friday"));
-			$month = date("m", strtotime("last Friday"));
-			$year = date("Y", strtotime("last Friday"));
-			$fridayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
-			?>
-			<tr>
-				<th id="tg-yw4l">Freitag</th>
-				<?php while($data = mysqli_fetch_array($fridayData)){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
-			</tr>
-
-			<?php
-			$day = date("d", strtotime("last Saturday"));
-			$month = date("m", strtotime("last Saturday"));
-			$year = date("Y", strtotime("last Saturday"));
-			$saturdayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$stmt->execute();
+			$result = $stmt->get_result();
 			?>
 		  <tr>
-		    <th id="tg-yw4l">Samstag</th>
-				<?php while($data = mysqli_fetch_array($saturdayData)){ ?>
+		    <th id="tg-yw4l">Dienstag</th>
+				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
+				<?php } $stmt->reset();}?>
 		  </tr>
 
 			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
+			$day = date("d", strtotime("last Wednesday"));
+			$month = date("m", strtotime("last Wednesday"));
+			$year = date("Y", strtotime("last Wednesday"));
+			$stmt->execute();
+			$result = $stmt->get_result();
+			?>
+		  <tr>
+		    <th id="tg-yw4l">Mittwoch</th>
+				<?php while($data = $result->fetch_array()){ ?>
+					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+				<?php } $stmt->reset();}?>
+		  </tr>
+
+			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
+			$day = date("d", strtotime("last Thursday"));
+			$month = date("m", strtotime("last Thursday"));
+			$year = date("Y", strtotime("last Thursday"));
+			$stmt->execute();
+			$result = $stmt->get_result();
+			?>
+		  <tr>
+		    <th id="tg-yw4l">Donnerstag</th>
+				<?php while($data = $result->fetch_array()){ ?>
+					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+				<?php } $stmt->reset();}?>
+		  </tr>
+
+			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
+			$day = date("d", strtotime("last Friday"));
+			$month = date("m", strtotime("last Friday"));
+			$year = date("Y", strtotime("last Friday"));
+			$stmt->execute();
+			$result = $stmt->get_result();
+			?>
+		  <tr>
+		    <th id="tg-yw4l">Freitag</th>
+				<?php while($data = $result->fetch_array()){ ?>
+					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+				<?php } $stmt->reset();}?>
+		  </tr>
+
+			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
+			$day = date("d", strtotime("last Saturday"));
+			$month = date("m", strtotime("last Saturday"));
+			$year = date("Y", strtotime("last Saturday"));
+			$stmt->execute();
+			$result = $stmt->get_result();
+			?>
+		  <tr>
+		    <th id="tg-yw4l">Samstag</th>
+				<?php while($data = $result->fetch_array()){ ?>
+					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+				<?php } $stmt->reset();}?>
+		  </tr>
+
+			<?php
+			if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
 			$day = date("d", strtotime("last Sunday"));
 			$month = date("m", strtotime("last Sunday"));
 			$year = date("Y", strtotime("last Sunday"));
-			$sundayData = mysqli_query($mysqli, "SELECT * FROM stats WHERE gasStationID = '$stationID' AND MONTH(timestamp) = '$month' AND DAY(timestamp) = '$day' AND YEAR(timestamp) = '$year' ORDER BY timestamp ASC;");
+			$stmt->execute();
+			$result = $stmt->get_result();
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Sonntag</th>
-				<?php while($data = mysqli_fetch_array($sundayData)){ ?>
+				<?php while($data = $result->fetch_array()){ ?>
 					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
-				<?php } ?>
+				<?php } $stmt->reset();}?>
 		  </tr>
 
 		</table>
