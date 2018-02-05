@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 27. Jan 2018 um 01:17
+-- Erstellungszeit: 05. Feb 2018 um 15:33
 -- Server-Version: 5.7.21-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `hashed_password` varchar(100) NOT NULL,
   `consumption` float DEFAULT NULL,
   `cityID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
