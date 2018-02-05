@@ -32,7 +32,7 @@
 	preg_match_all('/"lng":\K(.+?)(?=,)/', $http_content, $lon);
 	preg_match_all('/"brand":"\K(.+?)(?=",)/', $http_content, $brand);
 
-	$count = count($town[1]);
+	$count = count($town[1]);																														//value in for loop
 
 	$stmtgetStation = $mysqli->prepare("SELECT * FROM gasstation WHERE UUID = ?;");				//prepare statement to check if the Station is in the DB
 
@@ -77,8 +77,8 @@
 		$stmtStats->execute();														//insert stats into DB
 	}
 	$stmtStats->close();
-	$stmtgetID->close();		
-	$stmtStation->close();		
-	$stmtgetStation->close();		
+	$stmtgetID->close();
+	$stmtStation->close();
+	$stmtgetStation->close();
 	$mysqli->close();																		//close DB connection
  ?>
