@@ -72,13 +72,13 @@
 		</div>
 		<div id="griddiv-left" class="white">
 			<div id="printrow-top" class="white">
-				Name: <?php echo $name[1][0]; ?>
+				Name: <?php echo $name; ?>
 			</div>
 			<div id="printrow-middle" class="white">
-				Marke: <?php echo $brand[1][0]; ?>
+				Marke: <?php echo $brand; ?>
 			</div>
 			<div id="printrow-middle" class="white">
-				Addresse: <?php echo $place[1][0] . ", " . $street[1][0] . " " . $housenumber[1][0]; ?>
+				Addresse: <?php echo $place . ", " . $street . " " . $housenumber; ?>
 			</div>
 			<div id="printrow-middle" class="white">
 				Öffnungszeiten: <?php echo $openingTimes[0]; ?>
