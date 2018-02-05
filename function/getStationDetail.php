@@ -24,11 +24,13 @@
 		public static function getPlace($content)
 		{
 			preg_match_all('/"place":"\K(.+?)(?=")/', $content, $town);
+			$town = str_replace('",','',$town);
 			return $town;
 		}
 		public static function getStreet($content)
 		{
 			preg_match_all('/"street":"\K(.+?)(?=")/', $content, $street);
+			$street = str_replace('",','',$street);
 			return $street;
 		}
 		public static function getHousenumber($content)
