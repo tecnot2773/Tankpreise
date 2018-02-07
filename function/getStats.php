@@ -45,7 +45,7 @@
 
 	$queryStats = "INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES (?, ?, ?, ?)";
 	$stmtStats = $mysqli->prepare($queryStats);																						//prepare statement to insert current stats
-	$stmtStats->bind_param("dddd", $diesel_new, $e5_new, $e10_new, $stationID);		//bind parameter
+	$stmtStats->bind_param("sssd", $diesel_new, $e5_new, $e10_new, $stationID);		//bind parameter
 
 	for ($i = 0; $i < $count; $i++) {
 		$town_new = $town[1][$i];
