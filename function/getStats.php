@@ -4,7 +4,7 @@
 
 	$lat = "52.9127"; 		//Syke
 	$lng = "8.81814";
-	$radius = "5";			//25km -- maximum
+	$radius = "25";			//25km -- maximum
 	$type = "all";	//get all but without best price check
 
 
@@ -75,7 +75,7 @@
 		}
 		$result->free();																	//free result
 		$stmtStats->execute();														//insert stats into DB
-		
+
 	}
 	$stmtStats->close();
 	$stmtgetID->close();
