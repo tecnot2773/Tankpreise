@@ -27,7 +27,7 @@
 						<li><a href="statistics.php">Statistik</a></li>
 						<li>
 							<div class="dropdown">
-								<a><?php echo $_SESSION['username'] ?></a>
+								<a><?= $_SESSION['username'] ?></a>
 								<span class="icon icon-arrow-down2"></span>
 								<div class="dropdown-content">
 									<a href="user/index.php">Benutzer Seite</a>
@@ -53,13 +53,13 @@
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">
 						<?php if(isset($_GET["address"])){ ?>
-							<input name="address" class="enjoy-css" type="text" placeholder="<?php echo $_GET["address"]; ?>" value="<?php echo $_GET["address"]; ?>">
+							<input name="address" class="enjoy-css" type="text" placeholder="<?= $_GET["address"]; ?>" value="<?= $_GET["address"]; ?>">
 						<?php }else{ ?>
 							<input name="address" class="enjoy-css" type="text" placeholder="Standort">
 						<?php } ?>
 						<select name='radius' class='enjoy-css'>
 							<?php if(isset($_GET["radius"])){ ?>
-							<option value="<?php echo $_GET["radius"]; ?>" selected hidden>Radius <?php echo $_GET["radius"]; ?>km</option>
+							<option value="<?= $_GET["radius"]; ?>" selected hidden>Radius <?= $_GET["radius"]; ?>km</option>
 							<?php } ?>
 							<option value="5">Radius 5km</option>
 							<option value="10">Radius 10km</option>
@@ -69,7 +69,7 @@
 						</select>
 						<select name='type' class='enjoy-css'>
 							<?php if(isset($_GET["type"])){ ?>
-							<option value="<?php echo $_GET["type"]; ?>" selected hidden><?php echo $_GET["type"]; ?></option>
+							<option value="<?= $_GET["type"]; ?>" selected hidden><?= $_GET["type"]; ?></option>
 							<?php } ?>
 							<option value="diesel">Diesel</option>
 							<option value="e5">E5</option>
