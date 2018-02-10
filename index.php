@@ -71,9 +71,9 @@
 							<?php if(isset($_GET["type"])){ ?>
 							<option value="<?= $_GET["type"]; ?>" selected hidden><?= $_GET["type"]; ?></option>
 							<?php } ?>
-							<option value="diesel">Diesel</option>
-							<option value="e5">E5</option>
-							<option value="e10">E10</option>
+							<option value="Diesel">Diesel</option>
+							<option value="E5">E5</option>
+							<option value="E10">E10</option>
 						</select>
 						<input class="button" type="submit" value="Eingabe">
 					</div>

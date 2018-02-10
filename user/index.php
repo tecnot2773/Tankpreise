@@ -27,7 +27,7 @@
 						<li><a href="../statistics.php">Statistik</a></li>
 						<li>
 							<div class="dropdown">
-								<a><?php echo $_SESSION['username'] ?></a>
+								<a><?= $_SESSION['username'] ?></a>
 								<span class="icon icon-arrow-down2"></span>
 								<div class="dropdown-content">
 									<a href="../user/index.php">Benutzer Seite</a>

@@ -74,7 +74,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Montag</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php }?>
 		  </tr>
 
@@ -89,7 +89,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Dienstag</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php }?>
 		  </tr>
 
@@ -104,7 +104,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Mittwoch</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php }?>
 		  </tr>
 
@@ -119,7 +119,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Donnerstag</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php }?>
 		  </tr>
 
@@ -134,7 +134,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Freitag</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php }?>
 		  </tr>
 
@@ -149,7 +149,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Samstag</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php }?>
 		  </tr>
 
@@ -164,7 +164,7 @@
 		  <tr>
 		    <th id="tg-yw4l">Sonntag</th>
 				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?php echo $data[$type]; ?></td>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 				<?php } $stmt->close();}?>
 		  </tr>
 

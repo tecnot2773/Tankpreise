@@ -1,5 +1,5 @@
 <?php
-	include_once "../station/statPrint.php";
+	include_once "../function/statPrint.php";
 	$id = $_GET["id"];
 	echo "<h3>Diesel</h3>";
 	statPrint("$id","diesel");

@@ -10,6 +10,15 @@
 		if($radius > 25){
 			$radius = 25;
 		}
+		if($type == "Diesel"){
+			$type = "diesel";
+		}
+		if($type == "E5"){
+			$type = "e5";
+		}
+		if($type == "E10"){
+			$type = "e10";
+		}
 		if($type != "diesel" && $type != "e5" && $type != "e10"){
 			$type = "diesel";
 		}

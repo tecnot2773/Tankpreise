@@ -32,7 +32,7 @@
 						<li><a href="../statistics.php">Statistik</a></li>
 						<li>
 							<div class="dropdown">
-								<a><?php echo $_SESSION['username'] ?></a>
+								<a><?= $_SESSION['username'] ?></a>
 								<span class="icon icon-arrow-down2"></span>
 								<div class="dropdown-content">
 									<a href="../user/index.php">Benutzer Seite</a>
@@ -73,43 +73,43 @@
 		</div>
 		<div id="griddiv-left" class="white">
 			<div id="printrow-top" class="white">
-				Name: <?php echo $name; ?>
+				Name: <?= $name; ?>
 			</div>
 			<div id="printrow-middle" class="white">
-				Marke: <?php echo $brand; ?>
+				Marke: <?= $brand; ?>
 			</div>
 			<div id="printrow-middle" class="white">
 				Addresse: <?php echo $place . ", " . $street . " " . $housenumber; ?>
 			</div>
 			<div id="printrow-middle" class="white">
-				Öffnungszeiten: <?php echo $openingTimes[0]; ?>
+				Öffnungszeiten: <?= $openingTimes[0]; ?>
 			</div>
 			<?php if(isset($openingTimes[1])){ ?>
 			<div id="printrow-middle" class="white">
-				Öffnungszeiten: <?php echo $openingTimes[1]; ?>
+				Öffnungszeiten: <?= $openingTimes[1]; ?>
 			</div>
 			<?php } ?>
 			<?php if(isset($openingTimes[2])){ ?>
 			<div id="printrow-middle" class="white">
-				Öffnungszeiten: <?php echo $openingTimes[2]; ?>
+				Öffnungszeiten: <?= $openingTimes[2]; ?>
 			</div>
 			<?php } ?>
 			<div id="printrow-middle" class="white">
-				Derzeit geöffnet: <?php echo $isopen; ?>
+				Derzeit geöffnet: <?= $isopen; ?>
 			</div>
 			<?php if($e5 != "null"){ ?>
 			<div id="printrow-middle" class="white">
-				<?php echo $e5; ?>
+				<?= $e5; ?>
 			</div>
 			<?php } ?>
 			<?php if($e10 != "null"){ ?>
 			<div id="printrow-middle" class="white">
-				<?php echo $e10; ?>
+				<?= $e10; ?>
 			</div>
 			<?php } ?>
 			<?php if($diesel != "null"){ ?>
 			<div id="printrow-middle" class="white">
-				<?php echo $diesel; ?>
+				<?= $diesel; ?>
 			</div>
 			<?php } ?>
 			<?php if(!empty($id)){ ?>
