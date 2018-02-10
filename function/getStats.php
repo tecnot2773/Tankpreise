@@ -31,18 +31,21 @@
 	preg_match_all('/"lat":\K(.+?)(?=,)/', $http_content, $lat);
 	preg_match_all('/"lng":\K(.+?)(?=,)/', $http_content, $lon);
 	preg_match_all('/"brand":"\K(.+?)(?=",)/', $http_content, $brand);
-
 	$count = count($town[1]);																														//value in for loop
 
 	$stmtgetStation = $mysqli->prepare("SELECT * FROM gasstation WHERE UUID = ?;");				//prepare statement to check if the Station is in the DB
+	$stmtgetStation->bind_param("s", $UUID_new);			//bind parameter
 
 	$queryStation = "INSERT INTO `gasstation`(`brand`,`name`, `street`, `place`, `lat`, `lon`, `UUID`) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	$stmtStation = $mysqli->prepare($queryStation);																				//prepare statement to insert missing station
+	$stmtStation->bind_param("ssssdds", $brand_new, $name_new, $street_new, $town_new, $lat_new, $lon_new, $UUID_new);	//bind parameter
 
 	$stmtgetID = $mysqli->prepare("SELECT ID FROM gasstation WHERE `UUID` = ?");					//prepare statement to search for station in local DB
+	$stmtgetID->bind_param("s", $UUID_new);						//bind parameter
 
 	$queryStats = "INSERT INTO `stats`(`diesel`, `E5`, `E10`, `gasStationID`) VALUES (?, ?, ?, ?)";
 	$stmtStats = $mysqli->prepare($queryStats);																						//prepare statement to insert current stats
+	$stmtStats->bind_param("sssd", $diesel_new, $e5_new, $e10_new, $stationID);		//bind parameter
 
 	for ($i = 0; $i < $count; $i++) {
 		$town_new = $town[1][$i];
@@ -57,24 +60,22 @@
 		$lon_new = $lon[1][$i];
 		$brand_new = $brand[1][$i];
 
-		$stmtgetStation->bind_param("d", $UUID_new);			//bind parameter
+
 		$stmtgetStation->execute();												//execute prepared statement
 		$result = $stmtgetStation->get_result();					//write result in $result
 		if($result->num_rows == 0){												//if num_rows == 0 means the Station is not in the local DB
-			$stmtStation->bind_param("ssssdds", $brand_new, $name_new, $street_new, $town_new, $lat_new, $lon_new, $UUID_new);	//bind parameter
 			$stmtStation->execute();												//execute prepared statement to insert missing Station
 		}
 		$result->free();																	//free result
 
-		$stmtgetID->bind_param("d", $UUID_new);						//bind parameter
 		$stmtgetID->execute();														//execute prepared statement
 		$result = $stmtgetID->get_result();								//write result in $result
 		while($data = $result->fetch_array()){						//fetch array
 			$stationID = $data['ID'];												//write ID in $stationID
 		}
-
-		$stmtStats->bind_param("dddd", $diesel_new, $e5_new, $e10_new, $stationID);		//bind parameter
+		$result->free();																	//free result
 		$stmtStats->execute();														//insert stats into DB
+
 	}
 	$stmtStats->close();
 	$stmtgetID->close();
