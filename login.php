@@ -52,6 +52,7 @@
 					<?php include_once "function/login.php"; ?>
 				</div>
 			</div>
+		</form>
 	</body>
 </html>
 <?php } ?>

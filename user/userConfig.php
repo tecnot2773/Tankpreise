@@ -42,3 +42,44 @@
 			</div>
 		</header>
 		<!--main contents          -->
+		<form action="userConfig.php" method="get">
+			<div id="heading" class="page-header">
+				<h1>Benutzer Einstellungen</h1>
+			</div>
+				<div id="griddiv-left" class="white">
+					<div id="rowstart" class="white">
+						Addresse
+					</div>
+					<div id="rowmid" class="white">
+						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" placeholder="Wohnort">
+					</div>
+					<div id="rowmid" class="white">
+						Autos
+					</div>
+					<div id="rowend" class="white">
+						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name">
+						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch">
+					</div>
+				</div>
+				<div id="griddiv-right" class="white">
+					<div id="rowstart" class="white">
+						Password
+					</div>
+					<div id="rowmid" class="white">
+						<input id="textbox-large" name="text-currentpassword" class="enjoy-css" type="text" placeholder="Aktuelles Password">
+					</div>
+					<div id="rowmid" class="white">
+						<input id="textbox-large" name="text-newpassword" class="enjoy-css" type="text" placeholder="Neues Password">
+					</div>
+					<div id="rowend" class="white">
+						<input id="textbox-large" name="text-renewpassword" class="enjoy-css" type="text" placeholder="Password Wiederholen">
+					</div>
+				</div>
+				<div id="griddiv-search" class="white">
+					<div id="searchrow" class="white">
+						<input class="button" type="submit" value="Eingabe">
+					</div>
+				</div>
+		</form>
+	</body>
+</html>
