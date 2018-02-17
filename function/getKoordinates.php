@@ -1,38 +1,42 @@
 <?php
-	function getKoordinates($address, $mysqli){
+	function getKoordinates($address, $mysqli){		//get getKoordinates function
 		include_once "UTF8Convert.php";
-		$address = umlauts($address);
-		$address = strtolower($address);
-		$query = "SELECT latitude, longitude FROM city WHERE name = ?;";
-		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("s", $address);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			if(!empty($result)){
+		$address = umlauts($address);			//format
+		$address = strtolower($address);		//change to lower characters
+		$query = "SELECT latitude, longitude FROM city WHERE name = ?;";	//select query
+		if ($stmt = $mysqli->prepare($query)) {		//if prepare statement is succsefull
+			$stmt->bind_param("s", $address);		//bind parameters
+			$stmt->execute();											//exectute query
+			$result = $stmt->get_result();				// bind results at $restult
+			if(!empty($result)){								//check if empty
 				if($result->num_rows >= 1){
-					while($data = $result->fetch_array()){
-						$latitude[1] = $data["latitude"];
-						$longitude[1] = $data["longitude"];
+					while($data = $result->fetch_array()){	//fetch results
+						$latitude = $data["latitude"];
+						$longitude = $data["longitude"];
+						$cityID = null;
 					}
 				}
-				$stmt->close();
+				$stmt->close();					//close prepare statement
 			}
 		}
-		if(empty($latitude) && empty($longitude)){
-			$url = 'https://maps.googleapis.com/maps/api/geocode/json'."?address=$address&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";
-			$json = file_get_contents($url);
-			preg_match('/"location" : {\n\s*"lat" : (.+?)(?=,)/' , $json, $latitude);
-			preg_match('/"location" : {\n\s*"lat" : \d*.\d*,\n\s*"lng" : (.+?)(?=\n)/', $json, $longitude);
-			if(isset($longitude[1])){
-				$query = "INSERT INTO `city`(`name`, `latitude`, `longitude`) VALUES (?, ?, ?);";
-				if ($stmt = $mysqli->prepare($query)) {
-					$stmt->bind_param("sdd", $address, $latitude[1], $longitude[1]);
-					$stmt->execute();
-					$cityID = $mysqli->insert_id;
-					$stmt->close();
+		if(empty($latitude) && empty($longitude)){		//if no koordinates are given
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json'."?address=$address&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";		//get koordinates via googleAPI
+			$json = file_get_contents($url);	//get contents
+			$decoded = json_decode($json);		//decode json
+			print_r($decoded);
+			$longitude = $decoded->results[0]->geometry->location->lng;		//get longitude from array
+			$latitude = $decoded->results[0]->geometry->location->lat;		//get latitude from array
+
+			if(isset($longitude)){		//when longitude is set
+				$query = "INSERT INTO `city`(`name`, `latitude`, `longitude`) VALUES (?, ?, ?);";		// query
+				if ($stmt = $mysqli->prepare($query)) {			//prepare insert
+					$stmt->bind_param("sdd", $address, $latitude, $longitude);			//bind parameters
+					$stmt->execute();				//execute query
+					$cityID = $mysqli->insert_id;		//get id from last insert
+					$stmt->close();				//close prepare statment
 				}
 			}
 		}
-		return array($latitude[1], $longitude[1], $cityID);
+		return array($latitude, $longitude, $cityID);			//return needed values
 	}
 ?>

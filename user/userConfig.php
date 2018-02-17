@@ -42,7 +42,7 @@
 			</div>
 		</header>
 		<!--main contents          -->
-		<form action="userConfig.php" method="get">
+		<form action="userConfig.php" method="post">
 			<div id="heading" class="page-header">
 				<h1>Benutzer Einstellungen</h1>
 			</div>

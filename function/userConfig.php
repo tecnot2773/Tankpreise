@@ -1,9 +1,9 @@
 <?php
-	if(isset($_GET["text-place"])){
+	if(isset($_POST["text-place"])){
 		include_once "dbConnect.php";
 		include_once "UTF8Convert.php";
 		include_once "getKoordinates.php";
-		$address = $_GET["text-place"];
+		$address = $_POST["text-place"];
 		$address = umlauts($address);
 		$address = strtolower($address);
 
