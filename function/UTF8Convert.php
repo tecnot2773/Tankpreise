@@ -30,5 +30,12 @@
 
 		return $value;
 	}
+	function umlauts($input){
+		$search = array("ä", "ö", "ü", "ß", "Ä", "Ö", "Ü");
+		$replace = array("ae", "oe", "ue", "ss", "Ae", "Oe", "Ue");
+		$str = str_replace($search, $replace, $input);
+
+		return $str;
+	}
 
  ?>

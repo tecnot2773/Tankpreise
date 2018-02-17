@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
 	if(empty($username_error) && empty($password_error)){										//if password and username isset
-		$sql = "SELECT name, hashed_password FROM user WHERE name = ?";
+		$sql = "SELECT name, hashed_password, ID FROM user WHERE name = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 			$stmt->bind_param("s", $param_username);														//bind parameter to statement
 
@@ -30,11 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					while($data = $result->fetch_array()){												//fetch result
 					$username = $data["name"];																		//name as username
 					$hashed_password = $data["hashed_password"];									//hashed_password as hashed_password
+					$userID = $data["ID"];
 					}
 					if(password_verify($password, $hashed_password)){							//vertify password
 						session_start();																						//start session
 						$_SESSION['username'] = $username;													//save username in session
 						$_SESSION['loggedin'] = true;																//save loggedin status in session
+						$_SESSION['userID'] = $userID;
 						header("location: index.php");															//refer to index.php
 					}
 					else{

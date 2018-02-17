@@ -78,6 +78,7 @@
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">
 						<input class="button" type="submit" value="Eingabe">
+						<?php include_once "../function/userConfig.php"; ?>
 					</div>
 				</div>
 		</form>

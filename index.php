@@ -80,7 +80,7 @@
 				</div>
 				<div id="griddiv-left" class="white">
 					<div id="rowstart" class="white">
-						<?php include_once "function/getKoordinates.php"; ?>
+						<?php include_once "function/getPrice.php"; ?>
 					</div>
 					<div id="rowend" class="white">
 					</div>
