@@ -54,13 +54,14 @@
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
 
+				$sort = "request";
 				$decoded = getStations($address, $radius, $type);
-				$name = getName($decoded);
-				$place = getPlace($decoded);
-				$brand = getBrand($decoded);
-				$street = getStreet($decoded);
-				$houseNumber = getHousenumber($decoded);
-				$UUID = getUUID($decoded);
+				$name = getName($decoded, $sort);
+				$place = getPlace($decoded, $sort);
+				$brand = getBrand($decoded, $sort);
+				$street = getStreet($decoded, $sort);
+				$houseNumber = getHousenumber($decoded, $sort);
+				$UUID = getUUID($decoded, $sort);
 				$price = getPrice($decoded);
 
 				$count = count($name);
