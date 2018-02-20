@@ -49,7 +49,7 @@
 		<?php
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 				include_once "function/dbConnect.php";
-				include_once "function/getPrice.php";
+				include_once "function/getStation.php";
 				$address = $mysqli->real_escape_string($_GET["address"]);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
@@ -99,7 +99,6 @@
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
-						<?php //include_once "function/getPrice.php"; ?>
 						<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 							for ($i = 0; $i < $count; $i++) { ?>
 								<div id="rowstart" class="white">
