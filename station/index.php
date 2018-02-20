@@ -53,20 +53,20 @@
 		<!--main contents          -->
 		<?php
 			$UUID = $_GET["id"];
-			$UUID = mysqli_real_escape_string($mysqli, $UUID);
+			$UUID = $mysqli->real_escape_string($UUID);
 			$id = mysqli_fetch_array(mysqli_query($mysqli, "SELECT ID FROM gasstation WHERE UUID = '$UUID';"))['ID'];
 
-			$http_content = Detail::getDetail($UUID);
-			$name = Detail::getName($http_content);
-			$brand = Detail::getBrand($http_content);
-			$place = Detail::getPlace($http_content);
-			$street = Detail::getStreet($http_content);
-			$housenumber = Detail::getHousenumber($http_content);
-			$openingTimes = Detail::getOpeningtimes($http_content);
-			$isopen = Detail::getIsopen($http_content);
-			$e5 = Detail::getE5($http_content);
-			$e10 = Detail::getE10($http_content);
-			$diesel = Detail::getDiesel($http_content);
+			$http_content = getDetail($UUID);
+			$name = getName($http_content);
+			$brand = getBrand($http_content);
+			$place = getPlace($http_content);
+			$street = getStreet($http_content);
+			$housenumber = getHousenumber($http_content);
+			$openingTimes = getOpeningtimes($http_content);
+			$isopen = getIsopen($http_content);
+			$e5 = getE5($http_content);
+			$e10 = getE10($http_content);
+			$diesel = getDiesel($http_content);
 		?>
 		<div id="heading" class="page-header">
 			<h1> </h1>
@@ -79,7 +79,7 @@
 				Marke: <?= $brand; ?>
 			</div>
 			<div id="printrow-middle" class="white">
-				Addresse: <?php echo $place . ", " . $street . " " . $housenumber; ?>
+				Addresse: <?php echo $place . " " . $street . " " . $housenumber; ?>
 			</div>
 			<div id="printrow-middle" class="white">
 				Öffnungszeiten: <?= $openingTimes[0]; ?>

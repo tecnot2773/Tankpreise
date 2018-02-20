@@ -1,7 +1,6 @@
 <?php
-	class Detail{
 
-		public static function getDetail($UUID)
+		function getDetail($UUID)
 		{
 			include_once "UTF8Convert.php";
 			$url = 'https://creativecommons.tankerkoenig.de/json/detail.php'."?id=$UUID&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";
@@ -11,32 +10,32 @@
 
 			return $decoded;
 		}
-		public static function getName($content)
+		function getName($content)
 		{
 			$name = $content->station->name;
 			return $name;
 		}
-		public static function getBrand($content)
+		function getBrand($content)
 		{
 			$brand = $content->station->brand;
 			return $brand;
 		}
-		public static function getPlace($content)
+		function getPlace($content)
 		{
 			$place = $content->station->place;
 			return $place;
 		}
-		public static function getStreet($content)
+		function getStreet($content)
 		{
 			$street = $content->station->street;
 			return $street;
 		}
-		public static function getHousenumber($content)
+		function getHousenumber($content)
 		{
 			$houseNumber = $content->station->houseNumber;
 			return $houseNumber;
 		}
-		public static function getOpeningtimes($content)
+		function getOpeningtimes($content)
 		{
 			if(!empty($content->station->openingTimes[0]->text)){
 				$openingtxt = $content->station->openingTimes[0]->text;
@@ -68,7 +67,7 @@
 			}
 			return $opening;
 		}
-		public static function getIsopen($content)
+		function getIsopen($content)
 		{
 			$isOpen = $content->station->isOpen;
 			if($isOpen == 1){
@@ -79,26 +78,25 @@
 			}
 			return $isOpen;
 		}
-		public static function getE5($content)
+		function getE5($content)
 		{
 			if(isset($content->station->e5)){
 				$e5 = $content->station->e5;
 				return $e5;
 			}
 		}
-		public static function getE10($content)
+		function getE10($content)
 		{
 			if(isset($content->station->e10)){
 				$e10 = $content->station->e10;
 				return $e10;
 			}
 		}
-		public static function getDiesel($content)
+		function getDiesel($content)
 		{
 			if(isset($content->station->diesel)){
 				$diesel = $content->station->diesel;
 				return $diesel;
 			}
 		}
-	}
  ?>

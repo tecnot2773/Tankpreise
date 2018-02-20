@@ -46,6 +46,26 @@
 			</div>
 		</header>
 		<!--main contents          -->
+		<?php
+			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
+				include_once "function/dbConnect.php";
+				include_once "function/getPrice.php";
+				$address = $mysqli->real_escape_string($_GET["address"]);
+				$radius = $mysqli->real_escape_string($_GET["radius"]);
+				$type = $mysqli->real_escape_string($_GET["type"]);
+
+				$decoded = getStations($address, $radius, $type);
+				$name = getName($decoded);
+				$place = getPlace($decoded);
+				$brand = getBrand($decoded);
+				$street = getStreet($decoded);
+				$houseNumber = getHousenumber($decoded);
+				$UUID = getUUID($decoded);
+				$price = getPrice($decoded);
+
+				$count = count($name);
+			}
+			?>
 		<form action="index.php" method="get">
 			<div id="heading" class="page-header">
 				<h1> </h1>
@@ -79,21 +99,36 @@
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
-					<div id="rowstart" class="white">
-						<?php include_once "function/getPrice.php"; ?>
-					</div>
+						<?php //include_once "function/getPrice.php"; ?>
+						<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
+							for ($i = 0; $i < $count; $i++) { ?>
+								<div id="rowstart" class="white">
+									<a href="station/index.php?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
+								</div>
+								<div id="rowmid" class="white">
+									Marke: <?= $brand[$i] ?>
+								</div>
+								<div id="rowmid" class="white">
+									Stadt: <?= $place[$i] ?>
+								</div>
+								<div id="rowmid" class="white">
+									Straße: <?= $street[$i] . " " . $houseNumber[$i]?>
+								</div>
+								<div id="rowmid" class="white">
+									<?= $type . " " . $price[$i] ?>
+								</div>
+							<?php }} ?>
 					<div id="rowend" class="white">
 					</div>
 				</div>
 				<div id="griddiv-right" class="white">
 					<div id="rowstart" class="white">
-						<?php //if(isset($longitude[1])){echo "Longitude: " . $longitude[1] . "<br>\n Latitude: " . $latitude[1];}?>
 						<iframe
   						width="100%"
   						height="450"
   						frameborder="0" style="border:0"
 							<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
-							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $town_new . "," . $street_new . "," . $number_new . "' allowfullscreen>";
+							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $place[0] . "," . $street[0] . "," . $houseNumber[0] . "' allowfullscreen>";
 							}else{
 							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";
 							} ?>
