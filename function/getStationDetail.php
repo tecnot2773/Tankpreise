@@ -4,73 +4,74 @@
 		public static function getDetail($UUID)
 		{
 			include_once "UTF8Convert.php";
-			$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/detail.php'
-																		."?id=$UUID"
-																		."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");
+			$url = 'https://creativecommons.tankerkoenig.de/json/detail.php'."?id=$UUID&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";
+			$json = file_get_contents($url);
+			$json = convert($json);
+			$decoded = json_decode($json);
 
-			$http_content = convert($http_content);
-			return $http_content;
+			return $decoded;
 		}
 		public static function getName($content)
 		{
-			preg_match_all('/"name":"\K(.+?)(?=")/', $content, $name);
-			$name = $name[1][0];
+			$name = $content->station->name;
 			return $name;
 		}
 		public static function getBrand($content)
 		{
-			preg_match_all('/"brand":"\K(.+?)(?=")/', $content, $brand);
-			$brand = $brand[1][0];
+			$brand = $content->station->brand;
 			return $brand;
 		}
 		public static function getPlace($content)
 		{
-			preg_match_all('/"place":"\K(.+?)(?=")/', $content, $town);
-			$town = $town[1][0];
-			$town = str_replace('",','',$town);
-			return $town;
+			$place = $content->station->place;
+			return $place;
 		}
 		public static function getStreet($content)
 		{
-			preg_match_all('/"street":"\K(.+?)(?=")/', $content, $street);
-			$street = $street[1][0];
-			$street = str_replace('",','',$street);
+			$street = $content->station->street;
 			return $street;
 		}
 		public static function getHousenumber($content)
 		{
-			preg_match_all('/"houseNumber":"\K(.+?)(?=")/', $content, $houseNumber);
-			if(!empty($houseNumber[1][0])){
-				$houseNumber = $houseNumber[1][0];
-				return $houseNumber;
-			}
-			else{
-				return false;
-			}
+			$houseNumber = $content->station->houseNumber;
+			return $houseNumber;
 		}
 		public static function getOpeningtimes($content)
 		{
-			preg_match_all('/{"text":"\K(.+?)(?=")/', $content, $openingDays);
-			preg_match_all('/"start":"\K(.+?)(?=")/', $content, $openingTimesStart);
-			preg_match_all('/"end":"\K(.+?)(?=")/', $content, $openingTimesEnd);
-			if(!empty($openingDays[1][0])){
-				$opening[0] = $openingDays[1][0] . " " . $openingTimesStart[1][0] . " - " . $openingTimesEnd[1][0];
+			if(!empty($content->station->openingTimes[0]->text)){
+				$openingtxt = $content->station->openingTimes[0]->text;
+				$openingstart = $content->station->openingTimes[0]->start;
+				$openingend = $content->station->openingTimes[0]->end;
+				$opening0 = $openingtxt . " " . $openingstart . " bis " . $openingend;
+				$opening = array($opening0);
 			}
-			if(!empty($openingDays[1][1])){
-				$opening[1] = $openingDays[1][1] . " " . $openingTimesStart[1][1] . " - " . $openingTimesEnd[1][1];
+			if(!empty($content->station->openingTimes[1]->text)){
+				$openingtxt = $content->station->openingTimes[1]->text;
+				$openingstart = $content->station->openingTimes[1]->start;
+				$openingend = $content->station->openingTimes[1]->end;
+				$opening1 = $openingtxt . " " . $openingstart . " bis " . $openingend;
+				unset($opening);
+				$opening = array($opening0, $opening1);
 			}
-			if(!empty($openingDays[1][2])){
-				$opening[2] = $openingDays[1][2] . " " . $openingTimesStart[1][2] . " - " . $openingTimesEnd[1][2];
+			if(!empty($content->station->openingTimes[2]->text)){
+				$openingtxt = $content->station->openingTimes[2]->text;
+				$openingstart = $content->station->openingTimes[2]->start;
+				$openingend = $content->station->openingTimes[2]->end;
+				$opening2 = $openingtxt . " " . $openingstart . " bis " . $openingend;
+				unset($opening);
+				$opening = array($opening0, $opening1, $opening2);
 			}
-			else{
-				$opening[0] = "täglich 00:00 - 23:59";
+			if($content->station->wholeDay == 1){
+				unset($opening);
+				$opening = "täglich 00:00 bis 23:59";
+				$opening = array($opening);
 			}
 			return $opening;
 		}
 		public static function getIsopen($content)
 		{
-			preg_match_all('/"isOpen":\K(.+?)(?=,)/', $content, $isOpen);
-			if($isOpen == true){
+			$isOpen = $content->station->isOpen;
+			if($isOpen == 1){
 				$isOpen = "Ja";
 			}
 			else{
@@ -80,36 +81,24 @@
 		}
 		public static function getE5($content)
 		{
-			preg_match_all('/"e5":\K(.+?)(?=,)/', $content, $e5);
-			if($e5[1][0] != "null"){
-				$e5 = "E5 Preis: " . $e5[1][0] . " Euro";
+			if(isset($content->station->e5)){
+				$e5 = $content->station->e5;
+				return $e5;
 			}
-			else{
-				$e10 = "null";
-			}
-			return $e5;
 		}
 		public static function getE10($content)
 		{
-			preg_match_all('/"e10":\K(.+?)(?=,)/', $content, $e10);
-			if($e10[1][0] != "null"){
-				$e10 = "E10 Preis: " . $e10[1][0] . " Euro";
+			if(isset($content->station->e10)){
+				$e10 = $content->station->e10;
+				return $e10;
 			}
-			else{
-				$e10 = "null";
-			}
-			return $e10;
 		}
 		public static function getDiesel($content)
 		{
-			preg_match_all('/"diesel":\K(.+?)(?=,)/', $content, $diesel);
-			if($diesel[1][0] != "null"){
-				$diesel = "Diesel Preis: " . $diesel[1][0] . " Euro";
+			if(isset($content->station->diesel)){
+				$diesel = $content->station->diesel;
+				return $diesel;
 			}
-			else{
-				$diesel = "null";
-			}
-			return $diesel;
 		}
 	}
  ?>

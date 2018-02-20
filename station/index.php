@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include_once "../function/dbConnect.php";
-	include_once "../station/statPrint.php";
+	include_once "../function/statPrint.php";
 	include_once "../function/getStationDetail.php";
 ?>
 <!DOCTYPE html>
@@ -97,19 +97,19 @@
 			<div id="printrow-middle" class="white">
 				Derzeit geöffnet: <?= $isopen; ?>
 			</div>
-			<?php if($e5 != "null"){ ?>
+			<?php if(isset($e5)){ ?>
 			<div id="printrow-middle" class="white">
-				<?= $e5; ?>
+				E5 Preis <?= $e5; ?>
 			</div>
 			<?php } ?>
-			<?php if($e10 != "null"){ ?>
+			<?php if(isset($e10)){ ?>
 			<div id="printrow-middle" class="white">
-				<?= $e10; ?>
+				E10 Preis: <?= $e10; ?>
 			</div>
 			<?php } ?>
-			<?php if($diesel != "null"){ ?>
+			<?php if(isset($diesel)){ ?>
 			<div id="printrow-middle" class="white">
-				<?= $diesel; ?>
+				Diesel Preis: <?= $diesel; ?>
 			</div>
 			<?php } ?>
 			<?php if(!empty($id)){ ?>

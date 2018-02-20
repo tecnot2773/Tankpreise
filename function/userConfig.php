@@ -19,14 +19,9 @@
 					}
 				}
 				else{
-					echo "test1";
 					$cityID = getKoordinates($address, $mysqli);
 					$cityID = $cityID[2];
 				}
-			}
-			else{
-				echo "test2";
-
 			}
 		}
 		$query = "UPDATE user SET cityID = ? WHERE ID = ?;";
