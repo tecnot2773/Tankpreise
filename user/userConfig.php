@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include_once "../function/userConfig.php";
+include_once "../function/accountFunctions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -80,8 +84,15 @@
 			<div id="griddiv-submit" class="white">
 				<div id="submitrow" class="white">
 					<input class="button" type="submit" value="Eingabe">
-					<?php include_once "../function/userConfig.php"; ?>
 				</div>
+				<?php if(!empty($_POST["text-currentpassword"]) || !empty($_POST["text-newpassword"]) || !empty($_POST["text-renewpassword"]) || !empty($_POST["text-place"]) || !empty($_POST["text-carname"])|| !empty($_POST["text-consumption"])){ ?>
+				<div id="status" class="white">
+					<?php
+					if(!empty($_POST["text-place"])){ echo changePlace() . "<br>"; }
+					if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"])){ echo changePassword() . "<br>"; }
+					 ?>
+				</div>
+				<?php } ?>
 			</div>
 		</form>
 	</body>

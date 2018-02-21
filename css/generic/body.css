@@ -1,22 +1,22 @@
 
 body {
 	background: url(../../images/background.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow-x:hidden;
-  background-color: transparent;
-  margin: 0;
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 400;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow-x:hidden;
+	background-color: transparent;
+	margin: 0;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 400;
 }
 .container {
 	width: 80%;
 	margin: 0 auto;
 }
 .white {
-		border-radius: 4px;
-		opacity: 0.84;
-		background-color: white;
+	border-radius: 4px;
+	opacity: 0.84;
+	background-color: white;
 }

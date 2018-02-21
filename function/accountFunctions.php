@@ -38,6 +38,7 @@
 		mysqli_close($mysqli);
 		return $status;
 	}
+
 	function login(){
 		include_once "dbConnect.php";
 
@@ -92,4 +93,50 @@
 		}
 		return $status;
 	}
+
+	function changePassword()
+	{
+		include "dbConnect.php";
+		$currentPassword = $mysqli->real_escape_string($_POST["text-currentpassword"]);
+		$newPassword = $mysqli->real_escape_string($_POST["text-newpassword"]);
+		$reNewPassword = $mysqli->real_escape_string($_POST["text-renewpassword"]);
+		$userID = $_SESSION['userID'];
+
+		if($newPassword == $reNewPassword){
+			$password_error = "false";
+		}
+		else{
+			$password_error = "true";
+			$status = "Die Passwörter stimmen nicht überein";
+		}
+
+		if($password_error == "false"){
+			$sql = "SELECT hashed_password FROM user WHERE ID = ?";
+			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+				$stmt->bind_param("d", $userID);
+				if($stmt->execute()){
+					$result = $stmt->get_result();
+					$stmt->close();
+					while($data = $result->fetch_array()){												//fetch result
+						$hashed_password = $data["hashed_password"];
+					}
+					if(password_verify($currentPassword, $hashed_password)){
+						$sql = "UPDATE user SET hashed_password = ? WHERE ID = ?";
+						if($stmt = $mysqli->prepare($sql)){
+							$password = password_hash($newPassword, PASSWORD_DEFAULT);
+							$stmt->bind_param("sd", $password, $userID);
+							if($stmt->execute()){
+								$status = "Password wurde erfolgreich geändert.";
+							}
+						}
+					}
+					else{
+						$status = "Das eingegeben Password ist nicht korrekt.";
+					}
+				}
+			}
+		}
+		return $status;
+	}
+
  ?>

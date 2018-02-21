@@ -1,10 +1,10 @@
 <?php
-	if(isset($_POST["text-place"])){
+	function changePlace(){
 		include_once "dbConnect.php";
-		include_once "UTF8Convert.php";
+		//include_once "UTF8Convert.php";
 		include_once "getKoordinates.php";
 		$address = $_POST["text-place"];
-		$address = umlauts($address);
+		//$address = umlauts($address);
 		$address = strtolower($address);
 
 		$query = "SELECT ID FROM city WHERE name = ?";
@@ -29,7 +29,9 @@
 			$stmt->bind_param("dd", $cityID, $userID);
 			$userID = $_SESSION['userID'];
 			$stmt->execute();
+			$status = "Wohnort erfolgrech geändert.";
 		}
+		return $status;
 	}
 
 
