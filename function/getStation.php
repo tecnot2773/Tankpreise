@@ -48,7 +48,8 @@
 			array_push($nameArray, $name);
 			if($type == "request"){
 				if(!isset($station->price)){
-					array_pop($placeArray);
+					echo "test123" . "<br>";
+					array_pop($nameArray);
 				}
 			}
 		}
