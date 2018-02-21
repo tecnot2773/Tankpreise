@@ -48,12 +48,14 @@
 		<!--main contents          -->
 		<?php
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
-				include_once "function/dbConnect.php";
-				include_once "function/getStation.php";
+
 				$address = $mysqli->real_escape_string($_GET["address"]);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
 
+				
+				include_once "function/dbConnect.php";
+				include_once "function/getStation.php";
 				$sort = "request";
 				$decoded = getStations($address, $radius, $type);
 				$name = getName($decoded, $sort);

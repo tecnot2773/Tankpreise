@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 21. Feb 2018 um 19:08
+-- Erstellungszeit: 21. Feb 2018 um 21:32
 -- Server-Version: 5.7.21-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -36,7 +36,8 @@ CREATE TABLE `cars` (
   `userID` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
   `volume` float NOT NULL,
-  `consumption` float NOT NULL
+  `consumption` float NOT NULL,
+  `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

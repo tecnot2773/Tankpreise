@@ -62,7 +62,12 @@ include_once "../function/accountFunctions.php";
 						Autos
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name">
+						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name">
+						<select id="textbox-small" name='text-type' class='enjoy-css'>
+							<option value="Diesel">Diesel</option>
+							<option value="E5">E5</option>
+							<option value="E10">E10</option>
+						</select>
 					</div>
 					<div id="rowend" class="white">
 						<input id="textbox-small" name="text-volume" class="enjoy-css" type="text" placeholder="Tank Volumen in Liter">
@@ -71,7 +76,7 @@ include_once "../function/accountFunctions.php";
 				</div>
 				<div id="griddiv-right" class="white">
 					<div id="rowheader" class="white">
-						Password
+						Password Änderung
 					</div>
 					<div id="rowmid" class="white">
 						<input id="textbox-large" name="text-currentpassword" class="enjoy-css" type="text" placeholder="Aktuelles Password">
@@ -88,7 +93,7 @@ include_once "../function/accountFunctions.php";
 				<div id="submitrow" class="white">
 					<input class="button" type="submit" value="Eingabe">
 				</div>
-				<?php if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"]) || !empty($_POST["text-place"]) || !empty($_POST["text-carname"]) && !empty($_POST["text-consumption"]) && !empty($_POST["text-volume"])){ ?>
+				<?php if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"]) || !empty($_POST["text-place"]) || !empty($_POST["text-carname"]) && !empty($_POST["text-consumption"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-type"])){ ?>
 				<div id="status" class="white">
 					<?php
 					if(!empty($_POST["text-place"])){ echo changePlace() . "<br>"; }

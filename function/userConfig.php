@@ -33,6 +33,9 @@
 		}
 		return $status;
 	}
+	function addCar(){
+		
+	}
 
 
 
