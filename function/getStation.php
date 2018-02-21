@@ -3,7 +3,7 @@
 	function getStations($address, $radius, $type)
 	{
 		include "dbConnect.php";
-		if($radius > 25){
+		if($radius > 25 || $radius < 5){
 			$radius = 25;
 		}
 		if($type == "Diesel"){

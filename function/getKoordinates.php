@@ -23,7 +23,6 @@
 			$url = 'https://maps.googleapis.com/maps/api/geocode/json'."?address=$address&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";		//get koordinates via googleAPI
 			$json = file_get_contents($url);	//get contents
 			$decoded = json_decode($json);		//decode json
-			print_r($decoded);
 			$longitude = $decoded->results[0]->geometry->location->lng;		//get longitude from array
 			$latitude = $decoded->results[0]->geometry->location->lat;		//get latitude from array
 
