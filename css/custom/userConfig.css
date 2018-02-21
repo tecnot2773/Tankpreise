@@ -1,13 +1,11 @@
 #griddiv-left {
 	width: 49.5%;
-	margin-top: 1%;
 	font-size: 120%;
   height: 35vh;
 	display: inline-block;
 }
 #griddiv-right {
 	width: 49.5%;
-	margin-top: 1%;
 	font-size: 120%;
   height: 35vh;
 	display: inline-block;
@@ -46,8 +44,7 @@
 
 #griddiv-submit {
 text-align: center;
-margin-bottom: 2.5%;
-margin: 0 auto;
+margin-top: 0.5%;
 text-transform: capitalize;
 }
 #center{
