@@ -46,7 +46,7 @@
 			<div id="heading" class="page-header">
 				<h1>Benutzer Einstellungen</h1>
 			</div>
-				<div id="center" class="white">
+				<div id="center">
 				<div id="griddiv-left" class="white">
 					<div id="rowstart" class="white">
 						Addresse
