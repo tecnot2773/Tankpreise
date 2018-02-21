@@ -52,8 +52,16 @@
 				$address = $mysqli->real_escape_string($_GET["address"]);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
+				$status = "ready";
+			}
+			if(isset($_SESSION['address'])){
 
-				
+				$address = $_SESSION['address'];
+				$radius = "5";
+				$type = $_SESSION['type'];
+				$status = "ready";
+			}
+			if($status == "ready"){
 				include_once "function/dbConnect.php";
 				include_once "function/getStation.php";
 				$sort = "request";

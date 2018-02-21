@@ -59,7 +59,7 @@
 	  }
 
 		if(empty($username_error) && empty($password_error)){										//if password and username isset
-			$sql = "SELECT name, hashed_password, ID FROM user WHERE name = ?";
+			$sql = "SELECT name, hashed_password, ID, cityID FROM user WHERE name = ?";
 			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 				$stmt->bind_param("s", $param_username);														//bind parameter to statement
 
@@ -68,15 +68,41 @@
 					$result = $stmt->get_result();																	//save result
 					if($result->num_rows == 1){																			//check if there is an user with that name
 						while($data = $result->fetch_array()){												//fetch result
-						$username = $data["name"];																		//name as username
-						$hashed_password = $data["hashed_password"];									//hashed_password as hashed_password
-						$userID = $data["ID"];
+							$username = $data["name"];																		//name as username
+							$hashed_password = $data["hashed_password"];									//hashed_password as hashed_password
+							$userID = $data["ID"];
+							$cityID = $data["cityID"];
 						}
 						if(password_verify($password, $hashed_password)){							//vertify password
 							session_start();																						//start session
 							$_SESSION['username'] = $username;													//save username in session
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
+
+							if(!empty($cityID)){
+								$sql = "SELECT name FROM city WHERE ID = ?";
+								if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+									$stmt->bind_param("d", $cityID);
+									$stmt->execute()
+									$result = $stmt->get_result();
+									while($data = $result->fetch_array()){
+										$address = $data["name"];
+									}
+									$_SESSION['type'] = $type;
+								}
+							}
+							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
+							if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+								$stmt->bind_param("d", $userID);
+								$stmt->execute()
+								$result = $stmt->get_result();
+								if($result->num_rows == 1){
+									while($data = $result->fetch_array()){
+										$type = $data["type"];
+									}
+									$_SESSION['address'] = $address;
+								}
+							}
 							header("location: index.php");															//refer to index.php
 						}
 						else{
