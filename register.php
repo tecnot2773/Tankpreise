@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {header("location: index.php");}else{ ?>
-<?php include_once "function/register.php"; ?>
+<?php include_once "function/accountFunctions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>

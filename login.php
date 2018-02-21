@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {header("location: index.php");}else{ ?>
+<?php include_once "function/accountFunctions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -49,7 +50,7 @@
 					<input class="button" type="submit" name="submit" value="Login">
 				</div>
 				<div id="inputrow-middle" class="white">
-					<?php include_once "function/login.php"; ?>
+					<?php if($_SERVER['REQUEST_METHOD'] === 'POST'){echo login();} ?>
 				</div>
 			</div>
 		</form>
