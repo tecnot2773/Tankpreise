@@ -1,6 +1,5 @@
 #griddiv-left {
 	width: 39.5%;
-	float: left;
 	margin-left: 10%;
 	margin-top: 1%;
 	font-size: 120%;
@@ -8,7 +7,6 @@
 }
 #griddiv-right {
 	width: 39.5%;
-	float: right;
 	margin-right: 10%;
 	margin-top: 1%;
 	font-size: 120%;
@@ -53,4 +51,10 @@ margin-bottom: 2.5%;
 margin: 0 auto;
 text-transform: capitalize;
 margin-top: 21.2%;
+}
+#center{
+	display:inline-block;
+	overflow:hidden;
+	margin-left: 10%;
+
 }
