@@ -1,15 +1,15 @@
 #griddiv-left {
 	width: 49.5%;
 	font-size: 120%;
-  height: 35vh;
+  	height: 35vh;
 	display: inline-block;
 }
 #griddiv-right {
 	width: 49.5%;
 	font-size: 120%;
-  height: 35vh;
+	height: 35vh;
 	display: inline-block;
-	    margin-left: 1%;
+	margin-left: 1%;
 }
 #rowstart {
 	padding-top:  5%;
@@ -33,10 +33,10 @@
 	padding-left: 10%;
 }
 #textbox-large{
-  width: 70% !important;
+  	width: 70% !important;
 }
 #textbox-small{
-  width: 35% !important;
+  	width: 35% !important;
 }
 #submitrow{
 	padding-top:  1.5%;
@@ -45,14 +45,14 @@
 
 #griddiv-submit {
 	width: 80%;
-text-align: center;
-margin-top: 0.5%;
-text-transform: capitalize;
-margin-left: 10%;
+	text-align: center;
+	margin-top: 0.5%;
+	text-transform: capitalize;
+	margin-left: 10%;
 }
 #center{
 	display:flex;
 	overflow:hidden;
 	margin-left: 10%;
-  width: 80%;
+  	width: 80%;
 }

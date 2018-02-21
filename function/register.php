@@ -1,5 +1,5 @@
 <?php
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	function register(){
 		include_once "dbConnect.php";
 		if(!empty($_POST["text-username"]) && !empty($password = $_POST["text-password"]) && !empty($repassword = $_POST["text-repassword"])){
 			$username = $mysqli->real_escape_string($_POST["text-username"]);
@@ -18,23 +18,24 @@
 							$stmt->bind_param("ss", $username, $hashed_password);
 							$stmt->execute();
 
-							echo "Benutzer wurde erfolgreich angelegt.";
+							$status = "Benutzer wurde erfolgreich angelegt.";
 							header("location: login.php");
 							$stmt->close();
 						}
 					}
 					else{
-						echo "Die Passwörter stimmen nicht überein.";
+						$status = "Die Passwörter stimmen nicht überein.";
 					}
 				}
 				else{
-					echo "Der Benutzername ist bereits Vergeben.";
+					$status = "Der Benutzername ist bereits Vergeben.";
 				}
 			}
 		}
 		else{
-			echo "Bitte füllen Sie alle Felder aus.";
+			$status = "Bitte füllen Sie alle Felder aus.";
 		}
 		mysqli_close($mysqli);
+		return $status;
 	}
  ?>
