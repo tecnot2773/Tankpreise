@@ -29,6 +29,12 @@
 	padding-right: 5%;
 	padding-bottom: 2.5%;
 }
+#rowheader{
+	padding-top: 2.5%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 0.5%;
+}
 #heading{
 	padding-left: 10%;
 }
@@ -36,13 +42,12 @@
   	width: 70% !important;
 }
 #textbox-small{
-  	width: 35% !important;
+  	width: 30.5% !important;
 }
 #submitrow{
 	padding-top:  1.5%;
 	padding-bottom: 1.5%;
 }
-
 #griddiv-submit {
 	width: 80%;
 	text-align: center;
