@@ -76,11 +76,11 @@
 						<input id="textbox-large" name="text-renewpassword" class="enjoy-css" type="text" placeholder="Password Wiederholen">
 					</div>
 				</div>
-				<div id="griddiv-submit" class="white">
-					<div id="submitrow" class="white">
-						<input class="button" type="submit" value="Eingabe">
-						<?php include_once "../function/userConfig.php"; ?>
-					</div>
+			</div>
+			<div id="griddiv-submit" class="white">
+				<div id="submitrow" class="white">
+					<input class="button" type="submit" value="Eingabe">
+					<?php include_once "../function/userConfig.php"; ?>
 				</div>
 			</div>
 		</form>

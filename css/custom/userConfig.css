@@ -9,6 +9,7 @@
 	font-size: 120%;
   height: 35vh;
 	display: inline-block;
+	    margin-left: 1%;
 }
 #rowstart {
 	padding-top:  5%;
@@ -43,12 +44,14 @@
 }
 
 #griddiv-submit {
+	width: 80%;
 text-align: center;
 margin-top: 0.5%;
 text-transform: capitalize;
+margin-left: 10%;
 }
 #center{
-	display:inline-block;
+	display:flex;
 	overflow:hidden;
 	margin-left: 10%;
   width: 80%;
