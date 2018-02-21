@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 05. Feb 2018 um 15:33
+-- Erstellungszeit: 21. Feb 2018 um 19:08
 -- Server-Version: 5.7.21-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -23,6 +23,21 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `gas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `gas`;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `cars`
+--
+
+DROP TABLE IF EXISTS `cars`;
+CREATE TABLE `cars` (
+  `ID` int(2) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `volume` float NOT NULL,
+  `consumption` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -83,13 +98,18 @@ CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
   `hashed_password` varchar(100) NOT NULL,
-  `consumption` float DEFAULT NULL,
   `cityID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indizes der exportierten Tabellen
 --
+
+--
+-- Indizes für die Tabelle `cars`
+--
+ALTER TABLE `cars`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indizes für die Tabelle `city`
