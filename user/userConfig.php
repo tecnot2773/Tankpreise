@@ -19,7 +19,7 @@
 		<header>
 			<div class="container">
 				<a href="../index.php">
-					<img src="../images/Header.png" alt="logo" class="logo" />
+				<img src="../images/Header.png" alt="logo" class="logo" />
 				</a>
 				<nav>
 					<ul>
@@ -36,7 +36,7 @@
 								</div>
 							</div>
 						</li>
-					<?php }else{ header("location: ../login.php"); } ?>
+						<?php }else{ header("location: ../login.php"); } ?>
 					</ul>
 				</nav>
 			</div>
@@ -46,7 +46,7 @@
 			<div id="heading" class="page-header">
 				<h1>Benutzer Einstellungen</h1>
 			</div>
-				<div id="center">
+			<div id="center">
 				<div id="griddiv-left" class="white">
 					<div id="rowstart" class="white">
 						Addresse
