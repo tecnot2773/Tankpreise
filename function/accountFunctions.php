@@ -1,6 +1,6 @@
 <?php
 	function register(){
-		include_once "dbConnect.php";
+		include "dbConnect.php";
 		if(!empty($_POST["text-username"]) && !empty($password = $_POST["text-password"]) && !empty($repassword = $_POST["text-repassword"])){
 			$username = $mysqli->real_escape_string($_POST["text-username"]);
 			$password = $mysqli->real_escape_string($_POST["text-password"]);
@@ -35,12 +35,12 @@
 		else{
 			$status = "Bitte füllen Sie alle Felder aus.";
 		}
-		mysqli_close($mysqli);
+		$mysqli->close();
 		return $status;
 	}
 
 	function login(){
-		include_once "dbConnect.php";
+		include "dbConnect.php";
 
 		if(empty(trim($_POST["text-username"]))){														//check if username is emtpy
 	  	$username_error = 'Bitte geben Sie ihren Benutzernamen ein.';			//if empty echo error
@@ -162,6 +162,7 @@
 				}
 			}
 		}
+		$mysqli->close();
 		return $status;
 	}
 

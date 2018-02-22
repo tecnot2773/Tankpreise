@@ -98,6 +98,7 @@ include_once "../function/accountFunctions.php";
 					<?php
 					if(!empty($_POST["text-place"])){ echo changePlace() . "<br>"; }
 					if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"])){ echo changePassword() . "<br>"; }
+					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"])){ echo addCar() . "<br>"; }
 					 ?>
 				</div>
 				<?php } ?>

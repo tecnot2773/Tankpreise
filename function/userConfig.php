@@ -1,9 +1,9 @@
 <?php
 	function changePlace(){
-		include_once "dbConnect.php";
+		include "dbConnect.php";
 		//include_once "UTF8Convert.php";
 		include_once "getKoordinates.php";
-		$address = $_POST["text-place"];
+		$address = $mysqli->real_escape_string($_POST["text-place"]);
 		//$address = umlauts($address);
 		$address = strtolower($address);
 
@@ -31,10 +31,25 @@
 			$stmt->execute();
 			$status = "Wohnort erfolgrech geändert.";
 		}
+		$mysqli->close();
 		return $status;
 	}
 	function addCar(){
-		
+		include "dbConnect.php";
+		$carName = $mysqli->real_escape_string($_POST["text-carname"]);
+		$type = $mysqli->real_escape_string($_POST["text-type"]);
+		$volume = $mysqli->real_escape_string($_POST["text-volume"]);
+		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);
+		$userID = $_SESSION["userID"];
+
+		$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";
+		if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dssss", $userID, $carName, $volume, $consumption, $type);
+			$stmt->execute();
+			$status = "Neues Auto erfolgreich hinzugefügt.";
+		}
+		$mysqli->close();
+		return $status;
 	}
 
 
