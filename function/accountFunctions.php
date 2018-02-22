@@ -83,7 +83,7 @@
 								$sql = "SELECT name FROM city WHERE ID = ?";
 								if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 									$stmt->bind_param("d", $cityID);
-									$stmt->execute()
+									$stmt->execute();
 									$result = $stmt->get_result();
 									while($data = $result->fetch_array()){
 										$address = $data["name"];
@@ -94,7 +94,7 @@
 							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
 							if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 								$stmt->bind_param("d", $userID);
-								$stmt->execute()
+								$stmt->execute();
 								$result = $stmt->get_result();
 								if($result->num_rows == 1){
 									while($data = $result->fetch_array()){
