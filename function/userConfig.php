@@ -45,8 +45,9 @@
 		$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dssss", $userID, $carName, $volume, $consumption, $type);
-			$stmt->execute();
-			$status = "Neues Auto erfolgreich hinzugefügt.";
+			if ($stmt->execute()){
+				$status = "Neues Auto erfolgreich hinzugefügt.";
+			}
 		}
 		$mysqli->close();
 		return $status;
