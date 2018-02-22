@@ -106,7 +106,7 @@ include_once "../function/accountFunctions.php";
 			</div>
 			<?php
 				$result = carTable();
-				if(!empty($result)){
+				if($result->num_rows >= 1){
 			?>
 			<div id="griddiv-table" class="white">
 				<div id='bottom-table' class='bottomrow'>
