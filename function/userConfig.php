@@ -41,7 +41,6 @@
 		$volume = $mysqli->real_escape_string($_POST["text-volume"]);
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);
 		$userID = $_SESSION["userID"];
-		echo $carName . "<br>" . $type . "<br>" . $volume  . "<br>" . $consumption  . "<br>" . $userID;
 
 		$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";
 		if ($stmt = $mysqli->prepare($query)) {
