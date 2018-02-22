@@ -47,6 +47,7 @@
 		</header>
 		<!--main contents          -->
 		<?php
+		$status = "notReady";
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 
 				$address = $mysqli->real_escape_string($_GET["address"]);
