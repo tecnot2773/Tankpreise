@@ -16,6 +16,7 @@ include_once "../function/accountFunctions.php";
 		<link href="../css/generic/navbar.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/buttons.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/icons.css" rel="stylesheet" />
+		<style type="text/css">a {text-decoration: none; style="color: #fb3f00;}</style>
 		<title>Tankstellen Preise</title>
 	</head>
 	<body>
@@ -103,6 +104,54 @@ include_once "../function/accountFunctions.php";
 				</div>
 				<?php } ?>
 			</div>
+			<?php
+				$result = carTable();
+				if(!empty($result)){
+			?>
+			<div id="griddiv-table" class="white">
+				<div id='bottom-table' class='bottomrow'>
+				<table id='cars'>
+					<tr>
+						<th>Name</th>
+						<th>Volumen</th>
+						<th>Verbrauch</th>
+						<th>Sprit Sorte</th>
+						<th>Aktion</th>
+						<th>Aktion</th>
+					</tr>
+					<?php
+					while($data = $result->fetch_array()){
+						$name = $data["name"];
+						$volume = $data["volume"];
+						$consumption = $data["consumption"];
+						$type = $data["type"];
+						$id = $data["ID"];
+					?>
+						<tr>
+						<td width='40%'><?= $name ?></td>
+						<td width='20%'><?= $volume ?></td>
+						<td width='20%'><?= $consumption ?></td>
+						<td width='20%'><?= $type ?></td>
+						<td width='7px'>
+							<a href='#'>
+								<span>
+									<span class="icon icon-pencil"></span>
+								</span>
+							</a>
+						</td>
+						<td width='7px'>
+							<a href='#'>
+								<span>
+									<span class="icon icon-bin"></span>
+								</span>
+							</a>
+						</td>
+						</tr>
+					<?php } ?>
+					</table>
+				</div>
+			</div>
+			<?php } ?>
 		</form>
 	</body>
 </html>

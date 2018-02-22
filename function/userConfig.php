@@ -51,7 +51,19 @@
 		$mysqli->close();
 		return $status;
 	}
+	function carTable(){
+		include "dbConnect.php";
+		$userID = $_SESSION["userID"];
 
+		$query = "SELECT ID, name, volume, consumption, type FROM cars WHERE userID = ?";
+		if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("d", $userID);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			return $result;
+		}
+		$mysqli->close();
+	}
 
 
 

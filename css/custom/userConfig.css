@@ -11,6 +11,18 @@
 	display: inline-block;
 	margin-left: 1%;
 }
+#griddiv-submit {
+	width: 80%;
+	text-align: center;
+	margin-top: 0.5%;
+	margin-left: 10%;
+}
+#griddiv-table {
+	width: 80%;
+	margin-top: 0.5%;
+	margin-left: 10%;
+	text-align: left !important;
+}
 #rowstart {
 	padding-top:  5%;
 	padding-left: 5%;
@@ -48,12 +60,6 @@
 	padding-top:  1.5%;
 	padding-bottom: 1.5%;
 }
-#griddiv-submit {
-	width: 80%;
-	text-align: center;
-	margin-top: 0.5%;
-	margin-left: 10%;
-}
 #center{
 	display:flex;
 	overflow:hidden;
@@ -64,4 +70,26 @@
 	text-align: center;
 	font-size: 120%;
 	padding-bottom: 1.5%;
+}
+
+
+#cars {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+#cars td, #cars th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#cars tr:nth-child(even){background-color: #f2f2f2;}
+
+#cars tr:hover {background-color: #ddd;}
+
+#cars th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #ff0000;
+    color: white;
 }
