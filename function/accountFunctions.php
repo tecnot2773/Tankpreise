@@ -88,7 +88,7 @@
 									while($data = $result->fetch_array()){
 										$address = $data["name"];
 									}
-									$_SESSION['type'] = $type;
+									$_SESSION['address'] = $address;
 								}
 							}
 							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
@@ -100,7 +100,7 @@
 									while($data = $result->fetch_array()){
 										$type = $data["type"];
 									}
-									$_SESSION['address'] = $address;
+									$_SESSION['type'] = $type;
 								}
 							}
 							header("location: index.php");															//refer to index.php
