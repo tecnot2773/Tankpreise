@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 21. Feb 2018 um 21:32
+-- Erstellungszeit: 22. Feb 2018 um 22:37
 -- Server-Version: 5.7.21-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -37,7 +37,7 @@ CREATE TABLE `cars` (
   `name` varchar(40) NOT NULL,
   `volume` float NOT NULL,
   `consumption` float NOT NULL,
-  `type` int(11) NOT NULL
+  `type` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -139,6 +139,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT für exportierte Tabellen
 --
+
+--
+-- AUTO_INCREMENT für Tabelle `cars`
+--
+ALTER TABLE `cars`
+  MODIFY `ID` int(2) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `city`
