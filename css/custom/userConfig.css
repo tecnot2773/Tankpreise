@@ -72,20 +72,20 @@
 	padding-bottom: 1.5%;
 }
 
-
 #cars {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
 }
-
 #cars td, #cars th {
     border: 1px solid #ddd;
     padding: 8px;
 }
-
-#cars tr:nth-child(even){background-color: #f2f2f2;}
-
-#cars tr:hover {background-color: #ddd;}
+#cars tr:nth-child(even)
+{
+	background-color: #f2f2f2;
+}
+#cars tr:hover {
+	background-color: #ddd;
+}
 
 #cars th {
     padding-top: 12px;
