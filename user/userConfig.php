@@ -140,7 +140,7 @@ include_once "../function/accountFunctions.php";
 							</a>
 						</td>
 						<td width='7px'>
-							<a href='#'>
+							<a href='../function/userConfig.php?userid=<?= $_SESSION["userID"]?>&id=<?= $id ?>'>
 								<span>
 									<span class="icon icon-bin"></span>
 								</span>

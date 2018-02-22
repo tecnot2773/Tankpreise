@@ -65,6 +65,21 @@
 		}
 		$mysqli->close();
 	}
+	if(isset($_GET["userid"])){
+		carDelete($_GET["userid"], $_GET["id"]);
+	}
+	function carDelete($userID, $carID){
+		include "dbConnect.php";
+		echo "lelel";
+		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?";
+		if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("dd", $userID, $carID);
+			if($stmt->execute()){
+				header("location: ../user/userConfig.php");
+			}
+		}
+		$mysqli->close();
+	}
 
 
 
