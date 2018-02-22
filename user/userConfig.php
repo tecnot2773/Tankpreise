@@ -79,13 +79,13 @@ include_once "../function/accountFunctions.php";
 						Password Änderung
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-currentpassword" class="enjoy-css" type="text" placeholder="Aktuelles Password">
+						<input id="textbox-large" name="text-currentpassword" class="enjoy-css" type="password" placeholder="Aktuelles Password">
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-newpassword" class="enjoy-css" type="text" placeholder="Neues Password">
+						<input id="textbox-large" name="text-newpassword" class="enjoy-css" type="password" placeholder="Neues Password">
 					</div>
 					<div id="rowend" class="white">
-						<input id="textbox-large" name="text-renewpassword" class="enjoy-css" type="text" placeholder="Password Wiederholen">
+						<input id="textbox-large" name="text-renewpassword" class="enjoy-css" type="password" placeholder="Password Wiederholen">
 					</div>
 				</div>
 			</div>
