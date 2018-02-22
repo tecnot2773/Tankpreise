@@ -46,7 +46,7 @@
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dssss", $userID, $carName, $volume, $consumption, $type);
 			if ($stmt->execute()){
-				$status = "Neues Auto erfolgreich hinzugefügt.";
+				$status = "Neues Auto erfolgreich hinzugefügt. Bitte loggen Sie sich erneut ein";
 			}
 		}
 		$mysqli->close();
@@ -65,8 +65,9 @@
 		}
 		$mysqli->close();
 	}
-	if(isset($_GET["userid"])){
-		carDelete($_GET["userid"], $_GET["id"]);
+	if(isset($_GET["id"])){
+		session_start();
+		carDelete($_SESSION["userID"], $_GET["id"]);
 	}
 	function carDelete($userID, $carID){
 		include "dbConnect.php";

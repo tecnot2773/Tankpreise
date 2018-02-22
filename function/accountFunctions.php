@@ -100,7 +100,7 @@
 									while($data = $result->fetch_array()){
 										$type = $data["type"];
 									}
-									$_SESSION['type'] = $type;
+									$_SESSION['type'] = strtolower($type);
 								}
 							}
 							header("location: index.php");															//refer to index.php

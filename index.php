@@ -49,13 +49,13 @@
 		<?php
 		$status = "notReady";
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
-
+				include_once "function/dbConnect.php";
 				$address = $mysqli->real_escape_string($_GET["address"]);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
 				$status = "ready";
 			}
-			if(isset($_SESSION['address'])){
+			if(isset($_SESSION['address']) && isset($_SESSION['type']) && !isset($_GET["address"])){
 
 				$address = $_SESSION['address'];
 				$radius = "5";
@@ -63,7 +63,6 @@
 				$status = "ready";
 			}
 			if($status == "ready"){
-				include_once "function/dbConnect.php";
 				include_once "function/getStation.php";
 				$sort = "request";
 				$decoded = getStations($address, $radius, $type);
@@ -111,7 +110,7 @@
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
-						<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
+						<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
 							for ($i = 0; $i < $count; $i++) { ?>
 								<div id="rowstart" class="white">
 									<a href="station/index.php?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
