@@ -72,7 +72,9 @@
 		$mysqli->close();				//close mysqli
 	}
 	if(isset($_GET["id"]) && isset($_GET["delete"])){		//if id and delete are set
-		session_start();									//start session
+		if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+		}									//start session
 		carDelete($_SESSION["userID"], $_GET["id"]);		// call function with parameters
 	}
 	function carDelete($userID, $carID){					//carDelete function

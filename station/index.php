@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 	include_once "../function/dbConnect.php";
 	include_once "../function/statPrint.php";
 	include_once "../function/getStationDetail.php";

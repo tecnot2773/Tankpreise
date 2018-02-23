@@ -76,7 +76,9 @@
 						}
 						$stmt->close();
 						if(password_verify($password, $hashed_password)){							//vertify password
-							session_start();																						//start session
+							if (session_status() == PHP_SESSION_NONE) {
+    							session_start();
+							}																						//start session
 							$_SESSION['username'] = $username;													//save username in session
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;

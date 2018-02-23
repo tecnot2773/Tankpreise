@@ -1,6 +1,10 @@
-<?php session_start(); ?>
-<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {header("location: index.php");}else{ ?>
-<?php include_once "function/accountFunctions.php"; ?>
+<?php
+	if (session_status() == PHP_SESSION_NONE) {
+	    session_start();
+	}
+	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {header("location: index.php");}else{
+	include_once "function/accountFunctions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include_once "function/userConfig.php";
 if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 	getUserInfo();		//Get userinfo
