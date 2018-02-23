@@ -83,7 +83,6 @@
 		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?"; 		//query to delete car
 		echo "test2";
 		echo "DELETE FROM cars WHERE userID = $userID AND ID = $carID";
-		print_r($mysqli->error);
 		if ($stmt = $mysqli->prepare($query)) {
 			echo "test3";
 			$stmt->bind_param("dd", $userID, $carID);
@@ -93,6 +92,9 @@
 			}
 			$stmt->close();					//close statement
 		}
+				print_r($mysqli->error);
+				print_r($stmt->error);
+				echo "test5";
 		$mysqli->close();				//close mysqli
 	}
 	function editCar()
