@@ -82,6 +82,7 @@
 		include "dbConnect.php";				//new mysqli
 		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?"; 		//query to delete car
 		echo "test2";
+		echo "DELETE FROM cars WHERE userID = $userID AND ID = $carID";
 		if ($stmt = $mysqli->prepare($query)) {
 			echo "test3";
 			$stmt->bind_param("dd", $userID, $carID);
