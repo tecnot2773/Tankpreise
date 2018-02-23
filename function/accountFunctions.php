@@ -74,6 +74,7 @@
 							$cityID = $data["cityID"];
 							$_SESSION['address'] = $cityID;
 						}
+						$stmt->close();
 						if(password_verify($password, $hashed_password)){							//vertify password
 							session_start();																						//start session
 							$_SESSION['username'] = $username;													//save username in session
@@ -90,6 +91,7 @@
 										$address = $data["name"];
 									}
 									$_SESSION['address'] = $address;
+									$stmt->close();
 								}
 							}
 							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
@@ -103,6 +105,7 @@
 									}
 									$_SESSION['type'] = strtolower($type);
 								}
+								$stmt->close();
 							}
 							header("location: index.php");															//refer to index.php
 						}

@@ -131,7 +131,7 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 									Straße: <?= $street[$i] . " " . $houseNumber[$i]?>
 								</div>
 								<div id="rowmid" class="white">
-									<?= $type . " " . $price[$i] ?>
+									<?= ucfirst($type) . ": " . $price[$i] ?>
 								</div>
 							<?php }} ?>
 					<div id="rowend" class="white">

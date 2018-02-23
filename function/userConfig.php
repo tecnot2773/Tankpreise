@@ -24,6 +24,7 @@
 				}
 			}
 		}
+		$stmt->close();
 		$query = "UPDATE user SET cityID = ? WHERE ID = ?;";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dd", $cityID, $userID);
@@ -31,6 +32,7 @@
 			$stmt->execute();
 			$status = "Wohnort erfolgrech geändert.";
 		}
+		$stmt->close();
 		$mysqli->close();
 		return $status;
 	}
@@ -49,6 +51,7 @@
 				$status = "Neues Auto erfolgreich hinzugefügt.";
 			}
 		}
+		$stmt->close();
 		$mysqli->close();
 		return $status;
 	}
@@ -63,6 +66,7 @@
 			$result = $stmt->get_result();
 			return $result;
 		}
+		$stmt->close();
 		$mysqli->close();
 	}
 	if(isset($_GET["id"]) && isset($_GET["delete"])){
@@ -78,6 +82,7 @@
 				header("location: ../user/userConfig.php");
 			}
 		}
+		$stmt->close();
 		$mysqli->close();
 	}
 	function editCar()
@@ -97,6 +102,7 @@
 				$status = "Auto wurde erfolgreich bearbeitet";
 			}
 		}
+		$stmt->close();
 		$mysqli->close();
 		return $status;
 	}
@@ -112,6 +118,7 @@
 				$cityID = $data["cityID"];
 			}
 		}
+		$stmt->close();
 		$sql = "SELECT name FROM city WHERE ID = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 			$stmt->bind_param("d", $cityID);
@@ -122,6 +129,7 @@
 			}
 			$_SESSION['address'] = $address;
 		}
+		$stmt->close();
 		$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 			$stmt->bind_param("d", $_SESSION["userID"]);
@@ -134,6 +142,7 @@
 				$_SESSION['type'] = strtolower($type);
 			}
 		}
+		$stmt->close();
 		$mysqli->close();
 	}
 ?>
