@@ -121,7 +121,7 @@
 			}
 			$mysqli->close();																										//close DB connection
 		}
-		return $status;
+		if(isset($status){return $status;};
 	}
 
 	function changePassword()

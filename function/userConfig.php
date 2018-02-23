@@ -126,10 +126,12 @@
 			$stmt->bind_param("d", $cityID);
 			$stmt->execute();
 			$result = $stmt->get_result();
-			while($data = $result->fetch_array()){
-				$address = $data["name"];
+			if($result->num_rows >= 1){
+				while($data = $result->fetch_array()){
+					$address = $data["name"];
+				}
+				$_SESSION['address'] = $address;							//save address in session
 			}
-			$_SESSION['address'] = $address;							//save address in session
 		}
 		$stmt->close();										//close statement
 		$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
