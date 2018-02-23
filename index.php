@@ -143,7 +143,7 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
   						width="100%"
   						height="450"
   						frameborder="0" style="border:0"
-							<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
+							<?php if($status == "ready"){
 							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $place[0] . "," . $street[0] . "," . $houseNumber[0] . "' allowfullscreen>";
 							}else{
 							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";

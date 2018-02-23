@@ -30,10 +30,12 @@
 			$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
 			$userID = $_SESSION['userID'];
 			$stmt->execute();
+			getUserInfo();
 			$status = "Wohnort erfolgrech geändert.";			//staus if Wohnort is changed
 		}
 		$stmt->close();					//close statement
 		$mysqli->close();				//close mysqli
+
 		return $status;					//return status
 	}
 	function addCar(){
