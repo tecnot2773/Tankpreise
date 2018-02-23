@@ -57,7 +57,7 @@ include_once "../function/accountFunctions.php";
 						Addresse
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" placeholder="Wohnort">
+						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>" <?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
 					</div>
 					<div id="rowheader" class="white">
 						Autos
