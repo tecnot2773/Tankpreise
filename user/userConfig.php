@@ -62,10 +62,10 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 					<div id="rowmid" class="white">
 						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>" <?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
 					</div>
-					<div id="rowheader" class="white">
-						Autos
-					</div>
 					<?php if(!isset($_GET["id"]) && !isset($_GET["name"]) && !isset($_GET["consumption"]) && !isset($_GET["volume"]) && !isset($_GET["type"])){ ?>
+					<div id="rowheader" class="white">
+						Auto hinzufügen
+					</div>
 					<div id="rowmid" class="white">
 						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name">
 						<select id="textbox-small" name='text-type' class='enjoy-css'>
@@ -80,6 +80,9 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 					</div>
 					<?php } ?>
 					<?php if(isset($_GET["id"]) && isset($_GET["name"]) && isset($_GET["consumption"]) && isset($_GET["volume"]) && isset($_GET["type"])){ ?>
+					<div id="rowheader" class="white">
+						Auto bearbeiten
+					</div>
 					<div id="rowmid" class="white">
 						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name" value = <?=$_GET["name"]?>>
 						<select id="textbox-small" name='text-type' class='enjoy-css'>
