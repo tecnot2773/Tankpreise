@@ -62,6 +62,7 @@ include_once "../function/accountFunctions.php";
 					<div id="rowheader" class="white">
 						Autos
 					</div>
+					<?php if(!isset($_GET["id"]) && !isset($_GET["name"]) && !isset($_GET["consumption"]) && !isset($_GET["volume"]) && !isset($_GET["type"])){ ?>
 					<div id="rowmid" class="white">
 						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name">
 						<select id="textbox-small" name='text-type' class='enjoy-css'>
@@ -74,6 +75,27 @@ include_once "../function/accountFunctions.php";
 						<input id="textbox-small" name="text-volume" class="enjoy-css" type="text" placeholder="Tank Volumen in Liter">
 						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch in Liter">
 					</div>
+					<?php } ?>
+					<?php if(isset($_GET["id"]) && isset($_GET["name"]) && isset($_GET["consumption"]) && isset($_GET["volume"]) && isset($_GET["type"])){ ?>
+					<div id="rowmid" class="white">
+						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name" value = <?=$_GET["name"]?>>
+						<select id="textbox-small" name='text-type' class='enjoy-css'>
+							<option value="<?= $_GET["type"] ?>" selected hidden><?= $_GET["type"] ?></option>
+							<option value="Diesel">Diesel</option>
+							<option value="E5">E5</option>
+							<option value="E10">E10</option>
+						</select>
+					</div>
+					<div id="rowend" class="white">
+						<input id="textbox-small" name="text-volume" class="enjoy-css" type="text" placeholder="Tank Volumen in Liter" value = <?=$_GET["volume"]?>>
+						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch in Liter" value = <?=$_GET["consumption"]?>>
+					</div>
+					<div style="display:none" id="rowmid" class="white">
+						<label>
+							<input type="checkbox" name="box-edit" value="<?=$_GET["id"]?>" checked>
+						</label>
+					</div>
+					<?php } ?>
 				</div>
 				<div id="griddiv-right" class="white">
 					<div id="rowheader" class="white">
@@ -99,7 +121,8 @@ include_once "../function/accountFunctions.php";
 					<?php
 					if(!empty($_POST["text-place"])){ echo changePlace() . "<br>"; }
 					if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"])){ echo changePassword() . "<br>"; }
-					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"])){ echo addCar() . "<br>"; }
+					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && empty($_POST["box-edit"])){ echo addCar() . "<br>"; }
+					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && !empty($_POST["box-edit"])){ echo editCar() . "<br>"; }
 					 ?>
 				</div>
 				<?php } ?>
@@ -133,14 +156,14 @@ include_once "../function/accountFunctions.php";
 						<td width='20%'><?= $consumption ?></td>
 						<td width='20%'><?= $type ?></td>
 						<td width='7px'>
-							<a href='#'>
+							<a href='userConfig.php?id=<?= $id ?>&name=<?= $name ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
 								<span>
 									<span class="icon icon-pencil"></span>
 								</span>
 							</a>
 						</td>
 						<td width='7px'>
-							<a href='../function/userConfig.php?id=<?= $id ?>'>
+							<a href='../function/userConfig.php?id=<?= $id ?>&delete=true'>
 								<span>
 									<span class="icon icon-bin"></span>
 								</span>

@@ -65,13 +65,12 @@
 		}
 		$mysqli->close();
 	}
-	if(isset($_GET["id"])){
+	if(isset($_GET["id"]) && isset($_GET["delete"])){
 		session_start();
 		carDelete($_SESSION["userID"], $_GET["id"]);
 	}
 	function carDelete($userID, $carID){
 		include "dbConnect.php";
-		echo "lelel";
 		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dd", $userID, $carID);
@@ -81,7 +80,24 @@
 		}
 		$mysqli->close();
 	}
+	function editCar()
+	{
+		include "dbConnect.php";
+		$carName = $mysqli->real_escape_string($_POST["text-carname"]);
+		$type = $mysqli->real_escape_string($_POST["text-type"]);
+		$volume = $mysqli->real_escape_string($_POST["text-volume"]);
+		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);
+		$id = $mysqli->real_escape_string($_POST["box-edit"]);
+		$userID = $_SESSION["userID"];
 
-
-
+		$query = "UPDATE cars SET name = ?, volume = ?, consumption = ?, type = ? WHERE userID = ? AND ID = ?;";
+		if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("ssssdd", $carName, $volume, $consumption, $type, $userID, $id);
+			if($stmt->execute()){
+				$status = "Auto wurde erfolgreich bearbeitet";
+			}
+		}
+		$mysqli->close();
+		return $status;
+	}
 ?>
