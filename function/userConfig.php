@@ -46,7 +46,7 @@
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dssss", $userID, $carName, $volume, $consumption, $type);
 			if ($stmt->execute()){
-				$status = "Neues Auto erfolgreich hinzugefügt. Bitte loggen Sie sich erneut ein";
+				$status = "Neues Auto erfolgreich hinzugefügt.";
 			}
 		}
 		$mysqli->close();
@@ -99,5 +99,41 @@
 		}
 		$mysqli->close();
 		return $status;
+	}
+	function getUserInfo()
+	{
+		include "dbConnect.php";
+		$sql = "SELECT cityID FROM user WHERE ID = ?";
+		if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+			$stmt->bind_param("d", $_SESSION["userID"]);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			while($data = $result->fetch_array()){
+				$cityID = $data["cityID"];
+			}
+		}
+		$sql = "SELECT name FROM city WHERE ID = ?";
+		if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+			$stmt->bind_param("d", $cityID);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			while($data = $result->fetch_array()){
+				$address = $data["name"];
+			}
+			$_SESSION['address'] = $address;
+		}
+		$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
+		if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+			$stmt->bind_param("d", $_SESSION["userID"]);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			if($result->num_rows == 1){
+				while($data = $result->fetch_array()){
+					$type = $data["type"];
+				}
+				$_SESSION['type'] = strtolower($type);
+			}
+		}
+		$mysqli->close();
 	}
 ?>

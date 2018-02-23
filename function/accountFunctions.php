@@ -72,6 +72,7 @@
 							$hashed_password = $data["hashed_password"];									//hashed_password as hashed_password
 							$userID = $data["ID"];
 							$cityID = $data["cityID"];
+							$_SESSION['address'] = $cityID;
 						}
 						if(password_verify($password, $hashed_password)){							//vertify password
 							session_start();																						//start session

@@ -2,6 +2,9 @@
 session_start();
 include_once "../function/userConfig.php";
 include_once "../function/accountFunctions.php";
+if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
+	getUserInfo();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
