@@ -75,14 +75,18 @@
 		if (session_status() == PHP_SESSION_NONE) {
     		session_start();
 		}									//start session
+		echo "test1";
 		carDelete($_SESSION["userID"], $_GET["id"]);		// call function with parameters
 	}
 	function carDelete($userID, $carID){					//carDelete function
 		include "dbConnect.php";				//new mysqli
 		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?"; 		//query to delete car
+		echo "test2";
 		if ($stmt = $mysqli->prepare($query)) {
+			echo "test3";
 			$stmt->bind_param("dd", $userID, $carID);
 			if($stmt->execute()){
+				echo "test4";
 				header("location: ../user/userConfig.php");				//refer to userConfig.php
 			}
 			$stmt->close();					//close statement

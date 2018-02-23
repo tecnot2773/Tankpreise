@@ -119,7 +119,6 @@
 						$status = "Benutzer nicht gefunden";																//if no user with input name was found
 					}
 				}
-				$stmt->close();
 			}
 			$mysqli->close();																										//close DB connection
 		}
