@@ -83,8 +83,8 @@
 			if($stmt->execute()){
 				header("location: ../user/userConfig.php");				//refer to userConfig.php
 			}
+			$stmt->close();					//close statement
 		}
-		$stmt->close();					//close statement
 		$mysqli->close();				//close mysqli
 	}
 	function editCar()
