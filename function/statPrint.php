@@ -2,6 +2,7 @@
 	function statPrint($stationID, $type){
 
 		include "../function/dbConnect.php";
+		//query to get Stats
 		$query = "SELECT * FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? ORDER BY timestamp ASC;";
 		?>
 		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
@@ -35,7 +36,7 @@
 				<col style="width: 60px">
 			</colgroup>
 		  <tr>
-		    <th id="tg-yw4l">\</th>
+		    <th id="tg-yw4l">\</th> <!-- hours -->
 		    <th id="tg-yw4l">0</th>
 		    <th id="tg-yw4l">1</th>
 		    <th id="tg-yw4l">2</th>
@@ -63,18 +64,18 @@
 		  </tr>
 
 			<?php
-			if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("dsss", $stationID, $month, $day, $year);
-			$day = date("d", strtotime("last Monday"));
-			$month = date("m", strtotime("last Monday"));
-			$year = date("Y", strtotime("last Monday"));
-			$stmt->execute();
-			$result = $stmt->get_result();
+			if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
+			$stmt->bind_param("dsss", $stationID, $month, $day, $year);		//bind parameters
+			$day = date("d", strtotime("last Monday"));		//day from last monday
+			$month = date("m", strtotime("last Monday"));	//month from last monday
+			$year = date("Y", strtotime("last Monday"));	//year from last monday
+			$stmt->execute();			//execute statement
+			$result = $stmt->get_result();		//save result
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Montag</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
+				<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }?>
 		  </tr>
 

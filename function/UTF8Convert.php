@@ -30,7 +30,7 @@
 
 		return $value;
 	}
-	function umlauts($input){
+	function umlauts($input){											//function to convert umlauts
 		$search = array("ä", "ö", "ü", "ß", "Ä", "Ö", "Ü");
 		$replace = array("ae", "oe", "ue", "ss", "Ae", "Oe", "Ue");
 		$str = str_replace($search, $replace, $input);

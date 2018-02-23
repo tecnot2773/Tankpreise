@@ -2,7 +2,7 @@
 session_start();
 include_once "function/userConfig.php";
 if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
-	getUserInfo();
+	getUserInfo();		//Get userinfo
 }
  ?>
 <!DOCTYPE html>
@@ -59,14 +59,14 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 				$address = $mysqli->real_escape_string($_GET["address"]);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
-				$status = "ready";
+				$status = "ready";		//if user has filled the fields
 			}
 			if(isset($_SESSION['address']) && isset($_SESSION['type']) && !isset($_GET["address"])){
 
 				$address = $_SESSION['address'];
 				$radius = "5";
 				$type = $_SESSION['type'];
-				$status = "ready";
+				$status = "ready";			//if user has not filed the fields but has user data in database
 			}
 			if($status == "ready"){
 				include_once "function/getStation.php";

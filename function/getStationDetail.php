@@ -1,48 +1,48 @@
 <?php
 
-		function getDetail($UUID)
+		function getDetail($UUID)	//function getDetail
 		{
 			include_once "UTF8Convert.php";
 			$url = 'https://creativecommons.tankerkoenig.de/json/detail.php'."?id=$UUID&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";
 			$json = file_get_contents($url);
-			$json = convert($json);
-			$decoded = json_decode($json);
+			$json = convert($json);		//convert UTF8
+			$decoded = json_decode($json);		//decode json
 
-			return $decoded;
+			return $decoded;		//return array
 		}
 		function getName($content)
 		{
-			$name = $content->station->name;
+			$name = $content->station->name;		//get name from array
 			return $name;
 		}
 		function getBrand($content)
 		{
-			$brand = $content->station->brand;
+			$brand = $content->station->brand;		//get brand from array
 			return $brand;
 		}
 		function getPlace($content)
 		{
-			$place = $content->station->place;
+			$place = $content->station->place;		//get place from array
 			return $place;
 		}
 		function getStreet($content)
 		{
-			$street = $content->station->street;
+			$street = $content->station->street;		//get street from array
 			return $street;
 		}
 		function getHousenumber($content)
 		{
-			$houseNumber = $content->station->houseNumber;
+			$houseNumber = $content->station->houseNumber;		//get houseNumber from array
 			return $houseNumber;
 		}
 		function getOpeningtimes($content)
 		{
-			if(!empty($content->station->openingTimes[0]->text)){
-				$openingtxt = $content->station->openingTimes[0]->text;
-				$openingstart = $content->station->openingTimes[0]->start;
-				$openingend = $content->station->openingTimes[0]->end;
-				$opening0 = $openingtxt . " " . $openingstart . " bis " . $openingend;
-				$opening = array($opening0);
+			if(!empty($content->station->openingTimes[0]->text)){		//if text is not empty
+				$openingtxt = $content->station->openingTimes[0]->text;		//get text
+				$openingstart = $content->station->openingTimes[0]->start;		//get start
+				$openingend = $content->station->openingTimes[0]->end;			//get end
+				$opening0 = $openingtxt . " " . $openingstart . " bis " . $openingend;		//build string
+				$opening = array($opening0);			//fill array
 			}
 			if(!empty($content->station->openingTimes[1]->text)){
 				$openingtxt = $content->station->openingTimes[1]->text;
@@ -60,41 +60,41 @@
 				unset($opening);
 				$opening = array($opening0, $opening1, $opening2);
 			}
-			if($content->station->wholeDay == 1){
+			if($content->station->wholeDay == 1){		//if station is open the whole day
 				unset($opening);
 				$opening = "täglich 00:00 bis 23:59";
 				$opening = array($opening);
 			}
-			return $opening;
+			return $opening;		//return array
 		}
-		function getIsopen($content)
+		function getIsopen($content)	//function getIsopen
 		{
 			$isOpen = $content->station->isOpen;
-			if($isOpen == 1){
+			if($isOpen == 1){	//if station is currently open
 				$isOpen = "Ja";
 			}
-			else{
+			else{				//if not
 				$isOpen = "Nein";
 			}
 			return $isOpen;
 		}
 		function getE5($content)
 		{
-			if(isset($content->station->e5)){
+			if(isset($content->station->e5)){	//if station has e5
 				$e5 = $content->station->e5;
 				return $e5;
 			}
 		}
 		function getE10($content)
 		{
-			if(isset($content->station->e10)){
+			if(isset($content->station->e10)){	//if station has e10
 				$e10 = $content->station->e10;
 				return $e10;
 			}
 		}
 		function getDiesel($content)
 		{
-			if(isset($content->station->diesel)){
+			if(isset($content->station->diesel)){	//if station has diesel
 				$diesel = $content->station->diesel;
 				return $diesel;
 			}

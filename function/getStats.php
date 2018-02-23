@@ -1,9 +1,9 @@
 <?php
-	include_once "dbConnect.php";
+	include_once "dbConnect.php";		//new mysqli
 	include_once "getStation.php";
 
 	$sort = "stats";
-	$decoded = getStations25();
+	$decoded = getStations25();		//function calls
 	$UUID = getUUID($decoded, $sort);
 	$place = getPlace($decoded, $sort);
 	$brand = getBrand($decoded, $sort);
@@ -62,7 +62,7 @@
 		$stmtStats->execute();														//insert stats into DB
 
 	}
-	$stmtStats->close();
+	$stmtStats->close();		//close statements
 	$stmtgetID->close();
 	$stmtStation->close();
 	$stmtgetStation->close();

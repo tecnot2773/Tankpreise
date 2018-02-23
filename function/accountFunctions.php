@@ -1,45 +1,45 @@
 <?php
-	function register(){
-		include "dbConnect.php";
+	function register(){		//register function
+		include "dbConnect.php";		// create new mysqli
 		if(!empty($_POST["text-username"]) && !empty($password = $_POST["text-password"]) && !empty($repassword = $_POST["text-repassword"])){
-			$username = $mysqli->real_escape_string($_POST["text-username"]);
-			$password = $mysqli->real_escape_string($_POST["text-password"]);
-			$repassword = $mysqli->real_escape_string($_POST["text-repassword"]);
+			$username = $mysqli->real_escape_string($_POST["text-username"]);		//escape and save text-username
+			$password = $mysqli->real_escape_string($_POST["text-password"]);		//esacpe and save text-password
+			$repassword = $mysqli->real_escape_string($_POST["text-repassword"]);	//esacpe and save text-repassword
 
-			if($stmt = $mysqli->prepare("SELECT name FROM user WHERE name = ?;")){
-				$stmt->bind_param("s", $username);
-				$stmt->execute();
-				$result = $stmt->get_result();
-				if($result->num_rows == 0){
-					$stmt->reset();
-					if($password == $repassword){
-						$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-						if($stmt = $mysqli->prepare("INSERT INTO `user`(`name`, `hashed_password`) VALUES (?, ?);")){
-							$stmt->bind_param("ss", $username, $hashed_password);
-							$stmt->execute();
+			if($stmt = $mysqli->prepare("SELECT name FROM user WHERE name = ?;")){	//prepare to get name from user
+				$stmt->bind_param("s", $username);					// bind parameter
+				$stmt->execute();									//execute statement
+				$result = $stmt->get_result();						//save result
+				if($result->num_rows == 0){							// if there is an result
+					$stmt->reset();									//reset statement
+					if($password == $repassword){					//if password is the same as repassword
+						$hashed_password = password_hash($password, PASSWORD_DEFAULT);		//hash password
+						if($stmt = $mysqli->prepare("INSERT INTO `user`(`name`, `hashed_password`) VALUES (?, ?);")){		//prepare to create new user in database
+							$stmt->bind_param("ss", $username, $hashed_password);		//bind parameter
+							$stmt->execute();				//execute statement
 
-							$status = "Benutzer wurde erfolgreich angelegt.";
-							header("location: login.php");
-							$stmt->close();
+							$status = "Benutzer wurde erfolgreich angelegt.";	//status
+							header("location: login.php");			//refer to login
+							$stmt->close();			//close statement
 						}
 					}
 					else{
-						$status = "Die Passwörter stimmen nicht überein.";
+						$status = "Die Passwörter stimmen nicht überein.";	//status if passwords dont match
 					}
 				}
 				else{
-					$status = "Der Benutzername ist bereits Vergeben.";
+					$status = "Der Benutzername ist bereits Vergeben.";		//status if username is taken
 				}
 			}
 		}
 		else{
-			$status = "Bitte füllen Sie alle Felder aus.";
+			$status = "Bitte füllen Sie alle Felder aus.";			//status if not all fields are filed
 		}
-		$mysqli->close();
-		return $status;
+		$mysqli->close();			//close mysqli
+		return $status;			//return status
 	}
 
-	function login(){
+	function login(){				//login function
 		include "dbConnect.php";
 
 		if(empty(trim($_POST["text-username"]))){														//check if username is emtpy
@@ -81,21 +81,21 @@
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
 
-							if(!empty($cityID)){
-								$sql = "SELECT name FROM city WHERE ID = ?";
-								if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
-									$stmt->bind_param("d", $cityID);
-									$stmt->execute();
-									$result = $stmt->get_result();
+							if(!empty($cityID)){											//if cityID is not filled
+								$sql = "SELECT name FROM city WHERE ID = ?";			//sql to get name from city
+								if($stmt = $mysqli->prepare($sql)){							//prepare statement
+									$stmt->bind_param("d", $cityID);						//bind parameter
+									$stmt->execute();										//execute statement
+									$result = $stmt->get_result();							//save result
 									while($data = $result->fetch_array()){
 										$address = $data["name"];
 									}
-									$_SESSION['address'] = $address;
-									$stmt->close();
+									$_SESSION['address'] = $address;						//save address in user session
+									$stmt->close();											//close statement
 								}
 							}
-							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
-							if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
+							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";	//sql to get type from first user car
+							if($stmt = $mysqli->prepare($sql)){											//prepare statement
 								$stmt->bind_param("d", $userID);
 								$stmt->execute();
 								$result = $stmt->get_result();
@@ -103,7 +103,7 @@
 									while($data = $result->fetch_array()){
 										$type = $data["type"];
 									}
-									$_SESSION['type'] = strtolower($type);
+									$_SESSION['type'] = strtolower($type);									//save type in user session
 								}
 								$stmt->close();
 							}
@@ -127,47 +127,47 @@
 	function changePassword()
 	{
 		include "dbConnect.php";
-		$currentPassword = $mysqli->real_escape_string($_POST["text-currentpassword"]);
-		$newPassword = $mysqli->real_escape_string($_POST["text-newpassword"]);
-		$reNewPassword = $mysqli->real_escape_string($_POST["text-renewpassword"]);
+		$currentPassword = $mysqli->real_escape_string($_POST["text-currentpassword"]);							//save and escape text-currentpassword
+		$newPassword = $mysqli->real_escape_string($_POST["text-newpassword"]);									//save and escape text-newpassword
+		$reNewPassword = $mysqli->real_escape_string($_POST["text-renewpassword"]);								//save and escape text-renewpassword
 		$userID = $_SESSION['userID'];
 
-		if($newPassword == $reNewPassword){
-			$password_error = "false";
+		if($newPassword == $reNewPassword){					//if password matches repassword
+			$password_error = "false";							//no error
 		}
 		else{
-			$password_error = "true";
-			$status = "Die Passwörter stimmen nicht überein";
+			$password_error = "true";									//error
+			$status = "Die Passwörter stimmen nicht überein";			//status
 		}
 
-		if($password_error == "false"){
-			$sql = "SELECT hashed_password FROM user WHERE ID = ?";
+		if($password_error == "false"){													//if there was no error
+			$sql = "SELECT hashed_password FROM user WHERE ID = ?";							//query to get hashed_password from user
 			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 				$stmt->bind_param("d", $userID);
-				if($stmt->execute()){
+				if($stmt->execute()){											//execute statement
 					$result = $stmt->get_result();
-					$stmt->close();
+					$stmt->close();												//close statement
 					while($data = $result->fetch_array()){												//fetch result
-						$hashed_password = $data["hashed_password"];
+						$hashed_password = $data["hashed_password"];							//save hashed_password
 					}
-					if(password_verify($currentPassword, $hashed_password)){
-						$sql = "UPDATE user SET hashed_password = ? WHERE ID = ?";
-						if($stmt = $mysqli->prepare($sql)){
-							$password = password_hash($newPassword, PASSWORD_DEFAULT);
+					if(password_verify($currentPassword, $hashed_password)){		//vertify inputpassword with hashed_password
+						$sql = "UPDATE user SET hashed_password = ? WHERE ID = ?";		//query to update password
+						if($stmt = $mysqli->prepare($sql)){									//prepare statement if vertify was successful
+							$password = password_hash($newPassword, PASSWORD_DEFAULT);		//hash password
 							$stmt->bind_param("sd", $password, $userID);
-							if($stmt->execute()){
-								$status = "Password wurde erfolgreich geändert.";
+							if($stmt->execute()){											//execute statement
+								$status = "Password wurde erfolgreich geändert.";			//status if password is changed
 							}
 						}
 					}
 					else{
-						$status = "Das eingegeben Password ist nicht korrekt.";
+						$status = "Das eingegeben Password ist nicht korrekt.";				//status if password is not correct
 					}
 				}
 			}
 		}
-		$mysqli->close();
-		return $status;
+		$mysqli->close();				//close mysqli
+		return $status;					//return status
 	}
 
  ?>

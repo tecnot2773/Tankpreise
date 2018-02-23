@@ -1,29 +1,29 @@
 <?php
 
-	function getStations($address, $radius, $type)
+	function getStations($address, $radius, $type)							//function getStations
 	{
-		include "dbConnect.php";
-		if($radius > 25 || $radius < 5){
+		include "dbConnect.php";					//new mysqli
+		if($radius > 25 || $radius < 5){			//safety measures for api
 			$radius = 25;
 		}
-		if($type == "Diesel"){
+		if($type == "Diesel"){			//safety measures for api
 			$type = "diesel";
 		}
-		if($type == "E5"){
+		if($type == "E5"){			//safety measures for api
 			$type = "e5";
 		}
-		if($type == "E10"){
+		if($type == "E10"){			//safety measures for api
 			$type = "e10";
 		}
-		if($type != "diesel" && $type != "e5" && $type != "e10"){
+		if($type != "diesel" && $type != "e5" && $type != "e10"){		//safety measures for api
 			$type = "diesel";
 		}
-		include "getKoordinates.php";
-		$koordiates = getKoordinates($address, $mysqli);
-		if(isset($koordiates)){
+		include "getKoordinates.php";			//include getKoordinates
+		$koordiates = getKoordinates($address, $mysqli);	//call function getKoordinates
+		if(isset($koordiates)){		//if return was successful
 			//include "UTF8Convert.php";
-			$lat = $koordiates[0];
-			$lng = $koordiates[1];
+			$lat = $koordiates[0];		//save data from array
+			$lng = $koordiates[1];		//save data from array
 
 			$sort = 'price';
 			$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
@@ -34,21 +34,21 @@
 			    ."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
 			    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 
-			$json = convert($http_content);
-			$decoded = json_decode($json);
+			$json = convert($http_content);		//convert UTF8 characters
+			$decoded = json_decode($json);		//decode json format into array
 
-			return $decoded;
+			return $decoded;			//return the array
 		}
 	}
-	function getName($decoded, $type)
+	function getName($decoded, $type)		//function getName
 	{
-		$nameArray = array();
-		foreach($decoded->stations as $station){
+		$nameArray = array();			//make array
+		foreach($decoded->stations as $station){		//fatch array
 			$name = $station->name;
-			array_push($nameArray, $name);
-			if($type == "request"){
-				if(!isset($station->price)){
-					array_pop($nameArray);
+			array_push($nameArray, $name);	//fill array with data
+			if($type == "request"){		//if type is request
+				if(!isset($station->price)){		//if price is not set
+					array_pop($nameArray);			//delete last position in array !! Happens when the station dont have that type
 				}
 			}
 		}
@@ -138,7 +138,7 @@
 		return $priceArray;
 	}
 // from here its for the stats
-	function getStations25()
+	function getStations25()			//function getStations25  !! Stats function
 	{
 		include_once "UTF8Convert.php";
 		$lat = "52.9127"; 		//Syke
