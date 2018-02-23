@@ -3,6 +3,8 @@
 	font-size: 120%;
   	height: 35vh;
 	display: inline-block;
+	min-height: 200px;
+	min-height: 330px;
 }
 #griddiv-right {
 	width: 49.5%;
@@ -10,6 +12,7 @@
 	height: 35vh;
 	display: inline-block;
 	margin-left: 1%;
+	min-height: 330px;
 }
 #griddiv-submit {
 	width: 80%;
