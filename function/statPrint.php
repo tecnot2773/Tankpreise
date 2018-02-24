@@ -4,9 +4,20 @@
 		include "../function/dbConnect.php";
 		//query to get Stats
 		$query = "SELECT * FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? ORDER BY timestamp ASC;";
+		$query1 = "SELECT MIN($type) AS MINI FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ?";
 		?>
 		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
-
+		<?php
+		if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
+		$stmt->bind_param("dsss", $stationID, $month, $day, $year);		//bind parameters
+		$day = date("d", strtotime("last Monday"));		//day from last monday
+		$month = date("m", strtotime("last Monday"));	//month from last monday
+		$year = date("Y", strtotime("last Monday"));	//year from last monday
+		$stmt->execute();			//execute statement
+		$result = $stmt->get_result();		//save result
+		 while($data = $result->fetch_array()){
+			if(empty($data[$type]) ||$data[$type] == "null"){die();}} ?>
+			<h3><?=ucfirst($type)?><h3>
 		<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 			<colgroup>
 				<col style="width: 15%">
@@ -71,12 +82,22 @@
 			$year = date("Y", strtotime("last Monday"));	//year from last monday
 			$stmt->execute();			//execute statement
 			$result = $stmt->get_result();		//save result
+			if ($stmt1 = $mysqli->prepare($query1)) {		//prepare statement to get stats
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+			 	$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
-		    <th id="tg-yw4l">Montag</th>
+		    <th>Montag</th>
 				<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
-				<?php }?>
+					<?php if($data[$type] == $lowest){ ?>
+						<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+					<?php }else{ ?>
+						<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }}?>
 		  </tr>
 
 			<?php
@@ -86,12 +107,21 @@
 			$year = date("Y", strtotime("last Tuesday"));
 			$stmt->execute();
 			$result = $stmt->get_result();
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+				$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Dienstag</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
-				<?php }?>
+			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }else{ ?>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+			<?php }}?>
 		  </tr>
 
 			<?php
@@ -101,12 +131,21 @@
 			$year = date("Y", strtotime("last Wednesday"));
 			$stmt->execute();
 			$result = $stmt->get_result();
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+				$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Mittwoch</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
-				<?php }?>
+			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }else{ ?>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+			<?php }}?>
 		  </tr>
 
 			<?php
@@ -116,12 +155,21 @@
 			$year = date("Y", strtotime("last Thursday"));
 			$stmt->execute();
 			$result = $stmt->get_result();
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+				$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Donnerstag</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
-				<?php }?>
+			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }else{ ?>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+			<?php }}?>
 		  </tr>
 
 			<?php
@@ -131,12 +179,21 @@
 			$year = date("Y", strtotime("last Friday"));
 			$stmt->execute();
 			$result = $stmt->get_result();
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+				$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Freitag</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
-				<?php }?>
+			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }else{ ?>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+			<?php }}?>
 		  </tr>
 
 			<?php
@@ -146,12 +203,21 @@
 			$year = date("Y", strtotime("last Saturday"));
 			$stmt->execute();
 			$result = $stmt->get_result();
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+				$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Samstag</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
-				<?php }?>
+			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }else{ ?>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+			<?php }}?>
 		  </tr>
 
 			<?php
@@ -161,13 +227,22 @@
 			$year = date("Y", strtotime("last Sunday"));
 			$stmt->execute();
 			$result = $stmt->get_result();
+			$stmt1->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
+			$stmt1->execute();			//execute statement
+			$result1 = $stmt1->get_result();		//save result
+			while($data = $result1->fetch_array()){
+				$lowest = $data["MINI"];
+			}
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Sonntag</th>
-				<?php while($data = $result->fetch_array()){ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td>
-				<?php } $stmt->close();}?>
+			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+				<?php }else{ ?>
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+			<?php }}?>
 		  </tr>
 
 		</table>
-	<?php } ?>
+	<?php }}}} ?>

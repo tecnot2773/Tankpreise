@@ -72,15 +72,12 @@
 				<h3>Statstik für <?= $name ?> der letzden 7 Tage</h3>
 			</div>
 			<div id="griddiv-table" class="white">
-				<h3>Diesel</h3>
 				<?php statPrint("$id","diesel"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<h3>E5</h3>
 				<?php statPrint("$id","E5"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<h3>E10</h3>
 				<?php statPrint("$id","E10"); ?>
 			</div>
 		</div>
