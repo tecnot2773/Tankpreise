@@ -7,33 +7,33 @@
 		?>
 		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
 
-		<table id="tg" style="undefined;table-layout: fixed; width: 643px">
+		<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 			<colgroup>
-				<col style="width: 100px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
-				<col style="width: 60px">
+				<col style="width: 15%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
 			</colgroup>
 		  <tr>
 		    <th id="tg-yw4l">\</th> <!-- hours -->
