@@ -28,7 +28,7 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="shortcut icon" type="image/x-icon" href="images/icon.jpg">
+		<link rel="shortcut icon" type="image/x-icon" href="../images/icon.jpg">
 		<link href="../css/custom/stationIndex.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/body.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/textbox.css" type="text/css" rel="stylesheet" />
