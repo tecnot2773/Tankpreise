@@ -6,7 +6,7 @@
 	if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 		getUserInfo();
 	}
-	include_once "../function/dbConnect.php";
+	include "../function/dbConnect.php";
 	include_once "../function/statPrint.php";
 	$id = $_GET["id"];
 	$sql = "SELECT name FROM gasstation WHERE ID = ?";		//query to get ID from city
