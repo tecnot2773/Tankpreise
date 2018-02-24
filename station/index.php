@@ -70,9 +70,6 @@
 			$e10 = getE10($http_content);
 			$diesel = getDiesel($http_content);
 		?>
-		<div id="heading" class="page-header">
-			<h1> </h1>
-		</div>
 		<div id="griddiv-left" class="white">
 			<div id="printrow-top" class="white">
 				Name: <?= $name; ?>
@@ -116,7 +113,7 @@
 			<?php } ?>
 			<?php if(!empty($id)){ ?>
 			<div id="printrow-middle" class="white">
-				<a href="stats.php?id=<?php echo $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
+				<a href="stats.php?id=<?= echo $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
 			</div>
 		<?php } ?>
 		</div>
