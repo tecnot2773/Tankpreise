@@ -57,7 +57,7 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 		<?php
 		$status = "notReady";
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
-				include_once "function/dbConnect.php";
+				include "function/dbConnect.php";
 				$address = $mysqli->real_escape_string($_GET["address"]);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
@@ -86,9 +86,6 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 			}
 			?>
 		<form action="index.php" method="get">
-			<div id="heading" class="page-header">
-				<h1> </h1>
-			</div>
 				<div id="griddiv-search" class="white">
 					<div id="searchrow" class="white">
 						<?php if(isset($_GET["address"])){ ?>
