@@ -98,17 +98,17 @@
 			</div>
 			<?php if(isset($e5)){ ?>
 			<div id="printrow-middle" class="white">
-				E5 Preis <?= $e5; ?>
+				E5 Preis <?= $e5; ?> Euro
 			</div>
 			<?php } ?>
 			<?php if(isset($e10)){ ?>
 			<div id="printrow-middle" class="white">
-				E10 Preis: <?= $e10; ?>
+				E10 Preis: <?= $e10; ?> Euro
 			</div>
 			<?php } ?>
 			<?php if(isset($diesel)){ ?>
 			<div id="printrow-middle" class="white">
-				Diesel Preis: <?= $diesel; ?>
+				Diesel Preis: <?= $diesel; ?> Euro
 			</div>
 			<?php } ?>
 			<?php if(!empty($id)){ ?>
