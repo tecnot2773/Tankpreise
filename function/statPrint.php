@@ -140,8 +140,8 @@
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Mittwoch</th>
-			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-				<?php if($data[$type] == $lowest){ ?>
+			<?php while($data = $result->fetch_array()){
+				 if($data[$type] == $lowest){ ?>
 					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
 					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
@@ -164,8 +164,8 @@
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Donnerstag</th>
-			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-				<?php if($data[$type] == $lowest){ ?>
+			<?php while($data = $result->fetch_array()){
+				if($data[$type] == $lowest){ ?>
 					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
 					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
@@ -188,8 +188,8 @@
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Freitag</th>
-			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-				<?php if($data[$type] == $lowest){ ?>
+			<?php while($data = $result->fetch_array()){
+				if($data[$type] == $lowest){ ?>
 					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
 					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
@@ -212,8 +212,8 @@
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Samstag</th>
-			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-				<?php if($data[$type] == $lowest){ ?>
+			<?php while($data = $result->fetch_array()){
+				if($data[$type] == $lowest){ ?>
 					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
 					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
@@ -236,8 +236,8 @@
 			?>
 		  <tr>
 		    <th id="tg-yw4l">Sonntag</th>
-			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-				<?php if($data[$type] == $lowest){ ?>
+			<?php while($data = $result->fetch_array()){
+				if($data[$type] == $lowest){ ?>
 					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
 					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
