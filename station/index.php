@@ -113,7 +113,7 @@
 			<?php } ?>
 			<?php if(!empty($id)){ ?>
 			<div id="printrow-middle" class="white">
-				<a href="stats.php?id=<?= echo $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
+				<a href="stats.php?id=<?= $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
 			</div>
 		<?php } ?>
 		</div>
