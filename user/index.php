@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	include_once "../function/userConfig.php";
+	include_once "../function/accountFunctions.php";
+	if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
+		getUserInfo();
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -42,3 +51,49 @@
 			</div>
 		</header>
 		<!--main contents          -->
+		<div id="heading" class="page-header">
+			<h1>Benutzer Seite von <?= $_SESSION["username"] ?></h1>
+		</div>
+		<div id="griddiv-top" class="white">
+			<div id='rowstart' class='bottomrow'>
+				<b>Benutzername:</b> <?= $_SESSION["username"] ?> &nbsp;&nbsp;&nbsp;&nbsp; <b>Wohnort:</b> <?= ucfirst($_SESSION["address"]) ?>
+			</div>
+		</div>
+		<?php
+			$result = carTable();
+			if($result->num_rows >= 1){
+		?>
+		<div id="griddiv-table" class="white">
+			<table id='cars'>
+				<tr>
+					<th>Name</th>
+					<th>Volumen</th>
+					<th>Verbrauch</th>
+					<th>Sprit Sorte</th>
+					<th>#</th>
+					<th>#</th>
+					<th>#</th>
+				</tr>
+				<?php
+				while($data = $result->fetch_array()){
+					$name = $data["name"];
+					$volume = $data["volume"];
+					$consumption = $data["consumption"];
+					$type = $data["type"];
+					$id = $data["ID"];
+				?>
+				<tr>
+					<td width='20%'><?= $name ?></td>
+					<td width='10%'><?= $volume ?></td>
+					<td width='10%'><?= $consumption ?></td>
+					<td width='10%'><?= $type ?></td>
+					<td width='10%'></td>
+					<td width='10%'></td>
+					<td width='10%'></td>
+				</tr>
+			<?php } ?>
+			</table>
+		</div>
+		<?php } ?>
+	</body>
+</html>

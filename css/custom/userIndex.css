@@ -1,0 +1,43 @@
+#griddiv-top {
+	width: 60%;
+	margin-top: 0.5%;
+	font-size: 120%;
+	text-align: left !important;
+	margin-left: 20%;
+}
+#griddiv-table {
+	width: 60%;
+	margin-top: 0.5%;
+	margin-left: 20%;
+}
+#rowstart {
+	padding-top:  2.5%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 2.5%;
+}
+#heading{
+	padding-left: 20%;
+}
+#cars {
+    border-collapse: collapse;
+	width: 100%;
+}
+#cars td, #cars th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#cars tr:nth-child(even)
+{
+	background-color: #f2f2f2;
+}
+#cars tr:hover {
+	background-color: #ddd;
+}
+
+#cars th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #ff0000;
+    color: white;
+}

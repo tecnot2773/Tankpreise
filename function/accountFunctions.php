@@ -109,7 +109,7 @@
 								}
 								$stmt->close();
 							}
-							header("location: index.php");															//refer to index.php
+							header("location: user/index.php");															//refer to index.php
 						}
 						else{
 							$status = "Falsches Password";																		//if vertify password was false
