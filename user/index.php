@@ -66,7 +66,7 @@
 		<div id="griddiv-table" class="white">
 			<table id='cars'>
 				<tr>
-					<th>Name</th>
+					<th>Auto Name</th>
 					<th>Sprit Sorte</th>
 					<th>Tank Volumen</th>
 					<th>Kosten für einen Tank</th>
