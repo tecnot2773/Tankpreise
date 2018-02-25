@@ -3,7 +3,7 @@
 		session_start();
 	}
 	include_once "../function/userConfig.php";
-	include_once "../function/accountFunctions.php";
+	include_once "../function/userFunctions.php";
 	if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 		getUserInfo();
 	}

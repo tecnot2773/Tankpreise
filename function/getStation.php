@@ -18,7 +18,7 @@
 		if($type != "diesel" && $type != "e5" && $type != "e10"){		//safety measures for api
 			$type = "diesel";
 		}
-		include "getKoordinates.php";			//include getKoordinates
+		include_once "getKoordinates.php";			//include getKoordinates
 		$koordiates = getKoordinates($address, $mysqli);	//call function getKoordinates
 		if(isset($koordiates)){		//if return was successful
 			//include "UTF8Convert.php";
@@ -138,14 +138,10 @@
 		return $priceArray;
 	}
 // from here its for the stats
-	function getStations25()			//function getStations25  !! Stats function
+	function getStations25($radius, $lat, $lng)			//function getStations25  !! Stats function
 	{
 		include_once "UTF8Convert.php";
-		$lat = "52.9127"; 		//Syke
-		$lng = "8.81814";
-		$radius = "25";			//25km -- maximum
 		$type = "all";	//get all but without best price check
-
 
 		$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
 				."?lat=$lat"

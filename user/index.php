@@ -2,7 +2,7 @@
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
-	include_once "../function/userConfig.php";
+	include_once "../function/userFunctions.php";
 	include_once "../function/accountFunctions.php";
 	if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 		getUserInfo();
@@ -82,6 +82,9 @@
 					$consumption = $data["consumption"];
 					$type = $data["type"];
 					$id = $data["ID"];
+					$lowestE5 = getLowestPrice($_SESSION["address"], "e5");
+					$lowestE10 = getLowestPrice($_SESSION["address"], "e10");
+					$lowestDiesel = getLowestPrice($_SESSION["address"], "diesel");
 				?>
 				<tr>
 					<td width='20%'><?= $name ?></td>

@@ -3,7 +3,10 @@
 	include_once "getStation.php";
 
 	$sort = "stats";
-	$decoded = getStations25();		//function calls
+	$lat = "52.9127"; 		//Syke
+	$lng = "8.81814";
+	$radius = "25";
+	$decoded = getStations25($radius, $lat, $lng);		//function calls
 	$UUID = getUUID($decoded, $sort);
 	$place = getPlace($decoded, $sort);
 	$brand = getBrand($decoded, $sort);

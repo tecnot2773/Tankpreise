@@ -12,4 +12,30 @@ $decoded = json_decode($json);
 print_r($decoded);
 echo "<br><br>";
 
+
+
  ?>
+ https://stackoverflow.com/questions/8994718/mysql-longitude-and-latitude-query-for-other-rows-within-x-mile-radius
+SELECT radius
+SELECT
+    `ID`,
+    (
+        6371 *
+        acos(
+            cos( radians( 52.9127 ) ) *
+            cos( radians( `lat` ) ) *
+            cos(
+                radians( `lon` ) - radians( 8.81814 )
+            ) +
+            sin(radians(52.9127)) *
+            sin(radians(`lat`))
+        )
+    ) `distance`
+FROM
+    `gasstation`
+HAVING
+    `distance` < 5
+ORDER BY
+    `distance`
+LIMIT
+    25

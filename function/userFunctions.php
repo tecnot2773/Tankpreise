@@ -152,4 +152,28 @@
 		$stmt->close();												//close statement
 		$mysqli->close();												//close mysqli
 	}
+	function getLowestPrice($address, $type)
+	{
+		include "dbConnect.php";
+		include_once "getStation.php";
+		$sql = "SELECT latitude, longitude FROM city WHERE name = ?";
+		if($stmt = $mysqli->prepare($sql)){																		//prepare to get car type
+			$stmt->bind_param("s", $_SESSION["address"]);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			if($result->num_rows == 1){
+				while($data = $result->fetch_array()){
+					$lat = $data["latitude"];
+					$lon = $data["longitude"];
+				}
+			}
+		}
+		$radius = "5";
+		$content = getStations25($radius, $lat, $lon);
+		$lowest = getPrice($content);
+		$UUID = getUUID($content, "");
+		$name = getName($content, "");
+
+		$mysqli->close();
+	}
 ?>
