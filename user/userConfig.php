@@ -62,7 +62,7 @@
 						Addresse
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>" <?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
+						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>" value = "<?= ucfirst($_SESSION['address']) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
 					</div>
 					<?php if(!isset($_GET["id"]) && !isset($_GET["name"]) && !isset($_GET["consumption"]) && !isset($_GET["volume"]) && !isset($_GET["type"])){ ?>
 					<div id="rowheader" class="white">
@@ -78,7 +78,7 @@
 					</div>
 					<div id="rowend" class="white">
 						<input id="textbox-small" name="text-volume" class="enjoy-css" type="text" placeholder="Tank Volumen in Liter">
-						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch in Liter">
+						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch auf 100km">
 					</div>
 					<?php } ?>
 					<?php if(isset($_GET["id"]) && isset($_GET["name"]) && isset($_GET["consumption"]) && isset($_GET["volume"]) && isset($_GET["type"])){ ?>
@@ -96,7 +96,7 @@
 					</div>
 					<div id="rowend" class="white">
 						<input id="textbox-small" name="text-volume" class="enjoy-css" type="text" placeholder="Tank Volumen in Liter" value = <?=$_GET["volume"]?>>
-						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch in Liter" value = <?=$_GET["consumption"]?>>
+						<input id="textbox-small" name="text-consumption" class="enjoy-css" type="text" placeholder="Verbrauch in Liter auf 100km" value = <?=$_GET["consumption"]?>>
 					</div>
 					<div style="display:none" id="rowmid" class="white">
 						<label>
@@ -144,8 +144,8 @@
 				<table id='cars'>
 					<tr>
 						<th>Name</th>
-						<th>Volumen</th>
-						<th>Verbrauch</th>
+						<th>Tank Volumen</th>
+						<th>Verbrauch auf 100km</th>
 						<th>Sprit Sorte</th>
 						<th>Aktion</th>
 						<th>Aktion</th>
@@ -159,8 +159,8 @@
 						$id = $data["ID"];
 					?>
 						<tr>
-						<td width='40%'><?= $name ?></td>
-						<td width='20%'><?= $volume ?></td>
+						<td width='40%'><?= $name ?> Liter</td>
+						<td width='20%'><?= $volume ?> Liter</td>
 						<td width='20%'><?= $consumption ?></td>
 						<td width='20%'><?= $type ?></td>
 						<td width='7px'>

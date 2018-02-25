@@ -1,14 +1,14 @@
 #griddiv-top {
-	width: 60%;
+	width: 80%;
 	margin-top: 0.5%;
 	font-size: 120%;
 	text-align: left !important;
-	margin-left: 20%;
+	margin-left: 10%;
 }
 #griddiv-table {
-	width: 60%;
+	width: 80%;
 	margin-top: 0.5%;
-	margin-left: 20%;
+	margin-left: 10%;
 }
 #rowstart {
 	padding-top:  2.5%;
@@ -17,7 +17,7 @@
 	padding-bottom: 2.5%;
 }
 #heading{
-	padding-left: 20%;
+	padding-left: 10%;
 }
 #cars {
     border-collapse: collapse;

@@ -67,12 +67,13 @@
 			<table id='cars'>
 				<tr>
 					<th>Name</th>
-					<th>Volumen</th>
-					<th>Verbrauch</th>
 					<th>Sprit Sorte</th>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
+					<th>Tank Volumen</th>
+					<th>Kosten für einen Tank</th>
+					<th>Verbrauch auf 100km</th>
+					<th>Kosten für 100km</th>
+					<th>Günstigster Preis für einen Liter</th>
+					<th>Tankstelle</th>
 				</tr>
 				<?php
 				while($data = $result->fetch_array()){
@@ -84,9 +85,10 @@
 				?>
 				<tr>
 					<td width='20%'><?= $name ?></td>
-					<td width='10%'><?= $volume ?></td>
-					<td width='10%'><?= $consumption ?></td>
 					<td width='10%'><?= $type ?></td>
+					<td width='10%'><?= $volume ?> Liter</td>
+					<td width='10%'></td>
+					<td width='10%'><?= $consumption ?> Liter</td>
 					<td width='10%'></td>
 					<td width='10%'></td>
 					<td width='10%'></td>
