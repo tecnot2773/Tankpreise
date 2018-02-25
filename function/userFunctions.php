@@ -152,7 +152,7 @@
 		$stmt->close();												//close statement
 		$mysqli->close();												//close mysqli
 	}
-	function getLowestPrice($address, $type)
+	function getLowestPrice($address)
 	{
 		include "dbConnect.php";
 		include_once "getStation.php";
@@ -170,10 +170,41 @@
 		}
 		$radius = "5";
 		$content = getStations25($radius, $lat, $lon);
-		$lowest = getPrice($content);
 		$UUID = getUUID($content, "");
 		$name = getName($content, "");
-
+		$e5 = getE5($content);
+		$e10 = getE10($content);
+		$diesel = getDiesel($content);
+		$count = count($UUID);
+		$lowestE10 = "1.999";
+		for($i = 0; $i < $count; $i++){
+			if($e10[$i] != ""){
+				if($e10[$i] < $lowestE10){
+					$lowestE10 = $e10[$i];
+					$saveE10 = $i;
+				}
+			}
+		}
+		$lowestE5 = "1.999";
+		for($i = 0; $i < $count; $i++){
+			if($e5[$i] != ""){
+				if($e5[$i] < $lowestE5){
+					$lowestE5 = $e5[$i];
+					$saveE5 = $i;
+				}
+			}
+		}
+		$lowestDiesel = "1.999";
+		for($i = 0; $i < $count; $i++){
+			if($diesel[$i] != ""){
+				if($diesel[$i] < $lowestDiesel){
+					$lowestDiesel = $diesel[$i];
+					$saveDiesel = $i;
+				}
+			}
+		}
+		$lowest = array('e5Price'=>$lowestE5, 'e5ID'=>$UUID[$saveE5], 'e5Name'=>$name[$saveE5], 'e10Price'=>$lowestE10, 'e10ID'=>$UUID[$saveE10], 'e10Name'=>$name[$saveE10], 'dieselPrice'=>$lowestDiesel, 'dieselID'=>$UUID[$saveDiesel], 'dieselName'=>$name[$saveDiesel]);
 		$mysqli->close();
+		return $lowest;
 	}
 ?>

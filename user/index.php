@@ -76,25 +76,67 @@
 					<th>Tankstelle</th>
 				</tr>
 				<?php
+				$lowest = getLowestPrice($_SESSION["address"]);
+				print_r($lowest);
 				while($data = $result->fetch_array()){
 					$name = $data["name"];
 					$volume = $data["volume"];
 					$consumption = $data["consumption"];
 					$type = $data["type"];
 					$id = $data["ID"];
-					$lowestE5 = getLowestPrice($_SESSION["address"], "e5");
-					$lowestE10 = getLowestPrice($_SESSION["address"], "e10");
-					$lowestDiesel = getLowestPrice($_SESSION["address"], "diesel");
+					if($type == "Diesel"){
+						$lowestDiesel = $lowest['dieselPrice'];
+						$dieselName = $lowest['dieselName'];
+						$dieselUUID = $lowest['dieselID'];
+					}
+					if($type == "E5"){
+						$lowestE5 = $lowest['e5Price'];
+						$e5Name = $lowest['e5Name'];
+						$e5UUID = $lowest['e5ID'];
+					}
+					if($type == "E10"){
+						$lowestE10 = $lowest['e10Price'];
+						$e10Name = $lowest['e10Name'];
+						$e10UUID = $lowest['e10ID'];
+					}
 				?>
 				<tr>
+					<?php if($type == "Diesel"){ ?>
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
 					<td width='10%'></td>
 					<td width='10%'><?= $consumption ?> Liter</td>
 					<td width='10%'></td>
+					<td width='10%'><?= $lowestDiesel ?> Euro</td>
+					<td width='10%'>
+						<a href='../station/index.php?id=<?= $dieselUUID ?>'><?= $dieselName ?></a>
+					</td>
+					<?php } ?>
+					<?php if($type == "E5"){ ?>
+					<td width='20%'><?= $name ?></td>
+					<td width='10%'><?= $type ?></td>
+					<td width='10%'><?= $volume ?> Liter</td>
 					<td width='10%'></td>
+					<td width='10%'><?= $consumption ?> Liter</td>
 					<td width='10%'></td>
+					<td width='10%'><?= $lowestE5 ?> Euro</td>
+					<td width='10%'>
+						<a href='../station/index.php?id=<?= $e5UUID ?>'><?= $e5Name ?></a>
+					</td>
+					<?php } ?>
+					<?php if($type == "E10"){ ?>
+					<td width='20%'><?= $name ?></td>
+					<td width='10%'><?= $type ?></td>
+					<td width='10%'><?= $volume ?> Liter</td>
+					<td width='10%'></td>
+					<td width='10%'><?= $consumption ?> Liter</td>
+					<td width='10%'></td>
+					<td width='10%'><?= $lowestE10 ?> Euro</td>
+					<td width='10%'>
+						<a href='../station/index.php?id=<?= $e10UUID ?>'><?= $e10Name ?></a>
+					</td>
+					<?php } ?>
 				</tr>
 			<?php } ?>
 			</table>

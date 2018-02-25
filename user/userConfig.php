@@ -2,7 +2,7 @@
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
-	include_once "../function/userConfig.php";
+	include_once "../function/accountFunctions.php";
 	include_once "../function/userFunctions.php";
 	if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 		getUserInfo();
@@ -62,7 +62,7 @@
 						Addresse
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>" value = "<?= ucfirst($_SESSION['address']) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
+						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
 					</div>
 					<?php if(!isset($_GET["id"]) && !isset($_GET["name"]) && !isset($_GET["consumption"]) && !isset($_GET["volume"]) && !isset($_GET["type"])){ ?>
 					<div id="rowheader" class="white">
@@ -159,7 +159,7 @@
 						$id = $data["ID"];
 					?>
 						<tr>
-						<td width='40%'><?= $name ?> Liter</td>
+						<td width='40%'><?= $name ?></td>
 						<td width='20%'><?= $volume ?> Liter</td>
 						<td width='20%'><?= $consumption ?></td>
 						<td width='20%'><?= $type ?></td>
