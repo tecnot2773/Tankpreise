@@ -73,11 +73,10 @@
 					<th>Verbrauch auf 100km</th>
 					<th>Kosten für 100km</th>
 					<th>Günstigster Preis für einen Liter</th>
-					<th>Tankstelle</th>
+					<th>Günstigeste Tankstelle in <?= ucfirst($_SESSION["address"]) ?></th>
 				</tr>
 				<?php
 				$lowest = getLowestPrice($_SESSION["address"]);
-				print_r($lowest);
 				while($data = $result->fetch_array()){
 					$name = $data["name"];
 					$volume = $data["volume"];
@@ -105,9 +104,9 @@
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
-					<td width='10%'><?= $volume * $lowestDiesel ?></td>
+					<td width='10%'><?= number_format($volume * $lowestDiesel, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $consumption ?> Liter</td>
-					<td width='10%'></td>
+					<td width='10%'><?= number_format($consumption * $lowestDiesel, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $lowestDiesel ?> Euro</td>
 					<td width='10%'>
 						<a href='../station/index.php?id=<?= $dieselUUID ?>'><?= $dieselName ?></a>
@@ -117,9 +116,9 @@
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
-					<td width='10%'><?= $volume * $lowestE5 ?></td>
+					<td width='10%'><?= number_format($volume * $lowestE5, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $consumption ?> Liter</td>
-					<td width='10%'></td>
+					<td width='10%'><?= number_format($consumption * $lowestE5, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $lowestE5 ?> Euro</td>
 					<td width='10%'>
 						<a href='../station/index.php?id=<?= $e5UUID ?>'><?= $e5Name ?></a>
@@ -129,9 +128,9 @@
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
-					<td width='10%'><?= $volume * $lowestE10 ?></td>
+					<td width='10%'><?= number_format($volume * $lowestE10, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $consumption ?> Liter</td>
-					<td width='10%'></td>
+					<td width='10%'><?= number_format($consumption * $lowestE10, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $lowestE10 ?> Euro</td>
 					<td width='10%'>
 						<a href='../station/index.php?id=<?= $e10UUID ?>'><?= $e10Name ?></a>
