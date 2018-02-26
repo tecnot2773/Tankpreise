@@ -105,7 +105,7 @@
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
-					<td width='10%'></td>
+					<td width='10%'><?= $volume * $lowestDiesel ?></td>
 					<td width='10%'><?= $consumption ?> Liter</td>
 					<td width='10%'></td>
 					<td width='10%'><?= $lowestDiesel ?> Euro</td>
@@ -117,7 +117,7 @@
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
-					<td width='10%'></td>
+					<td width='10%'><?= $volume * $lowestE5 ?></td>
 					<td width='10%'><?= $consumption ?> Liter</td>
 					<td width='10%'></td>
 					<td width='10%'><?= $lowestE5 ?> Euro</td>
@@ -129,7 +129,7 @@
 					<td width='20%'><?= $name ?></td>
 					<td width='10%'><?= $type ?></td>
 					<td width='10%'><?= $volume ?> Liter</td>
-					<td width='10%'></td>
+					<td width='10%'><?= $volume * $lowestE10 ?></td>
 					<td width='10%'><?= $consumption ?> Liter</td>
 					<td width='10%'></td>
 					<td width='10%'><?= $lowestE10 ?> Euro</td>
