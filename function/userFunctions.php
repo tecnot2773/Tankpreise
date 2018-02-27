@@ -18,6 +18,7 @@
 					while($data = $result->fetch_array()){		//fetch array
 						$cityID = $data["ID"];			//save id in cityID
 					}
+					$error = "false";
 				}
 				else{
 					$cityID = getKoordinates($address, $mysqli); 		//getKoordinates from city
@@ -31,19 +32,39 @@
 					}
 				}
 			}
+			$stmt->close();											//close statement
 		}
 		if($error == "false"){
-			$stmt->close();												//close statement
-			$query = "UPDATE user SET cityID = ? WHERE ID = ?;";		//query to update cityID
+			$query = "SELECT * FROM userplace WHERE userID = ?;";		//query to select userplace
 			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
-				$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
+				$stmt->bind_param("d", $userID);				//bind parameter
 				$userID = $_SESSION['userID'];
 				$stmt->execute();
-				getUserInfo();
-				$status = "Wohnort erfolgrech geändert.";			//staus if Wohnort is changed
+				$result = $stmt->get_result();				//save result
+				if(!empty($result)){					//if result is not empty
+					if($result->num_rows == 1){
+						$query = "UPDATE userplace SET cityID = ? WHERE userID = ?;";		//query to update cityID
+						if ($stmt = $mysqli->prepare($query)) {						//prepare statement
+							$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
+							$userID = $_SESSION['userID'];
+							$stmt->execute();
+							$status = "Wohnort erfolgreich angelegt";
+						}
+					}
+					else{
+						$query = "INSERT INTO `userplace`(`userID`, `cityID`) VALUES (?, ?);";		//query to update cityID
+						if ($stmt = $mysqli->prepare($query)) {						//prepare statement
+							$stmt->bind_param("dd", $userID, $cityID);				//bind parameter
+							$userID = $_SESSION['userID'];
+							$stmt->execute();
+							getUserInfo();
+							$status = "Wohnort erfolgrech angelegt.";			//staus if Wohnort is changed
+							$stmt->close();					//close statement
+						}
+					}
+				}
+				$mysqli->close();				//close mysqli
 			}
-			$stmt->close();					//close statement
-			$mysqli->close();				//close mysqli
 		}
 
 		return $status;					//return status
@@ -129,7 +150,7 @@
 	function getUserInfo()
 	{
 		include "dbConnect.php";
-		$sql = "SELECT cityID FROM user WHERE ID = ?";
+		$sql = "SELECT cityID FROM userplace WHERE userID = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get cityID
 			$stmt->bind_param("d", $_SESSION["userID"]);
 			$stmt->execute();
@@ -137,21 +158,28 @@
 			while($data = $result->fetch_array()){
 				$cityID = $data["cityID"];
 			}
+			$stmt->close();										//close statement
 		}
-		$stmt->close();										//close statement
-		$sql = "SELECT name FROM city WHERE ID = ?";
-		if($stmt = $mysqli->prepare($sql)){																		//prepare to get city name
-			$stmt->bind_param("d", $cityID);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			if($result->num_rows >= 1){
-				while($data = $result->fetch_array()){
-					$address = $data["name"];
+		if(!empty($result)){					//if result is not empty
+			if($result->num_rows == 1){
+				$sql = "SELECT name FROM city WHERE ID = ?";
+				if($stmt = $mysqli->prepare($sql)){																		//prepare to get city name
+					$stmt->bind_param("d", $cityID);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					if($result->num_rows >= 1){
+						while($data = $result->fetch_array()){
+							$address = $data["name"];
+						}
+						$_SESSION['address'] = $address;							//save address in session
+					}
+					$stmt->close();										//close statement
 				}
-				$_SESSION['address'] = $address;							//save address in session
+			}
+			else{
+				unset($_SESSION['address']);
 			}
 		}
-		$stmt->close();										//close statement
 		$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get car type
 			$stmt->bind_param("d", $_SESSION["userID"]);
@@ -173,7 +201,7 @@
 		include_once "getStation.php";
 		$sql = "SELECT latitude, longitude FROM city WHERE name = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get car type
-			$stmt->bind_param("s", $_SESSION["address"]);
+			$stmt->bind_param("s", $_SESSION['address']);
 			$stmt->execute();
 			$result = $stmt->get_result();
 			if($result->num_rows == 1){

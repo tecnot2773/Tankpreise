@@ -1,11 +1,11 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-include_once "function/userFunctions.php";
-if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
-	getUserInfo();		//Get userinfo
-}
+	if (session_status() == PHP_SESSION_NONE) {
+	    session_start();
+	}
+	include_once "function/userFunctions.php";
+	if(!isset($_SESSION["address"]) && isset($_SESSION['loggedin']) || !isset($_SESSION["type"]) && isset($_SESSION['loggedin']) == true){
+		getUserInfo();		//Get userinfo
+	}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +140,12 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 								<div id="rowmid" class="white">
 									<?= ucfirst($type) . ": " . $price[$i] ?>
 								</div>
-							<?php }}}else{echo "Die Addresse bedefindet sich nicht in Deutschland.";} ?>
+							<?php }}}else{echo "Die Addresse bedefindet sich nicht in Deutschland.";}
+ 						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){	?>
+							<div id="rowstart" class="white">
+								Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
+							</div>
+						<?php } ?>
 					<div id="rowend" class="white">
 					</div>
 				</div>

@@ -4,7 +4,7 @@
 	}
 	include_once "../function/userFunctions.php";
 	include_once "../function/accountFunctions.php";
-	if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
+	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
 		getUserInfo();
 	}
 ?>
@@ -56,12 +56,13 @@
 		</div>
 		<div id="griddiv-top" class="white">
 			<div id='rowstart' class='bottomrow'>
-				<b>Benutzername:</b> <?= $_SESSION["username"] ?> &nbsp;&nbsp;&nbsp;&nbsp; <b>Wohnort:</b> <?= ucfirst($_SESSION["address"]) ?>
+				<b>Benutzername:</b> <?= $_SESSION["username"] ?> &nbsp;&nbsp;&nbsp;&nbsp; <b>Wohnort:</b> <?php if(isset($_SESSION["address"])){ echo ucfirst($_SESSION["address"]); }else{echo "Bitte geben Sie einen Wohnort in den Benutzereinstellungen an, um alle Funktionen richtig nutzen zu können.";} ?>
 			</div>
 		</div>
 		<?php
-			$result = carTable();
-			if($result->num_rows >= 1){
+			if(isset($_SESSION['address'])){
+				$result = carTable();
+				if($result->num_rows >= 1){
 		?>
 		<div id="griddiv-table" class="white">
 			<table id='cars'>
@@ -137,7 +138,7 @@
 					</td>
 					<?php } ?>
 				</tr>
-			<?php } ?>
+			<?php }} ?>
 			</table>
 		</div>
 		<?php } ?>

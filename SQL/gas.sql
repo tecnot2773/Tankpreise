@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 23. Feb 2018 um 23:18
--- Server-Version: 10.1.28-MariaDB
--- PHP-Version: 7.1.10
+-- Host: localhost
+-- Erstellungszeit: 27. Feb 2018 um 22:20
+-- Server-Version: 5.7.21-0ubuntu0.16.04.1
+-- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -98,8 +98,20 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
-  `hashed_password` varchar(100) NOT NULL,
-  `cityID` int(11) DEFAULT NULL
+  `hashed_password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `userPlace`
+--
+
+DROP TABLE IF EXISTS `userPlace`;
+CREATE TABLE `userPlace` (
+  `ID` int(3) NOT NULL,
+  `userID` int(3) NOT NULL,
+  `cityID` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -137,6 +149,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indizes für die Tabelle `userPlace`
+--
+ALTER TABLE `userPlace`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -169,6 +187,12 @@ ALTER TABLE `stats`
 --
 ALTER TABLE `user`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `userPlace`
+--
+ALTER TABLE `userPlace`
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
