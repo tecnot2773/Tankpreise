@@ -4,6 +4,7 @@
 		//include_once "UTF8Convert.php";
 		include_once "getKoordinates.php";		//include getKoordinates
 		$address = $mysqli->real_escape_string($_POST["text-place"]);		//save and escape text-place
+		$address = preg_replace('/\s+/', '+', $address);
 		//$address = umlauts($address);
 		$address = strtolower($address);			//make address to lower characters
 
@@ -20,21 +21,30 @@
 				}
 				else{
 					$cityID = getKoordinates($address, $mysqli); 		//getKoordinates from city
-					$cityID = $cityID[2];
+					if($cityID != "error"){
+						$cityID = $cityID[2];
+						$error = "false";
+					}
+					else{
+						$status = "Die Addresse bedefindet sich nicht in Deutschland.";
+						$error =  "true";
+					}
 				}
 			}
 		}
-		$stmt->close();												//close statement
-		$query = "UPDATE user SET cityID = ? WHERE ID = ?;";		//query to update cityID
-		if ($stmt = $mysqli->prepare($query)) {						//prepare statement
-			$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
-			$userID = $_SESSION['userID'];
-			$stmt->execute();
-			getUserInfo();
-			$status = "Wohnort erfolgrech geändert.";			//staus if Wohnort is changed
+		if($error == "false"){
+			$stmt->close();												//close statement
+			$query = "UPDATE user SET cityID = ? WHERE ID = ?;";		//query to update cityID
+			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
+				$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
+				$userID = $_SESSION['userID'];
+				$stmt->execute();
+				getUserInfo();
+				$status = "Wohnort erfolgrech geändert.";			//staus if Wohnort is changed
+			}
+			$stmt->close();					//close statement
+			$mysqli->close();				//close mysqli
 		}
-		$stmt->close();					//close statement
-		$mysqli->close();				//close mysqli
 
 		return $status;					//return status
 	}

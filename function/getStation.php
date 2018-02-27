@@ -20,11 +20,10 @@
 		}
 		include_once "getKoordinates.php";			//include getKoordinates
 		$koordiates = getKoordinates($address, $mysqli);	//call function getKoordinates
-		if(isset($koordiates)){		//if return was successful
+		if($koordiates != "error"){		//if return was successful
 			//include "UTF8Convert.php";
 			$lat = $koordiates[0];		//save data from array
 			$lng = $koordiates[1];		//save data from array
-
 			$sort = 'price';
 			$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
 			    ."?lat=$lat"
@@ -37,8 +36,11 @@
 			$json = convert($http_content);		//convert UTF8 characters
 			$decoded = json_decode($json);		//decode json format into array
 
-			return $decoded;			//return the array
 		}
+		else{
+			$decoded = $koordiates;
+		}
+		return $decoded;			//return the array
 	}
 	function getName($decoded, $type)		//function getName
 	{
