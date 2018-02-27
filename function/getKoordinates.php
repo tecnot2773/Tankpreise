@@ -25,7 +25,7 @@
 			$json = file_get_contents($url);	//get contents
 			$decoded = json_decode($json);		//decode json
 			if($decoded->status == "OK"){
-				if(isset($decoded->results[0]->address_components[2]->long_name)){$land = $decoded->results[0]->address_components[2]->long_name;}
+				if(isset($decoded->results[0]->address_components[2]->long_name)){$land = $decoded->results[0]->address_components[2]->long_name;}	//check if address is in Germany
 				if(isset($decoded->results[0]->address_components[3]->long_name)){$land = $decoded->results[0]->address_components[3]->long_name;}
 				if($land == "Germany"){
 					$longitude = $decoded->results[0]->geometry->location->lng;		//get longitude from array

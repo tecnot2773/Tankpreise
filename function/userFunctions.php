@@ -54,17 +54,22 @@
 		$type = $mysqli->real_escape_string($_POST["text-type"]);				//save and escape text-type
 		$volume = $mysqli->real_escape_string($_POST["text-volume"]);				//save and escape text-volume
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);				//save and escape text-consumption
-		$userID = $_SESSION["userID"];													//save userID
+		$userID = $_SESSION["userID"];
+		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){													//save userID
 
-		$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";		//query to insert new car
-		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("dssss", $userID, $carName, $volume, $consumption, $type);								//bind parameters
-			if ($stmt->execute()){
-				$status = "Neues Auto erfolgreich hinzugefügt.";							//status of car is inserted
+			$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";		//query to insert new car
+			if ($stmt = $mysqli->prepare($query)) {
+				$stmt->bind_param("dssss", $userID, $carName, $volume, $consumption, $type);								//bind parameters
+				if ($stmt->execute()){
+					$status = "Neues Auto erfolgreich hinzugefügt.";							//status of car is inserted
+				}
 			}
+			$stmt->close();				//close statement
+			$mysqli->close();			//close mysqli
 		}
-		$stmt->close();				//close statement
-		$mysqli->close();			//close mysqli
+		else{
+			$status = "Bitte geben Sie für das Volumen und den Verbauch nur Zahlen ein";
+		}
 		return $status;				//return status
 	}
 	function carTable(){

@@ -164,14 +164,14 @@
 						<td width='20%'><?= $consumption ?></td>
 						<td width='20%'><?= $type ?></td>
 						<td width='7px'>
-							<a href='userConfig.php?id=<?= $id ?>&name=<?= $name ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
+							<a href='userFunctions.php?id=<?= $id ?>&name=<?= $name ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
 								<span>
 									<span class="icon icon-pencil"></span>
 								</span>
 							</a>
 						</td>
 						<td width='7px'>
-							<a href='../function/userConfig.php?id=<?= $id ?>&delete=true'>
+							<a href='../function/userFunctions.php?id=<?= $id ?>&delete=true'>
 								<span>
 									<span class="icon icon-bin"></span>
 								</span>
