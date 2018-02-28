@@ -141,22 +141,23 @@
 		$id = $mysqli->real_escape_string($_POST["box-edit"]);
 		$userID = $_SESSION["userID"];
 
-
-		if($type != "Diesel" && $type != "E5" && $type != "E10"){
-			$type = "Diesel";
-		}
-
-
-		$query = "UPDATE cars SET name = ?, volume = ?, consumption = ?, type = ? WHERE userID = ? AND ID = ?;";		//query to update cars
-		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("ssssdd", $carName, $volume, $consumption, $type, $userID, $id);
-			if($stmt->execute()){
-				$status = "Auto wurde erfolgreich bearbeitet";				//status if car is edited
+		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
+			if($type != "Diesel" && $type != "E5" && $type != "E10"){
+				$type = "Diesel";
 			}
+
+
+			$query = "UPDATE cars SET name = ?, volume = ?, consumption = ?, type = ? WHERE userID = ? AND ID = ?;";		//query to update cars
+			if ($stmt = $mysqli->prepare($query)) {
+				$stmt->bind_param("ssssdd", $carName, $volume, $consumption, $type, $userID, $id);
+				if($stmt->execute()){
+					$status = "Auto wurde erfolgreich bearbeitet";				//status if car is edited
+				}
+			}
+			$stmt->close();				//close statement
+			$mysqli->close();			//close mysqli
+			return $status;				//return status
 		}
-		$stmt->close();				//close statement
-		$mysqli->close();			//close mysqli
-		return $status;				//return status
 	}
 	function getUserInfo()
 	{
