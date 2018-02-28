@@ -1,0 +1,50 @@
+#stats{
+ border-collapse:collapse;
+ border-spacing:0;
+ border-color:#aaa;
+}
+#stats td{
+ font-family:Arial, sans-serif;
+ font-size:14px;
+ padding:10px 10px;
+ border-style:solid;
+ border-width:1px;
+ overflow:hidden;
+ word-break:normal;
+ border-color:#aaa;
+ color:#333;
+ background-color:#fff;
+}
+#stats th{
+ font-family:Arial, sans-serif;
+ font-size:14px;
+ font-weight:normal;
+ padding:10px 10px;
+ border-style:solid;
+ border-width:1px;
+ overflow:hidden;
+ word-break:normal;
+ border-color:#aaa;
+ color:#fff;
+ background-color:#ff0000;
+}
+td#low{
+	vertical-align:top;
+	background-color:#00ff00;
+}
+
+
+#griddiv-table {
+	width: 80%;
+	text-align: center;
+	margin-top: 0.5%;
+	margin-left: 10%;
+}
+#griddiv-heading{
+	width: 80%;
+	text-align: center;
+	margin-top: 0.5%;
+	margin-left: 10%;
+	padding-top: 0.2%;
+	padding-bottom: 0.2%;
+}
