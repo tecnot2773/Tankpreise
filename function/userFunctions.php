@@ -76,7 +76,20 @@
 		$volume = $mysqli->real_escape_string($_POST["text-volume"]);				//save and escape text-volume
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);				//save and escape text-consumption
 		$userID = $_SESSION["userID"];
-		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){													//save userID
+		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
+
+			if($type == "Diesel"){
+				$type = "diesel";
+			}
+			if($type == "E5"){
+				$type = "e5";
+			}
+			if($type == "E10"){
+				$type = "e10";
+			}
+			if($type != "diesel" && $type != "e5" && $type != "e10"){
+				$type = "diesel";
+			}													//save userID
 
 			$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";		//query to insert new car
 			if ($stmt = $mysqli->prepare($query)) {
@@ -135,6 +148,20 @@
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);
 		$id = $mysqli->real_escape_string($_POST["box-edit"]);
 		$userID = $_SESSION["userID"];
+
+		if($type == "Diesel"){
+			$type = "diesel";
+		}
+		if($type == "E5"){
+			$type = "e5";
+		}
+		if($type == "E10"){
+			$type = "e10";
+		}
+		if($type != "diesel" && $type != "e5" && $type != "e10"){
+			$type = "diesel";
+		}
+
 
 		$query = "UPDATE cars SET name = ?, volume = ?, consumption = ?, type = ? WHERE userID = ? AND ID = ?;";		//query to update cars
 		if ($stmt = $mysqli->prepare($query)) {

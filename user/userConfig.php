@@ -164,7 +164,7 @@
 						<td width='20%'><?= $consumption ?></td>
 						<td width='20%'><?= $type ?></td>
 						<td width='7px'>
-							<a href='userFunctions.php?id=<?= $id ?>&name=<?= $name ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
+							<a href='userConfig.php?id=<?= $id ?>&name=<?= $name ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
 								<span>
 									<span class="icon icon-pencil"></span>
 								</span>
