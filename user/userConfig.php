@@ -86,7 +86,7 @@
 						Auto bearbeiten
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name" value = <?=$_GET["name"]?>>
+						<input id="textbox-small" name="text-carname" class="enjoy-css" type="text" placeholder="Auto Name" value = "<?=preg_replace('/_/', ' ', $_GET["name"]);?>">
 						<select id="textbox-small" name='text-type' class='enjoy-css'>
 							<option value="<?= $_GET["type"] ?>" selected hidden><?= $_GET["type"] ?></option>
 							<option value="Diesel">Diesel</option>
@@ -164,7 +164,7 @@
 						<td width='20%'><?= $consumption ?></td>
 						<td width='20%'><?= $type ?></td>
 						<td width='7px'>
-							<a href='userFunctions.php?id=<?= $id ?>&name=<?= $name ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
+							<a href='userConfig.php?id=<?= $id ?>&name=<?= preg_replace('/\s+/', '_', $name); ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
 								<span>
 									<span class="icon icon-pencil"></span>
 								</span>

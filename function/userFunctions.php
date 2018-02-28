@@ -21,21 +21,22 @@
 					$error = "false";
 				}
 				else{
-					$cityID = getKoordinates($address, $mysqli); 		//getKoordinates from city
-					if($cityID != "error"){
+					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
+					$cityID = $return[2];
+					if($error == "OK"){
 						$cityID = $cityID[2];
-						$error = "false";
+						$error0 = "false";
 					}
 					else{
-						$status = "Die Addresse bedefindet sich nicht in Deutschland.";
-						$error =  "true";
+						$status = $error;
+						$error0 =  "true";
 					}
 				}
 			}
 			$stmt->close();											//close statement
 		}
-		if($error == "false"){
-			$query = "SELECT * FROM userplace WHERE userID = ?;";		//query to select userplace
+		if($error0 == "false"){
+			$query = "SELECT * FROM userPlace WHERE userID = ?;";		//query to select userplace
 			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 				$stmt->bind_param("d", $userID);				//bind parameter
 				$userID = $_SESSION['userID'];
@@ -43,16 +44,17 @@
 				$result = $stmt->get_result();				//save result
 				if(!empty($result)){					//if result is not empty
 					if($result->num_rows == 1){
-						$query = "UPDATE userplace SET cityID = ? WHERE userID = ?;";		//query to update cityID
+						$query = "UPDATE userPlace SET cityID = ? WHERE userID = ?;";		//query to update cityID
 						if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 							$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
 							$userID = $_SESSION['userID'];
 							$stmt->execute();
-							$status = "Wohnort erfolgreich angelegt";
+							getUserInfo();
+							$status = "Wohnort erfolgreich geändert";
 						}
 					}
 					else{
-						$query = "INSERT INTO `userplace`(`userID`, `cityID`) VALUES (?, ?);";		//query to update cityID
+						$query = "INSERT INTO `userPlace`(`userID`, `cityID`) VALUES (?, ?);";		//query to update cityID
 						if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 							$stmt->bind_param("dd", $userID, $cityID);				//bind parameter
 							$userID = $_SESSION['userID'];
@@ -76,7 +78,11 @@
 		$volume = $mysqli->real_escape_string($_POST["text-volume"]);				//save and escape text-volume
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);				//save and escape text-consumption
 		$userID = $_SESSION["userID"];
-		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){													//save userID
+		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
+
+			if($type != "Diesel" && $type != "E5" && $type != "E10"){
+				$type = "Diesel";
+			}													//save userID
 
 			$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";		//query to insert new car
 			if ($stmt = $mysqli->prepare($query)) {
@@ -136,21 +142,28 @@
 		$id = $mysqli->real_escape_string($_POST["box-edit"]);
 		$userID = $_SESSION["userID"];
 
-		$query = "UPDATE cars SET name = ?, volume = ?, consumption = ?, type = ? WHERE userID = ? AND ID = ?;";		//query to update cars
-		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("ssssdd", $carName, $volume, $consumption, $type, $userID, $id);
-			if($stmt->execute()){
-				$status = "Auto wurde erfolgreich bearbeitet";				//status if car is edited
+		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
+			if($type != "Diesel" && $type != "E5" && $type != "E10"){
+				$type = "Diesel";
 			}
+
+
+			$query = "UPDATE cars SET name = ?, volume = ?, consumption = ?, type = ? WHERE userID = ? AND ID = ?;";		//query to update cars
+			if ($stmt = $mysqli->prepare($query)) {
+				$stmt->bind_param("ssssdd", $carName, $volume, $consumption, $type, $userID, $id);
+				if($stmt->execute()){
+					$status = "Auto wurde erfolgreich bearbeitet";				//status if car is edited
+				}
+			}
+			$stmt->close();				//close statement
+			$mysqli->close();			//close mysqli
+			return $status;				//return status
 		}
-		$stmt->close();				//close statement
-		$mysqli->close();			//close mysqli
-		return $status;				//return status
 	}
 	function getUserInfo()
 	{
 		include "dbConnect.php";
-		$sql = "SELECT cityID FROM userplace WHERE userID = ?";
+		$sql = "SELECT cityID FROM userPlace WHERE userID = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get cityID
 			$stmt->bind_param("d", $_SESSION["userID"]);
 			$stmt->execute();
@@ -212,7 +225,7 @@
 			}
 		}
 		$radius = "5";
-		$content = getStations25($radius, $lat, $lon);
+		$content = getStations25($lat, $lon, $radius);
 		$UUID = getUUID($content, "");
 		$name = getName($content, "");
 		$e5 = getE5($content);
