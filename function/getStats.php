@@ -6,7 +6,7 @@
 	$lat = "52.9127"; 		//Syke
 	$lng = "8.81814";
 	$radius = "25";
-	$decoded = getStations25($radius, $lat, $lng);		//function calls
+	$decoded = getStations25($lat, $lng, $radius);		//function calls
 	$UUID = getUUID($decoded, $sort);
 	$place = getPlace($decoded, $sort);
 	$brand = getBrand($decoded, $sort);

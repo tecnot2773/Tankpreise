@@ -138,12 +138,9 @@
 		return $priceArray;
 	}
 // from here its for the stats
-	function getStations25()
+	function getStations25($lat, $lng, $radius)
 	{
 		include_once "UTF8Convert.php";
-		$lat = "52.9127"; 		//Syke
-		$lng = "8.81814";
-		$radius = "25";			//25km -- maximum
 		$type = "all";	//get all but without best price check
 
 

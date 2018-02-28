@@ -224,7 +224,8 @@
 			}
 		}
 		$radius = "5";
-		$content = getStations25($radius, $lat, $lon);
+		echo $lat . "<br>" . $lon;
+		$content = getStations25($lat, $lon, $radius);
 		$UUID = getUUID($content, "");
 		$name = getName($content, "");
 		$e5 = getE5($content);
