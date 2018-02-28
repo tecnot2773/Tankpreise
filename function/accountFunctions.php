@@ -59,7 +59,7 @@
 	  }
 
 		if(empty($username_error) && empty($password_error)){										//if password and username isset
-			$sql = "SELECT name, hashed_password, ID, FROM user WHERE name = ?";
+			$sql = "SELECT name, hashed_password, ID FROM user WHERE name = ?";
 			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 				$stmt->bind_param("s", $param_username);														//bind parameter to statement
 
@@ -80,44 +80,9 @@
 							$_SESSION['username'] = $username;													//save username in session
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
-
-								$sql = "SELECT cityID FROM userPlace WHERE userID = ?";			//sql to get name from city
-								if($stmt = $mysqli->prepare($sql)){							//prepare statement
-									$stmt->bind_param("d", $userID);						//bind parameter
-									$stmt->execute();										//execute statement
-									$result = $stmt->get_result();							//save result
-									while($data = $result->fetch_array()){
-										$cityID = $data["cityID"];
-									}
-									$stmt->close();											//close statement
-								}
-							if(!empty($cityID)){											//if cityID is not filled
-								$sql = "SELECT name FROM city WHERE ID = ?";			//sql to get name from city
-								if($stmt = $mysqli->prepare($sql)){							//prepare statement
-									$stmt->bind_param("d", $cityID);						//bind parameter
-									$stmt->execute();										//execute statement
-									$result = $stmt->get_result();							//save result
-									while($data = $result->fetch_array()){
-										$address = $data["name"];
-									}
-									$_SESSION['address'] = $address;						//save address in user session
-									$stmt->close();											//close statement
-								}
-							}
-							$sql = "SELECT type FROM cars WHERE userID = ? ORDER BY ID DESC LIMIT 1";	//sql to get type from first user car
-							if($stmt = $mysqli->prepare($sql)){											//prepare statement
-								$stmt->bind_param("d", $userID);
-								$stmt->execute();
-								$result = $stmt->get_result();
-								if($result->num_rows == 1){
-									while($data = $result->fetch_array()){
-										$type = $data["type"];
-									}
-									$_SESSION['type'] = strtolower($type);									//save type in user session
-								}
-								$stmt->close();
-							}
-							header("location: user/index.php");															//refer to index.php
+							//header("location: user/index.php");															//refer to index.php
+							include_once "userFunctions.php";
+							getUserInfo();
 						}
 						else{
 							$status = "Falsches Password";																		//if vertify password was false
