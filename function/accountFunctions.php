@@ -80,7 +80,7 @@
 							$_SESSION['username'] = $username;													//save username in session
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
-							//header("location: user/index.php");															//refer to index.php
+							header("location: user/index.php");															//refer to index.php
 							include_once "userFunctions.php";
 							getUserInfo();
 						}
