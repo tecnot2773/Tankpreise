@@ -35,7 +35,7 @@
 			$stmt->close();											//close statement
 		}
 		if($error == "false"){
-			$query = "SELECT * FROM userplace WHERE userID = ?;";		//query to select userplace
+			$query = "SELECT * FROM userPlace WHERE userID = ?;";		//query to select userplace
 			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 				$stmt->bind_param("d", $userID);				//bind parameter
 				$userID = $_SESSION['userID'];
@@ -43,7 +43,7 @@
 				$result = $stmt->get_result();				//save result
 				if(!empty($result)){					//if result is not empty
 					if($result->num_rows == 1){
-						$query = "UPDATE userplace SET cityID = ? WHERE userID = ?;";		//query to update cityID
+						$query = "UPDATE userPlace SET cityID = ? WHERE userID = ?;";		//query to update cityID
 						if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 							$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
 							$userID = $_SESSION['userID'];
@@ -52,7 +52,7 @@
 						}
 					}
 					else{
-						$query = "INSERT INTO `userplace`(`userID`, `cityID`) VALUES (?, ?);";		//query to update cityID
+						$query = "INSERT INTO `userPlace`(`userID`, `cityID`) VALUES (?, ?);";		//query to update cityID
 						if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 							$stmt->bind_param("dd", $userID, $cityID);				//bind parameter
 							$userID = $_SESSION['userID'];
@@ -150,7 +150,7 @@
 	function getUserInfo()
 	{
 		include "dbConnect.php";
-		$sql = "SELECT cityID FROM userplace WHERE userID = ?";
+		$sql = "SELECT cityID FROM userPlace WHERE userID = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get cityID
 			$stmt->bind_param("d", $_SESSION["userID"]);
 			$stmt->execute();
