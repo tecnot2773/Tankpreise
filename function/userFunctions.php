@@ -21,20 +21,21 @@
 					$error = "false";
 				}
 				else{
-					$cityID = getKoordinates($address, $mysqli); 		//getKoordinates from city
-					if($cityID != "error"){
+					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
+					$cityID = $return[2];
+					if($error == "OK"){
 						$cityID = $cityID[2];
-						$error = "false";
+						$error0 = "false";
 					}
 					else{
-						$status = "Die Addresse bedefindet sich nicht in Deutschland.";
-						$error =  "true";
+						$status = $error;
+						$error0 =  "true";
 					}
 				}
 			}
 			$stmt->close();											//close statement
 		}
-		if($error == "false"){
+		if($error0 == "false"){
 			$query = "SELECT * FROM userPlace WHERE userID = ?;";		//query to select userplace
 			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 				$stmt->bind_param("d", $userID);				//bind parameter

@@ -14,6 +14,7 @@
 						$latitude = $data["latitude"];
 						$longitude = $data["longitude"];
 						$cityID = null;
+						$error = "OK";
 					}
 					$return = array($latitude, $longitude, $cityID);			//return needed values
 				}
@@ -39,17 +40,20 @@
 							$cityID = $mysqli->insert_id;		//get id from last insert
 							$stmt->close();				//close prepare statment
 							$return = array($latitude, $longitude, $cityID);			//return needed values
+							$error = "OK";
 						}
 					}
 				}
 				else{
-					$return = "error";
+					$error = "Addresse ist nicht in Deutschland";
+					$return = "false";
 				}
 			}
 			else{
-				$return = "error";
+				$error = $decoded->status;
+				$return = "false";
 			}
 		}
-		return $return;
+		return array($error, $return);
 	}
 ?>

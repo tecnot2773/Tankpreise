@@ -19,8 +19,9 @@
 			$type = "diesel";
 		}
 		include "getKoordinates.php";
-		$koordiates = getKoordinates($address, $mysqli);
-		if(isset($koordiates)){
+		list($error, $koordiates) = getKoordinates($address, $mysqli);
+		$decoded = "false";
+		if(isset($koordiates) && $error == "OK"){
 			//include "UTF8Convert.php";
 			$lat = $koordiates[0];
 			$lng = $koordiates[1];
@@ -36,9 +37,8 @@
 
 			$json = convert($http_content);
 			$decoded = json_decode($json);
-
-			return $decoded;
 		}
+		return array($error, $decoded);
 	}
 	function getName($decoded, $type)
 	{
