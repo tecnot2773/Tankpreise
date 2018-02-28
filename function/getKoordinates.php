@@ -27,10 +27,10 @@
 			if($decoded->status == "OK"){
 				if(isset($decoded->results[0]->address_components[2]->long_name)){$land = $decoded->results[0]->address_components[2]->long_name;}	//check if address is in Germany
 				if(isset($decoded->results[0]->address_components[3]->long_name)){$land = $decoded->results[0]->address_components[3]->long_name;}
+				if(isset($decoded->results[0]->address_components[4]->long_name)){$land = $decoded->results[0]->address_components[4]->long_name;}
 				if($land == "Germany"){
 					$longitude = $decoded->results[0]->geometry->location->lng;		//get longitude from array
 					$latitude = $decoded->results[0]->geometry->location->lat;		//get latitude from array
-
 					if(isset($longitude)){		//when longitude is set
 						$query = "INSERT INTO `city`(`name`, `latitude`, `longitude`) VALUES (?, ?, ?);";		// query
 						if ($stmt = $mysqli->prepare($query)) {			//prepare insert

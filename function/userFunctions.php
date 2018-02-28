@@ -48,7 +48,8 @@
 							$stmt->bind_param("dd", $cityID, $userID);				//bind parameter
 							$userID = $_SESSION['userID'];
 							$stmt->execute();
-							$status = "Wohnort erfolgreich angelegt";
+							getUserInfo();
+							$status = "Wohnort erfolgreich geändert";
 						}
 					}
 					else{
