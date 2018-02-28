@@ -140,17 +140,9 @@
 		$id = $mysqli->real_escape_string($_POST["box-edit"]);
 		$userID = $_SESSION["userID"];
 
-		if($type == "Diesel"){
-			$type = "diesel";
-		}
-		if($type == "E5"){
-			$type = "e5";
-		}
-		if($type == "E10"){
-			$type = "e10";
-		}
-		if($type != "diesel" && $type != "e5" && $type != "e10"){
-			$type = "diesel";
+
+		if($type != "Diesel" && $type != "E5" && $type != "E10"){
+			$type = "Diesel";
 		}
 
 
