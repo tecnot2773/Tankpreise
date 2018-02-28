@@ -14,6 +14,7 @@
 						$latitude = $data["latitude"];
 						$longitude = $data["longitude"];
 						$cityID = null;
+						$error = "OK";
 					}
 					$return = array($latitude, $longitude, $cityID);			//return needed values
 				}
@@ -26,11 +27,11 @@
 			$decoded = json_decode($json);		//decode json
 			if($decoded->status == "OK"){
 				if(isset($decoded->results[0]->address_components[2]->long_name)){$land = $decoded->results[0]->address_components[2]->long_name;}	//check if address is in Germany
-				if(isset($decoded->results[0]->address_components[3]->long_name)){$land = $decoded->results[0]->address_components[3]->long_name;}
+				if(isset($decoded->results[0]->address_components[3]->long_name) && $land != "Germany"){$land = $decoded->results[0]->address_components[3]->long_name;}
+				if(isset($decoded->results[0]->address_components[4]->long_name) && $land != "Germany"){$land = $decoded->results[0]->address_components[4]->long_name;}
 				if($land == "Germany"){
 					$longitude = $decoded->results[0]->geometry->location->lng;		//get longitude from array
 					$latitude = $decoded->results[0]->geometry->location->lat;		//get latitude from array
-
 					if(isset($longitude)){		//when longitude is set
 						$query = "INSERT INTO `city`(`name`, `latitude`, `longitude`) VALUES (?, ?, ?);";		// query
 						if ($stmt = $mysqli->prepare($query)) {			//prepare insert
@@ -39,17 +40,20 @@
 							$cityID = $mysqli->insert_id;		//get id from last insert
 							$stmt->close();				//close prepare statment
 							$return = array($latitude, $longitude, $cityID);			//return needed values
+							$error = "OK";
 						}
 					}
 				}
 				else{
-					$return = "error";
+					$error = "Addresse ist nicht in Deutschland";
+					$return = "false";
 				}
 			}
 			else{
-				$return = "error";
+				$error = $decoded->status;
+				$return = "false";
 			}
 		}
-		return $return;
+		return array($error, $return);
 	}
 ?>

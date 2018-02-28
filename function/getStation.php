@@ -1,29 +1,31 @@
 <?php
 
-	function getStations($address, $radius, $type)							//function getStations
+	function getStations($address, $radius, $type)
 	{
-		include "dbConnect.php";					//new mysqli
-		if($radius > 25 || $radius < 5){			//safety measures for api
+		include "dbConnect.php";
+		if($radius > 25 || $radius < 5){
 			$radius = 25;
 		}
-		if($type == "Diesel"){			//safety measures for api
+		if($type == "Diesel"){
 			$type = "diesel";
 		}
-		if($type == "E5"){			//safety measures for api
+		if($type == "E5"){
 			$type = "e5";
 		}
-		if($type == "E10"){			//safety measures for api
+		if($type == "E10"){
 			$type = "e10";
 		}
-		if($type != "diesel" && $type != "e5" && $type != "e10"){		//safety measures for api
+		if($type != "diesel" && $type != "e5" && $type != "e10"){
 			$type = "diesel";
 		}
-		include_once "getKoordinates.php";			//include getKoordinates
-		$koordiates = getKoordinates($address, $mysqli);	//call function getKoordinates
-		if($koordiates != "error"){		//if return was successful
+		include "getKoordinates.php";
+		list($error, $koordiates) = getKoordinates($address, $mysqli);
+		$decoded = "false";
+		if(isset($koordiates) && $error == "OK"){
 			//include "UTF8Convert.php";
-			$lat = $koordiates[0];		//save data from array
-			$lng = $koordiates[1];		//save data from array
+			$lat = $koordiates[0];
+			$lng = $koordiates[1];
+
 			$sort = 'price';
 			$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
 			    ."?lat=$lat"
@@ -33,24 +35,20 @@
 			    ."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
 			    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 
-			$json = convert($http_content);		//convert UTF8 characters
-			$decoded = json_decode($json);		//decode json format into array
-
+			$json = convert($http_content);
+			$decoded = json_decode($json);
 		}
-		else{
-			$decoded = $koordiates;
-		}
-		return $decoded;			//return the array
+		return array($error, $decoded);
 	}
-	function getName($decoded, $type)		//function getName
+	function getName($decoded, $type)
 	{
-		$nameArray = array();			//make array
-		foreach($decoded->stations as $station){		//fatch array
+		$nameArray = array();
+		foreach($decoded->stations as $station){
 			$name = $station->name;
-			array_push($nameArray, $name);	//fill array with data
-			if($type == "request"){		//if type is request
-				if(!isset($station->price)){		//if price is not set
-					array_pop($nameArray);			//delete last position in array !! Happens when the station dont have that type
+			array_push($nameArray, $name);
+			if($type == "request"){
+				if(!isset($station->price)){
+					array_pop($nameArray);
 				}
 			}
 		}
@@ -140,10 +138,11 @@
 		return $priceArray;
 	}
 // from here its for the stats
-	function getStations25($radius, $lat, $lng)			//function getStations25  !! Stats function
+	function getStations25($lat, $lng, $radius)
 	{
 		include_once "UTF8Convert.php";
 		$type = "all";	//get all but without best price check
+
 
 		$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
 				."?lat=$lat"
