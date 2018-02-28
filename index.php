@@ -89,6 +89,12 @@
 				}
 				else{
 					$error0 = "true";
+					if($error == "OVER_QUERY_LIMIT"){
+						$error = "Zu viele Anfragen bei der Google API, bitte laden Sie die Seite neu.";
+					}
+					if($error == "ZERO_RESULTS"){
+						$error = "Zu Ihrer Anfrage konnte kein Ort gefunden werden.";
+					}
 				}
 			}
 			?>
@@ -143,7 +149,11 @@
 								<div id="rowmid" class="white">
 									<?= ucfirst($type) . ": " . $price[$i] ?> Euro
 								</div>
-							<?php }}}else{echo $error;}
+							<?php }}}else{ ?>
+								<div id="rowstart" class="white">
+									<?= $error ?>
+								</div>
+							<?php }
  						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){	?>
 							<div id="rowstart" class="white">
 								Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
