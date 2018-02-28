@@ -138,7 +138,7 @@
 									Straße: <?= $street[$i] . " " . $houseNumber[$i]?>
 								</div>
 								<div id="rowmid" class="white">
-									<?= ucfirst($type) . ": " . $price[$i] ?>
+									<?= ucfirst($type) . ": " . $price[$i] ?> Euro
 								</div>
 							<?php }}}else{echo "Die Addresse bedefindet sich nicht in Deutschland.";}
  						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){	?>

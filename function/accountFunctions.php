@@ -59,7 +59,7 @@
 	  }
 
 		if(empty($username_error) && empty($password_error)){										//if password and username isset
-			$sql = "SELECT name, hashed_password, ID, cityID FROM user WHERE name = ?";
+			$sql = "SELECT name, hashed_password, ID, FROM user WHERE name = ?";
 			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 				$stmt->bind_param("s", $param_username);														//bind parameter to statement
 
@@ -71,8 +71,6 @@
 							$username = $data["name"];																		//name as username
 							$hashed_password = $data["hashed_password"];									//hashed_password as hashed_password
 							$userID = $data["ID"];
-							$cityID = $data["cityID"];
-							$_SESSION['address'] = $cityID;
 						}
 						$stmt->close();
 						if(password_verify($password, $hashed_password)){							//vertify password
@@ -83,6 +81,16 @@
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
 
+								$sql = "SELECT cityID FROM userplace WHERE userID = ?";			//sql to get name from city
+								if($stmt = $mysqli->prepare($sql)){							//prepare statement
+									$stmt->bind_param("d", $userID);						//bind parameter
+									$stmt->execute();										//execute statement
+									$result = $stmt->get_result();							//save result
+									while($data = $result->fetch_array()){
+										$cityID = $data["cityID"];
+									}
+									$stmt->close();											//close statement
+								}
 							if(!empty($cityID)){											//if cityID is not filled
 								$sql = "SELECT name FROM city WHERE ID = ?";			//sql to get name from city
 								if($stmt = $mysqli->prepare($sql)){							//prepare statement
