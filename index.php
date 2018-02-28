@@ -1,11 +1,11 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-include_once "function/userFunctions.php";
-if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
-	getUserInfo();		//Get userinfo
-}
+	if (session_status() == PHP_SESSION_NONE) {
+	    session_start();
+	}
+	include_once "function/userFunctions.php";
+	if(!isset($_SESSION["address"]) && isset($_SESSION['loggedin']) || !isset($_SESSION["type"]) && isset($_SESSION['loggedin']) == true){
+		getUserInfo();		//Get userinfo
+	}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,9 +56,11 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 		<!--main contents          -->
 		<?php
 		$status = "notReady";
+		$error = "false";
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 				include "function/dbConnect.php";
 				$address = $mysqli->real_escape_string($_GET["address"]);
+				$address = preg_replace('/\s+/', '+', $address);
 				$radius = $mysqli->real_escape_string($_GET["radius"]);
 				$type = $mysqli->real_escape_string($_GET["type"]);
 				$status = "ready";		//if user has filled the fields
@@ -74,15 +76,20 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 				include_once "function/getStation.php";
 				$sort = "request";
 				$decoded = getStations($address, $radius, $type);
-				$name = getName($decoded, $sort);
-				$place = getPlace($decoded, $sort);
-				$brand = getBrand($decoded, $sort);
-				$street = getStreet($decoded, $sort);
-				$houseNumber = getHousenumber($decoded, $sort);
-				$UUID = getUUID($decoded, $sort);
-				$price = getPrice($decoded);
+				if($decoded != "error"){
+					$name = getName($decoded, $sort);
+					$place = getPlace($decoded, $sort);
+					$brand = getBrand($decoded, $sort);
+					$street = getStreet($decoded, $sort);
+					$houseNumber = getHousenumber($decoded, $sort);
+					$UUID = getUUID($decoded, $sort);
+					$price = getPrice($decoded);
 
-				$count = count($name);
+					$count = count($name);
+				}
+				else{
+					$error = "true";
+				}
 			}
 			?>
 		<form action="index.php" method="get">
@@ -115,7 +122,8 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
-						<?php if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
+						<?php if($error != "true"){
+						 if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
 							for ($i = 0; $i < $count; $i++) { ?>
 								<div id="rowstart" class="white">
 									<a href="station/index.php?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
@@ -132,7 +140,12 @@ if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
 								<div id="rowmid" class="white">
 									<?= ucfirst($type) . ": " . $price[$i] ?>
 								</div>
-							<?php }} ?>
+							<?php }}}else{echo "Die Addresse bedefindet sich nicht in Deutschland.";}
+ 						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){	?>
+							<div id="rowstart" class="white">
+								Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
+							</div>
+						<?php } ?>
 					<div id="rowend" class="white">
 					</div>
 				</div>
