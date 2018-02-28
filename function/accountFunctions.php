@@ -156,5 +156,5 @@
 		$mysqli->close();				//close mysqli
 		return $status;					//return status
 	}
-asd
+
  ?>
