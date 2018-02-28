@@ -78,17 +78,8 @@
 		$userID = $_SESSION["userID"];
 		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
 
-			if($type == "Diesel"){
-				$type = "diesel";
-			}
-			if($type == "E5"){
-				$type = "e5";
-			}
-			if($type == "E10"){
-				$type = "e10";
-			}
-			if($type != "diesel" && $type != "e5" && $type != "e10"){
-				$type = "diesel";
+			if($type != "Diesel" && $type != "E5" && $type != "E10"){
+				$type = "Diesel";
 			}													//save userID
 
 			$query = "INSERT INTO `cars`(`userID`, `name`, `volume`, `consumption`, `type`) VALUES (?, ?, ?, ?, ?)";		//query to insert new car

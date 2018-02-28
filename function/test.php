@@ -1,5 +1,5 @@
 <?php
-$address = "dresden";
+$address = "drebber";
 $url = 'https://maps.googleapis.com/maps/api/geocode/json'."?address=$address&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";		//get koordinates via googleAPI
 $json = file_get_contents($url);
 $decoded = json_decode($json);
