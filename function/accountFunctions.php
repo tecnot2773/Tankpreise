@@ -81,7 +81,7 @@
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
 
-								$sql = "SELECT cityID FROM userplace WHERE userID = ?";			//sql to get name from city
+								$sql = "SELECT cityID FROM userPlace WHERE userID = ?";			//sql to get name from city
 								if($stmt = $mysqli->prepare($sql)){							//prepare statement
 									$stmt->bind_param("d", $userID);						//bind parameter
 									$stmt->execute();										//execute statement
