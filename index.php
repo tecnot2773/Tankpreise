@@ -55,8 +55,8 @@
 		</header>
 		<!--main contents          -->
 		<?php
-		$status = "notReady";
-		$error0 = "false";
+			$status = "notReady";
+			$error0 = "false";
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 				include "function/dbConnect.php";
 				$address = $mysqli->real_escape_string($_GET["address"]);
@@ -97,7 +97,7 @@
 					}
 				}
 			}
-			?>
+		?>
 		<form action="index.php" method="get">
 			<div id="heading" class="page-header">
 				<h1></h1>
@@ -149,18 +149,19 @@
 								<div id="rowmid" class="white">
 									<?= ucfirst($type) . ": " . $price[$i] ?> Euro
 								</div>
-							<?php }}}else{ ?>
-								<div id="rowstart" class="white">
+						<?php }}}else{ ?>
+      					<div id="rowstart" class="white">
 									<?= $error ?>
 								</div>
-							<?php }
- 						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){	?>
-							<div id="rowstart" class="white">
-								Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
-							</div>
-						<?php } ?>
-					<div id="rowend" class="white">
-					</div>
+            <?php }
+							if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){	
+						?>
+						<div id="rowstart" class="white">
+							Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
+						</div>
+						<?php
+							} 
+						?>
 				</div>
 				<div id="griddiv-right" class="white">
 					<div id="rowstart" class="white">
@@ -168,14 +169,14 @@
   						width="100%"
   						height="450"
   						frameborder="0" style="border:0"
-							<?php if($status == "ready"){
-							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $place[0] . "," . $street[0] . "," . $houseNumber[0] . "' allowfullscreen>";
-							}else{
-							echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";
-							} ?>
+							<?php
+								if($status == "ready"){
+									echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=" . $place[0] . "," . $street[0] . "," . $houseNumber[0] . "' allowfullscreen>";
+								}else{
+									echo "src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB1t1KPpbk5Iji8NzrNzJwQ1rpyvfdIRO4&q=Syke' allowfullscreen>";
+								} 
+							?>
 						</iframe>
-					</div>
-					<div id="rowend" class="white">
 					</div>
 				</div>
 		</form>
