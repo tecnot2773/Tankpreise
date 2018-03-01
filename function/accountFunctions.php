@@ -13,14 +13,19 @@
 				if($result->num_rows == 0){							// if there is an result
 					$stmt->reset();									//reset statement
 					if($password == $repassword){					//if password is the same as repassword
-						$hashed_password = password_hash($password, PASSWORD_DEFAULT);		//hash password
-						if($stmt = $mysqli->prepare("INSERT INTO `user`(`name`, `hashed_password`) VALUES (?, ?);")){		//prepare to create new user in database
-							$stmt->bind_param("ss", $username, $hashed_password);		//bind parameter
-							$stmt->execute();				//execute statement
+						if(strlen($password) >= 6){
+							$hashed_password = password_hash($password, PASSWORD_DEFAULT);		//hash password
+							if($stmt = $mysqli->prepare("INSERT INTO `user`(`name`, `hashed_password`) VALUES (?, ?);")){		//prepare to create new user in database
+								$stmt->bind_param("ss", $username, $hashed_password);		//bind parameter
+								$stmt->execute();				//execute statement
 
-							$status = "Benutzer wurde erfolgreich angelegt.";	//status
-							header("location: login.php");			//refer to login
-							$stmt->close();			//close statement
+								$status = "Benutzer wurde erfolgreich angelegt.";	//status
+								header("location: login.php");			//refer to login
+								$stmt->close();			//close statement
+							}
+						}
+						else{
+							$status = "Das Password muss aus mindestens 6 Zeichen bestehen";
 						}
 					}
 					else{
@@ -113,7 +118,15 @@
 			$password_error = "true";									//error
 			$status = "Die Passwörter stimmen nicht überein";			//status
 		}
-
+		if($password_error == "false"){
+			if(strlen($newPassword) >= 6){
+				$password_error = "false";
+			}
+			else{
+				$password_error = "true";
+				$status = "Das Password muss aus mindestens 6 Zeichen bestehen";
+			}
+		}
 		if($password_error == "false"){													//if there was no error
 			$sql = "SELECT hashed_password FROM user WHERE ID = ?";							//query to get hashed_password from user
 			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password

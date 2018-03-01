@@ -18,7 +18,7 @@
 					while($data = $result->fetch_array()){		//fetch array
 						$cityID = $data["ID"];			//save id in cityID
 					}
-					$error = "false";
+					$error0 = "false";
 				}
 				else{
 					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
@@ -28,8 +28,13 @@
 						$error0 = "false";
 					}
 					else{
-						$status = $error;
 						$error0 =  "true";
+						if($error == "OVER_QUERY_LIMIT"){
+							$status = "Zu viele Anfragen bei der Google API, bitte laden Sie die Seite neu.";
+						}
+						if($error == "ZERO_RESULTS"){
+							$status = "Zu Ihrer Anfrage konnte kein Ort gefunden werden.";
+						}
 					}
 				}
 			}

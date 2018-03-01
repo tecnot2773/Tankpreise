@@ -3,6 +3,7 @@
 	    session_start();
 	}
 	include_once "function/userFunctions.php";
+	include_once "function/statPrint.php";
 	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
 		getUserInfo();		//Get userinfo
 	}
@@ -14,7 +15,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" type="image/x-icon" href="images/icon.jpg">
-		<link href="css/custom/index.css" type="text/css" rel="stylesheet" />
+		<link href="css/custom/statistics.css" type="text/css" rel="stylesheet" />
 		<link href="css/generic/body.css" type="text/css" rel="stylesheet" />
 		<link href="css/generic/textbox.css" type="text/css" rel="stylesheet" />
 		<link href="css/generic/navbar.css" type="text/css" rel="stylesheet" />
@@ -54,4 +55,17 @@
 			</div>
 		</header>
 		<!--main contents          -->
-		<h1> HAU AB JUNGE </h1>
+		<div id="center">
+			<div id="griddiv-heading" class="white">
+				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzden 7 Tage</h3>
+			</div>
+			<div id="griddiv-table" class="white">
+				<?php //statPrintAll("diesel"); ?>
+			</div>
+			<div id="griddiv-table" class="white">
+				<?php //statPrintAll("E5"); ?>
+			</div>
+			<div id="griddiv-table" class="white">
+				<?php //statPrintAll("E10"); ?>
+			</div>
+		</div>

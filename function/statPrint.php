@@ -1,13 +1,10 @@
 <?php
-	function statPrint($stationID, $type){
+	function statPrintStation($stationID, $type){
 
 		include "../function/dbConnect.php";
 		//query to get Stats
 		$query = "SELECT * FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? ORDER BY timestamp ASC;";
 		$query1 = "SELECT MIN($type) AS MINI FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ?";
-		?>
-		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
-		<?php
 		if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		$stmt->bind_param("dsss", $stationID, $month, $day, $year);		//bind parameters
 		$day = date("d", strtotime("last Monday"));		//day from last monday

@@ -29,7 +29,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" type="image/x-icon" href="../images/icon.jpg">
-		<link href="../css/custom/stationIndex.css" type="text/css" rel="stylesheet" />
+		<link href="../css/custom/statPrint.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/body.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/textbox.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/navbar.css" type="text/css" rel="stylesheet" />
@@ -74,12 +74,12 @@
 				<h3>Statstik für <?= $name ?> der letzden 7 Tage</h3>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrint("$id","diesel"); ?>
+				<?php statPrintStation("$id","diesel"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrint("$id","E5"); ?>
+				<?php statPrintStation("$id","E5"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrint("$id","E10"); ?>
+				<?php statPrintStation("$id","E10"); ?>
 			</div>
 		</div>
