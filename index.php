@@ -131,39 +131,38 @@
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
-						<?php if($error0 != "true"){
-						 if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
-							for ($i = 0; $i < $count; $i++) { ?>
-								<div id="rowstart" class="white">
-									<a href="station/index.php?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
-								</div>
-								<div id="rowmid" class="white">
-									Marke: <?= $brand[$i] ?>
-								</div>
-								<div id="rowmid" class="white">
-									Stadt: <?= $place[$i] ?>
-								</div>
-								<div id="rowmid" class="white">
-									Straße: <?= $street[$i] . " " . $houseNumber[$i]?>
-								</div>
-								<div id="rowmid" class="white">
-									<?= ucfirst($type) . ": " . $price[$i] ?> Euro
-								</div>
-						<?php }}}else{ ?>
-      						<div id="rowstart" class="white">
-								<?= $error ?>
+					<?php if($error0 != "true"){
+					 if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
+						for ($i = 0; $i < $count; $i++) { ?>
+							<div id="rowstart" class="white">
+								<a href="station/index.php?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
 							</div>
-            			<?php }
-							if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){
-						?>
-						<div id="rowstart" class="white">
-							Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
+							<div id="rowmid" class="white">
+								Marke: <?= $brand[$i] ?>
+							</div>
+							<div id="rowmid" class="white">
+								Stadt: <?= $place[$i] ?>
+							</div>
+							<div id="rowmid" class="white">
+								Straße: <?= $street[$i] . " " . $houseNumber[$i]?>
+							</div>
+							<div id="rowmid" class="white">
+								<?= ucfirst($type) . ": " . $price[$i] ?> Euro
+							</div>
+					<?php }}}else{ ?>
+  						<div id="rowstart" class="white">
+							<?= $error ?>
 						</div>
-						<div id="rowend" class="white"></div>
-						<?php
-							}
-						?>
-						<div id="rowend" class="white"></div>
+        			<?php }
+						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){
+					?>
+					<div id="rowstart" class="white">
+						Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
+					</div>
+					<div id="rowend" class="white"></div>
+					<?php
+						}
+					?>
 				</div>
 				<div id="griddiv-right" class="white">
 					<div id="rowstart" class="white">
@@ -180,7 +179,6 @@
 							?>
 						</iframe>
 					</div>
-					<div id="rowstart" class="white"></div>
 				</div>
 		</form>
 	</body>
