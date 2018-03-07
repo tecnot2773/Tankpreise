@@ -14,7 +14,52 @@ if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		 while($data = $result->fetch_array()){
 			 $diesel = $data["diesel"];
 
-			 echo $diesel . "<br>";
+			 echo $i . "UHR : " $diesel . "<br>";
+		}
+	}
+	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
+	$day = date("d", strtotime("last Tuesday"));		//day from last monday
+	$month = date("m", strtotime("last Tuesday"));	//month from last monday
+	$year = date("Y", strtotime("last Tuesday"));	//year from last monday
+	for($i = 0; $i < 24; $i++){
+		$hour = $i;
+		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
+		$stmt->execute();			//execute statement
+		$result = $stmt->get_result();		//save result
+		 while($data = $result->fetch_array()){
+			 $diesel = $data["diesel"];
+
+			 echo $i . "UHR : " $diesel . "<br>";
+		}
+	}
+	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
+	$day = date("d", strtotime("last Wednesday"));		//day from last monday
+	$month = date("m", strtotime("last Wednesday"));	//month from last monday
+	$year = date("Y", strtotime("last Wednesday"));	//year from last monday
+	for($i = 0; $i < 24; $i++){
+		$hour = $i;
+		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
+		$stmt->execute();			//execute statement
+		$result = $stmt->get_result();		//save result
+		 while($data = $result->fetch_array()){
+			 $diesel = $data["diesel"];
+
+			 echo $i . "UHR : " $diesel . "<br>";
+		}
+	}
+	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
+	$day = date("d", strtotime("last Thursday"));		//day from last monday
+	$month = date("m", strtotime("last Thursday"));	//month from last monday
+	$year = date("Y", strtotime("last Thursday"));	//year from last monday
+	for($i = 0; $i < 24; $i++){
+		$hour = $i;
+		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
+		$stmt->execute();			//execute statement
+		$result = $stmt->get_result();		//save result
+		 while($data = $result->fetch_array()){
+			 $diesel = $data["diesel"];
+
+			 echo $i . "UHR : " $diesel . "<br>";
 		}
 	}
 }
