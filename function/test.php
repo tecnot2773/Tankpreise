@@ -91,3 +91,58 @@ LIMIT
     25
 	*/
 ?>
+SELECT  (
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 0
+    ) AS diesel0,
+    (
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 1
+    ) AS diesel1,
+    (
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 2
+    ) AS diesel2
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 3
+    ) AS diesel3
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 4
+    ) AS diesel4
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 5
+    ) AS diesel5
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 6
+    ) AS diesel6
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 7
+    ) AS diese7
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 8
+    ) AS diesel8
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 9
+    ) AS diesel9
+	(
+    SELECT avg(diesel)
+    FROM stats
+    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 10
+    ) AS diesel10

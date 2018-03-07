@@ -1,6 +1,6 @@
 <?php
 	include "dbConnect.php";
-
+	$now = date("Y-m-d H:i:s");
 	$query = "SELECT avg(?) AS ? FROM stats WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND HOUR(timestamp) = ?;";
 	$query1 = "INSERT INTO avgPriceDaily (`timestamp`, `price`, `type`) VALUES ('?', '?', '?')";
 	if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
