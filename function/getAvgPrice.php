@@ -6,7 +6,7 @@
 	if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		if($stmt1 = $mysqli->prepare($query1)) {
 			$stmt->bind_param("ssssss", $type, $type, $month, $day, $year, $hour);		//bind parameters
-			$stmt1->bind_param("sss", $now, $avgPrice, $type)
+			$stmt1->bind_param("sss", $now, $avgPrice, $type);
 
 			$type = "diesel";
 			$day = date("d", strtotime("last day"));		//day from last monday
