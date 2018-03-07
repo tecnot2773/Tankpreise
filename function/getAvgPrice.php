@@ -18,9 +18,9 @@
 				$result = $stmt->get_result();		//save result
 				 while($data = $result->fetch_array()){
 					 $avgPrice = $data["avgPrice"];
+					 $stmt1->execute();
 					 echo "SELECT avg($type) AS avgPrice FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
 				}
-				$stmt1->execute();
 			}
 			$type = "e5";
 			for($i = 0; $i < 24; $i++){
