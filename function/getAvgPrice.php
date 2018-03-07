@@ -3,9 +3,7 @@
 	$query = "SELECT avg(?) AS avgPrice FROM stats WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND HOUR(timestamp) = ?;";
 	$query1 = "INSERT INTO avgPriceDaily (`avgPrice`, `type`) VALUES ('?', '?')";
 	if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
-		echo "asd";
 		if($stmt1 = $mysqli->prepare($query1)) {
-			echo "123123";
 			$stmt->bind_param("sssss", $type, $month, $day, $year, $hour);		//bind parameters
 			$stmt1->bind_param("ss", $avgPrice, $type);
 
@@ -20,7 +18,7 @@
 				$result = $stmt->get_result();		//save result
 				 while($data = $result->fetch_array()){
 					 $avgPrice = $data["avgPrice"];
-					 echo $avgPrice;
+					 echo $avgPrice ."<br>";
 				}
 				$stmt1->execute();
 			}
