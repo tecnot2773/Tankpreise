@@ -1,12 +1,11 @@
 <?php
 	include "dbConnect.php";
-	$now = date("Y-m-d H:i:s");
 	$query = "SELECT avg(?) AS ? FROM stats WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND HOUR(timestamp) = ?;";
-	$query1 = "INSERT INTO avgPriceDaily (`timestamp`, `price`, `type`) VALUES ('?', '?', '?')";
+	$query1 = "INSERT INTO avgPriceDaily (`price`, `type`) VALUES ('?', '?', '?')";
 	if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		if($stmt1 = $mysqli->prepare($query1)) {
 			$stmt->bind_param("ssssss", $type, $type, $month, $day, $year, $hour);		//bind parameters
-			$stmt1->bind_param("sss", $now, $avgPrice, $type);
+			$stmt1->bind_param("sss", $avgPrice, $type);
 
 			$type = "diesel";
 			$day = date("d", strtotime("last day"));		//day from last monday
@@ -49,6 +48,6 @@
 		$stmt->close();
 	}
 	$mysqli->close();
-
+	echo "INSERT INTO avgPriceDaily (`price`, `type`) VALUES ($avgPrice, $type)";
 
  ?>
