@@ -7,7 +7,7 @@
 		if($stmt1 = $mysqli->prepare($query1)) {
 			echo "123123";
 			$stmt->bind_param("sssss", $type, $month, $day, $year, $hour);		//bind parameters
-			$stmt1->bind_param("sss", $avgPrice, $type);
+			$stmt1->bind_param("ss", $avgPrice, $type);
 
 			$type = "diesel";
 			$day = date("d", strtotime("last day"));		//day from last monday
