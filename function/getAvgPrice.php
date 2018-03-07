@@ -19,7 +19,8 @@
 				 while($data = $result->fetch_array()){
 					 $avgPrice = $data["avgPrice"];
 					 $stmt1->execute();
-					 	echo "INSERT INTO avgPriceDaily (`price`, `type`) VALUES ($avgPrice, $type)";
+					 	echo "SELECT avg($type) AS avgPrice FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
+					 	//echo "INSERT INTO avgPriceDaily (`price`, `type`) VALUES ($avgPrice, $type)";
 						echo "<br>";
 				}
 			}
