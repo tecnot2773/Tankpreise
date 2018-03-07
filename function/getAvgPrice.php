@@ -19,7 +19,7 @@
 				$stmt->execute();			//execute statement
 				$result = $stmt->get_result();		//save result
 				 while($data = $result->fetch_array()){
-					 $avgPrice = $data[$type];
+					 $avgPrice = $data["avgPrice"];
 					 echo $avgPrice;
 				}
 				$stmt1->execute();
@@ -31,7 +31,7 @@
 				$stmt->execute();			//execute statement
 				$result = $stmt->get_result();		//save result
 				 while($data = $result->fetch_array()){
-					$avgPrice = $data[$type];
+					$avgPrice = $data["avgPrice"];
 				}
 				$stmt1->execute();
 			}
@@ -42,7 +42,7 @@
 				$stmt->execute();			//execute statement
 				$result = $stmt->get_result();		//save result
 				 while($data = $result->fetch_array()){
-					 $avgPrice = $data[$type];
+					 $avgPrice = $data["avgPrice"];
 				}
 				$stmt1->execute();
 			}
