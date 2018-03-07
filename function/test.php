@@ -14,7 +14,7 @@ if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		 while($data = $result->fetch_array()){
 			 $diesel = $data["diesel"];
 
-			 echo $i . "UHR : " $diesel . "<br>";
+			 echo $i . "UHR : " . $diesel . "<br>";
 		}
 	}
 	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
@@ -29,7 +29,7 @@ if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		 while($data = $result->fetch_array()){
 			 $diesel = $data["diesel"];
 
-			 echo $i . "UHR : " $diesel . "<br>";
+			 echo $i . "UHR : " . $diesel . "<br>";
 		}
 	}
 	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
@@ -44,7 +44,7 @@ if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		 while($data = $result->fetch_array()){
 			 $diesel = $data["diesel"];
 
-			 echo $i . "UHR : " $diesel . "<br>";
+			 echo $i . "UHR : " . $diesel . "<br>";
 		}
 	}
 	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
@@ -59,7 +59,7 @@ if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
 		 while($data = $result->fetch_array()){
 			 $diesel = $data["diesel"];
 
-			 echo $i . "UHR : " $diesel . "<br>";
+			 echo $i . "UHR : " . $diesel . "<br>";
 		}
 	}
 }
