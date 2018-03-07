@@ -18,6 +18,7 @@
 				$result = $stmt->get_result();		//save result
 				 while($data = $result->fetch_array()){
 					 $avgPrice = $data[$type];
+					 echo $avgPrice;
 				}
 				$stmt1->execute();
 			}
