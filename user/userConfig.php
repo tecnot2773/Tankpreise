@@ -62,7 +62,7 @@
 						Addresse
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
+						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst(getUserInfo()) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
 					</div>
 					<?php if(!isset($_GET["id"]) && !isset($_GET["name"]) && !isset($_GET["consumption"]) && !isset($_GET["volume"]) && !isset($_GET["type"])){ ?>
 					<div id="rowheader" class="white">
