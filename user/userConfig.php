@@ -7,9 +7,6 @@
 	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
 		getUserInfo();
 	}
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	     getUserInfo();
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
