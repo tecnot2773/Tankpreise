@@ -7,7 +7,7 @@
 		getUserInfo();
 	}
 	include "../function/dbConnect.php";
-	include_once "../function/statPrint.php";
+	include_once "../function/printStats.php";
 	$id = $_GET["id"];
 	$sql = "SELECT name FROM gasstation WHERE ID = ?";		//query to get ID from city
 	if ($stmt = $mysqli->prepare($sql)) {			//prepare statement

@@ -4,12 +4,14 @@ float: left;
 margin-left: 10%;
 margin-top: 1%;
 font-size: 120%;
+padding-bottom: 25px;
 }
 #griddiv-right {
 width: 39.5%;
 float: right;
 margin-right: 10%;
 margin-top: 1%;
+padding-bottom: 25px;
 }
 #rowstart {
 padding-top:  5%;
