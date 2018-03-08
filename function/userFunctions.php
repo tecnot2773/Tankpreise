@@ -67,7 +67,6 @@
 							getUserInfo();
 							$status = "Wohnort erfolgrech angelegt.";			//staus if Wohnort is changed
 							$stmt->close();					//close statement
-							session_start();
 						}
 					}
 				}
