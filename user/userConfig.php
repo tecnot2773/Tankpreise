@@ -7,6 +7,7 @@
 	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
 		getUserInfo();
 	}
+	getUserInfo();
 ?>
 <!DOCTYPE html>
 <html lang="en">
