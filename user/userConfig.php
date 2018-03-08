@@ -130,7 +130,7 @@
 					if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"])){ echo changePassword() . "<br>"; }
 					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && empty($_POST["box-edit"])){ echo addCar() . "<br>"; }
 					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && !empty($_POST["box-edit"])){ echo editCar() . "<br>"; }
-					if(!empty($_POST["text-place"])){ echo changePlace();}
+					if(!empty($_POST["text-place"])){ echo changePlace(); header("Refresh:0");}
 					?>
 				</div>
 				<?php } ?>
