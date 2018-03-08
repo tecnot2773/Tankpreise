@@ -127,11 +127,12 @@
 				<?php if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"]) || !empty($_POST["text-place"]) || !empty($_POST["text-carname"]) && !empty($_POST["text-consumption"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-type"])){ ?>
 				<div id="status" class="white">
 					<?php
-					if(!empty($_POST["text-place"])){ echo changePlace() . "<br>"; header("Refresh:0");}
+					if(!empty($_POST["status"])){ echo $_POST["status"];}
 					if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"])){ echo changePassword() . "<br>"; }
 					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && empty($_POST["box-edit"])){ echo addCar() . "<br>"; }
 					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && !empty($_POST["box-edit"])){ echo editCar() . "<br>"; }
-					 ?>
+					if(!empty($_POST["text-place"])){$_POST["status"] = changePlace(); header("Refresh:0");}
+					?>
 				</div>
 				<?php } ?>
 			</div>
