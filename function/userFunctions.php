@@ -55,6 +55,7 @@
 							$userID = $_SESSION['userID'];
 							$stmt->execute();
 							getUserInfo();
+							$_SESSION['address'] = ucifrst($address);
 							$status = "Wohnort erfolgreich geändert";
 						}
 					}
