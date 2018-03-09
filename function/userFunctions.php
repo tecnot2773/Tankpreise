@@ -212,6 +212,7 @@
 		}
 		$stmt->close();												//close statement
 		$mysqli->close();												//close mysqli
+		return $address;
 	}
 	function getLowestPrice($address)
 	{
