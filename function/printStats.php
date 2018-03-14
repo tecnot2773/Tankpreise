@@ -250,7 +250,6 @@
 			$query = "SELECT * FROM avgPriceDaily WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND type = ? ORDER BY timestamp ASC";
 			$query1 = "SELECT MIN(avgPrice) AS MINI FROM avgPriceDaily WHERE type = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ?";
 			if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
-				echo "asd";
 			$stmt->bind_param("ssss", $month, $day, $year, $type);		//bind parameters
 			$day = date("d", strtotime("last Monday"));		//day from last monday
 			$month = date("m", strtotime("last Monday"));	//month from last monday
@@ -391,6 +390,7 @@
 				$month = date("m", strtotime("last Thursday"));
 				$year = date("Y", strtotime("last Thursday"));
 				$stmt->execute();
+				$result = $stmt->get_result();
 				$stmt1->execute();			//execute statement
 				$result1 = $stmt1->get_result();		//save result
 				while($data = $result1->fetch_array()){
