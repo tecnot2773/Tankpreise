@@ -330,6 +330,7 @@
 				while($data = $result1->fetch_array()){
 				 	$lowest = $data["MINI"];
 				}
+				echo $lowest;
 				?>
 			  <tr>
 			    <th>Montag</th>
