@@ -4,7 +4,7 @@
 	}
 	include_once "function/userFunctions.php";
 	include_once "function/printStats.php";
-	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
+	if(!isset($_SESSION["address"]) && isset($_SESSION['loggedin']) || !isset($_SESSION["type"]) && isset($_SESSION['loggedin']) == true){
 		getUserInfo();		//Get userinfo
 	}
 ?>

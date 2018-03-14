@@ -1,7 +1,7 @@
 <?php
 	function statPrintStation($stationID, $type){
 
-		include "../function/dbConnect.php";
+		include "dbConnect.php";
 		//query to get Stats
 		$query = "SELECT * FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? ORDER BY timestamp ASC;";
 		$query1 = "SELECT MIN($type) AS MINI FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ?";
@@ -245,7 +245,7 @@
 	<?php }}}$mysqli->close();}
 
 	function statPrintAll($type){
-			include "../function/dbConnect.php";
+			include "dbConnect.php";
 			//query to get Stats
 			$query = "SELECT * FROM avgPriceDaily WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND type = ? ORDER BY timestamp ASC";
 			$query1 = "SELECT MIN(avgPrice) AS MINI FROM avgPriceDaily WHERE type = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ?";
