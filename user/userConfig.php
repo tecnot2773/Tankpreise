@@ -62,7 +62,7 @@
 						Addresse
 					</div>
 					<div id="rowmid" class="white">
-						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION['address']) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
+						<input id="textbox-large" name="text-place" class="enjoy-css" type="text" <?php if(isset($_SESSION["address"])){ ?> placeholder="<?= ucfirst($_SESSION["address"]) ?>"<?php }else{ ?> placeholder="Wohnort" <?php }  ?>>
 					</div>
 					<?php if(!isset($_GET["id"]) && !isset($_GET["name"]) && !isset($_GET["consumption"]) && !isset($_GET["volume"]) && !isset($_GET["type"])){ ?>
 					<div id="rowheader" class="white">
@@ -127,11 +127,11 @@
 				<?php if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"]) || !empty($_POST["text-place"]) || !empty($_POST["text-carname"]) && !empty($_POST["text-consumption"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-type"])){ ?>
 				<div id="status" class="white">
 					<?php
-					if(!empty($_POST["text-place"])){ echo changePlace() . "<br>"; }
 					if(!empty($_POST["text-currentpassword"]) && !empty($_POST["text-newpassword"]) && !empty($_POST["text-renewpassword"])){ echo changePassword() . "<br>"; }
 					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && empty($_POST["box-edit"])){ echo addCar() . "<br>"; }
 					if(!empty($_POST["text-carname"]) && !empty($_POST["text-type"]) && !empty($_POST["text-volume"]) && !empty($_POST["text-consumption"]) && !empty($_POST["box-edit"])){ echo editCar() . "<br>"; }
-					 ?>
+					if(!empty($_POST["text-place"])){ echo changePlace();}
+					?>
 				</div>
 				<?php } ?>
 			</div>
