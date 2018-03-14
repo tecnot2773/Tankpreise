@@ -63,9 +63,9 @@
 				<?php statPrintAll("diesel"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrintAll("E5"); ?>
+				<?php statPrintAll("e5"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrintAll("E10"); ?>
+				<?php statPrintAll("e10"); ?>
 			</div>
 		</div>
