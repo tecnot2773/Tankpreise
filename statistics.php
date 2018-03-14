@@ -60,12 +60,12 @@
 				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzden 7 Tage</h3>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php //statPrintAll("diesel"); ?>
+				<?php statPrintAll("diesel"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php //statPrintAll("E5"); ?>
+				<?php statPrintAll("E5"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php //statPrintAll("E10"); ?>
+				<?php statPrintAll("E10"); ?>
 			</div>
 		</div>
