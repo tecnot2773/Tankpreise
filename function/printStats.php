@@ -324,13 +324,12 @@
 				$stmt->execute();			//execute statement
 				$result = $stmt->get_result();		//save result
 				if ($stmt1 = $mysqli->prepare($query1)) {		//prepare statement to get stats
-				$stmt1->bind_param("dddd", $type, $month, $day, $year);		//bind parameters
+				$stmt1->bind_param("sddd", $type, $month, $day, $year);		//bind parameters
 				$stmt1->execute();			//execute statement
 				$result1 = $stmt1->get_result();		//save result
 				while($data = $result1->fetch_array()){
 				 	$lowest = $data["MINI"];
 				}
-				echo $lowest;
 				?>
 			  <tr>
 			    <th>Montag</th>
