@@ -85,28 +85,16 @@
 			<div id="griddiv-table" class="white">
 				<?php statsPrintTableSingle("$id","E10"); ?>
 			</div>
-			<div id="griddiv-table" class="white">
-				<table class="chart">
-				<?php
-					$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
-					echo generateBarChart($stats, 150);
-				?>
-				</table>
-			</div>
-			<div id="griddiv-table" class="white">
-				<table class="chart">
-				<?php
-					$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
-					echo generateBarChart($stats, 150);
-				?>
-				</table>
-			</div>
-			<div id="griddiv-table" class="white">
-				<table class="chart">
-				<?php
-					$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
-					echo generateBarChart($stats, 150);
-				?>
-				</table>
-			</div>
+			<?php
+				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+				echo generateBarChart($stats, 150);
+			?>
+			<?php
+				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+				echo generateBarChart($stats, 150);
+			?>
+			<?php
+				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+				echo generateBarChart($stats, 150);
+			?>
 		</div>
