@@ -55,7 +55,7 @@ function ae_bar_css(&$values, $height=400, $css_prefix='')
 }
 
 ?>
-<? 
+<?php
 include "dbConnect.php";
 $query = "SELECT diesel, timestamp FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND gasstationID = ?";
 if ($stmt = $mysqli->prepare($query)) {
