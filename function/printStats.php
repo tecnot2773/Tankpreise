@@ -531,7 +531,7 @@
 				if($first != 1 && $check == true){
 					$stats = array($date=>$value);
 				}
-				elseif($check == true{
+				elseif($check == true){
 					$stats_save = $stats;
 					$stats = array($date=>$value);
 					$stats = $stats_save + $stats;
