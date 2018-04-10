@@ -481,7 +481,7 @@
 	function generateBarChart(&$values, $height=400, $css_prefix='')
 	{
 	    $max = -1;
-
+	    $out = "<div id="griddiv-table" class="white"><table class="chart">";
 	    foreach($values as $key=>$value) {
 	        if (abs($value) > $max) {
 	            $max = abs($value);
@@ -494,7 +494,7 @@
 	        $kf = 0;
 		}
 
-	    $out = "<tr class='{$css_prefix}barvrow'>";
+	    $out .= "<tr class='{$css_prefix}barvrow'>";
 	    foreach($values as $key=>$value) {
 	        $bar_height = abs(round($value*$kf));
 	        $out .= "<td style='border-bottom-width: {$bar_height}px'>{$value}</td>";
@@ -509,6 +509,7 @@
 		}
 
 	    $out .= "</tr>";
+	    $out .= "</table></div>";
 	    return $out;
 	}
 
