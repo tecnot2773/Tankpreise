@@ -538,6 +538,7 @@
 				}
 				elseif($check == false){
 					$stats = false;
+				}
 				$first = 1;
 			}
 			return $stats;
