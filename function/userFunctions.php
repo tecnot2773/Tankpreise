@@ -1,11 +1,11 @@
 <?php
 	function changePlace(){				//new changePlace
 		include "dbConnect.php";			//new mysqli
-		//include_once "UTF8Convert.php";
+		include_once "UTF8Convert.php";
 		include_once "getKoordinates.php";		//include getKoordinates
 		$address = $mysqli->real_escape_string($_POST["text-place"]);		//save and escape text-place
 		$address = preg_replace('/\s+/', '+', $address);
-		//$address = umlauts($address);
+		$address = umlauts($address);
 		$address = strtolower($address);			//make address to lower characters
 
 		$query = "SELECT ID FROM city WHERE name = ?";		//query to get ID from city
