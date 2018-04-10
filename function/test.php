@@ -1,148 +1,89 @@
-<?php
-include_once "dbConnect.php";
-$query = "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND HOUR(timestamp) = ?;";
-if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
-	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
-	$day = date("d", strtotime("last Monday"));		//day from last monday
-	$month = date("m", strtotime("last Monday"));	//month from last monday
-	$year = date("Y", strtotime("last Monday"));	//year from last monday
-	for($i = 0; $i < 24; $i++){
-		$hour = $i;
-		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
-		$stmt->execute();			//execute statement
-		$result = $stmt->get_result();		//save result
-		 while($data = $result->fetch_array()){
-			 $diesel = $data["diesel"];
+<html><head>
+<title>strange bar chart</title>
+<style type="text/css">
+table.chart { width: 100%; }
+table.chart td { 
+    font-size: 8pt;
+    font-family: Arial,serif; 
+}
+table.chart tr.barvrow td 
+{ 
+    height: 300px; 
+    vertical-align: bottom;
+    border-bottom-color: darkblue;
+    border-bottom-style: solid;
+    text-align: center; 
+}
+table.chart tr.bartrow td 
+{
+    text-align: center;
+    width: 100px;
+}
+</style>
+</head>
+<body>
+<?php 
+function ae_bar_css(&$values, $height=400, $css_prefix='')
+{
+    $max = -1;
 
-			 echo $i . "UHR : " . $diesel . "<br>";
-		}
-	}
-	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
-	$day = date("d", strtotime("last Tuesday"));		//day from last monday
-	$month = date("m", strtotime("last Tuesday"));	//month from last monday
-	$year = date("Y", strtotime("last Tuesday"));	//year from last monday
-	for($i = 0; $i < 24; $i++){
-		$hour = $i;
-		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
-		$stmt->execute();			//execute statement
-		$result = $stmt->get_result();		//save result
-		 while($data = $result->fetch_array()){
-			 $diesel = $data["diesel"];
+    foreach($values as $k=>$v)
+        if (abs($v) > $max)
+            $max = abs($v);
+    
+    if ($max != 0)
+        $kf = $height / $max;
+    else
+        $kf = 0;
 
-			 echo $i . "UHR : " . $diesel . "<br>";
-		}
-	}
-	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
-	$day = date("d", strtotime("last Wednesday"));		//day from last monday
-	$month = date("m", strtotime("last Wednesday"));	//month from last monday
-	$year = date("Y", strtotime("last Wednesday"));	//year from last monday
-	for($i = 0; $i < 24; $i++){
-		$hour = $i;
-		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
-		$stmt->execute();			//execute statement
-		$result = $stmt->get_result();		//save result
-		 while($data = $result->fetch_array()){
-			 $diesel = $data["diesel"];
+    $out = "<tr class='{$css_prefix}barvrow'>";    
+    foreach($values as $k=>$v)
+    {
+        $bar_h = abs(round($v*$kf));
+        $out .= "<td style='border-bottom-width: {$bar_h}px'>{$v}</td>";
+    }
+    $out .= '</tr>';
+    
+    
+    $out .= "<tr class='{$css_prefix}bartrow'>";    
 
-			 echo $i . "UHR : " . $diesel . "<br>";
-		}
-	}
-	$stmt->bind_param("ssss", $month, $day, $year, $hour);		//bind parameters
-	$day = date("d", strtotime("last Thursday"));		//day from last monday
-	$month = date("m", strtotime("last Thursday"));	//month from last monday
-	$year = date("Y", strtotime("last Thursday"));	//year from last monday
-	for($i = 0; $i < 24; $i++){
-		$hour = $i;
-		//echo "SELECT avg(diesel) AS diesel FROM stats WHERE MONTH(timestamp) = $month AND DAY(timestamp) = $day AND YEAR(timestamp) = $year AND HOUR(timestamp) = $hour;";
-		$stmt->execute();			//execute statement
-		$result = $stmt->get_result();		//save result
-		 while($data = $result->fetch_array()){
-			 $diesel = $data["diesel"];
-
-			 echo $i . "UHR : " . $diesel . "<br>";
-		}
-	}
+    foreach($values as $k=>$v)
+        $out .= "<td>{$k}</td>";
+        
+    $out .= "</tr>";
+    return $out;
 }
 
-/*
-https://stackoverflow.com/questions/8994718/mysql-longitude-and-latitude-query-for-other-rows-within-x-mile-radius
-SELECT radius
-SELECT
-    `ID`,
-    (
-        6371 *
-        acos(
-            cos( radians( 52.9127 ) ) *
-            cos( radians( `lat` ) ) *
-            cos(
-                radians( `lon` ) - radians( 8.81814 )
-            ) +
-            sin(radians(52.9127)) *
-            sin(radians(`lat`))
-        )
-    ) `distance`
-FROM
-    `gasstation`
-HAVING
-    `distance` < 5
-ORDER BY
-    `distance`
-LIMIT
-    25
-	*/
 ?>
-SELECT  (
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 0
-    ) AS diesel0,
-    (
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 1
-    ) AS diesel1,
-    (
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 2
-    ) AS diesel2
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 3
-    ) AS diesel3
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 4
-    ) AS diesel4
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 5
-    ) AS diesel5
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 6
-    ) AS diesel6
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 7
-    ) AS diese7
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 8
-    ) AS diesel8
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 9
-    ) AS diesel9
-	(
-    SELECT avg(diesel)
-    FROM stats
-    WHERE MONTH(timestamp) = 03 AND DAY(timestamp) = 6 AND YEAR(timestamp) = 2018 AND HOUR(timestamp) = 10
-    ) AS diesel10
+<? 
+include "dbConnect.php";
+$query = "SELECT diesel, timestamp FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND gasstationID = ?";
+if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
+	$stmt->bind_param("ddd", $day, $month, $stationID);		//bind parameters
+	$day = '09';
+	$month = '04';
+	$stationID = '3';
+	$stmt->execute();
+	$first = 0;
+	$result = $stmt->get_result();		//save result
+		 while($data = $result->fetch_array()){
+			$date = $data['timestamp'];
+			$diesel = $data['diesel'];
+			if($first != 1){
+				$stats = array($date=>$diesel);
+			}
+			else{
+				$stats_save = $stats;
+				$stats = array($date=>$diesel);
+				$stats = $stats_save + $stats;
+			}
+			$first = 1;
+		 }
+	}
+echo '<table class="chart">';
+echo ae_bar_css($stats, 300);
+echo '</table>';
+var_dump($stats);
+?>
+</body>
+</html>
