@@ -524,14 +524,19 @@
 			while($data = $result->fetch_array()){
 				$date = $data['timestamp'];
 				$value = $data[$type];
-				if($first != 1){
+				if(empty($value)){
+					$check = false;
+				}
+				if($first != 1 && $check == true){
 					$stats = array($date=>$value);
 				}
-				else{
+				elseif($check == true{
 					$stats_save = $stats;
 					$stats = array($date=>$value);
 					$stats = $stats_save + $stats;
 				}
+				elseif($check == false){
+					$stats = false;
 				$first = 1;
 			}
 			return $stats;
