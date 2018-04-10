@@ -58,30 +58,30 @@ function ae_bar_css(&$values, $height=400, $css_prefix='')
 <? 
 include "dbConnect.php";
 $query = "SELECT diesel, timestamp FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND gasstationID = ?";
-if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
-	$stmt->bind_param("ddd", $day, $month, $stationID);		//bind parameters
+if ($stmt = $mysqli->prepare($query)) {
+	$stmt->bind_param("ddd", $day, $month, $stationID);
 	$day = '09';
 	$month = '04';
 	$stationID = '3';
 	$stmt->execute();
 	$first = 0;
-	$result = $stmt->get_result();		//save result
-		 while($data = $result->fetch_array()){
-			$date = $data['timestamp'];
-			$diesel = $data['diesel'];
-			if($first != 1){
-				$stats = array($date=>$diesel);
-			}
-			else{
-				$stats_save = $stats;
-				$stats = array($date=>$diesel);
-				$stats = $stats_save + $stats;
-			}
-			$first = 1;
-		 }
+	$result = $stmt->get_result();
+	while($data = $result->fetch_array()){
+		$date = $data['timestamp'];
+		$diesel = $data['diesel'];
+		if($first != 1){
+			$stats = array($date=>$diesel);
+		}
+		else{
+			$stats_save = $stats;
+			$stats = array($date=>$diesel);
+			$stats = $stats_save + $stats;
+		}
+		$first = 1;
 	}
+}
 echo '<table class="chart">';
-echo ae_bar_css($stats, 300);
+echo ae_bar_css($stats, 150);
 echo '</table>';
 var_dump($stats);
 ?>
