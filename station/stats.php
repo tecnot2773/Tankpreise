@@ -3,8 +3,10 @@
 		session_start();
 	}
 	include_once "../function/userFunctions.php";
-	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
-		getUserInfo();
+	if(isset($_SESSION['loggedin'])){
+		if(!isset($_SESSION["address"]) || !isset($_SESSION["type"])){
+			getUserInfo();
+		}
 	}
 	include "../function/dbConnect.php";
 	include_once "../function/printStats.php";
@@ -34,6 +36,7 @@
 		<link href="../css/generic/textbox.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/navbar.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/buttons.css" type="text/css" rel="stylesheet" />
+		<link href="../css/generic/table.css" type="text/css" rel="stylesheet" />
 		<link href="../css/generic/icons.css" rel="stylesheet" />
 		<title>Tankstellen Preise</title>
 	</head>
@@ -74,12 +77,36 @@
 				<h3>Statstik für <?= $name ?> der letzden 7 Tage</h3>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrintStation("$id","diesel"); ?>
+				<?php statsPrintTableSingle("$id","diesel"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrintStation("$id","E5"); ?>
+				<?php statsPrintTableSingle("$id","E5"); ?>
 			</div>
 			<div id="griddiv-table" class="white">
-				<?php statPrintStation("$id","E10"); ?>
+				<?php statsPrintTableSingle("$id","E10"); ?>
+			</div>
+			<div id="griddiv-table" class="white">
+				<table class="chart">
+				<?php
+					$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+					echo generateBarChart($stats, 150);
+				?>
+				</table>
+			</div>
+			<div id="griddiv-table" class="white">
+				<table class="chart">
+				<?php
+					$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+					echo generateBarChart($stats, 150);
+				?>
+				</table>
+			</div>
+			<div id="griddiv-table" class="white">
+				<table class="chart">
+				<?php
+					$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+					echo generateBarChart($stats, 150);
+				?>
+				</table>
 			</div>
 		</div>

@@ -1,20 +1,21 @@
 <?php
-	function statPrintStation($stationID, $type){
-
+	function statsPrintTableSingle($stationID, $type){
 		include "dbConnect.php";
 		//query to get Stats
 		$query = "SELECT * FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? ORDER BY timestamp ASC;";
 		$query1 = "SELECT MIN($type) AS MINI FROM stats WHERE gasStationID = ? AND MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ?";
 		if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
-		$stmt->bind_param("dsss", $stationID, $month, $day, $year);		//bind parameters
+		$stmt->bind_param("dddd", $stationID, $month, $day, $year);		//bind parameters
 		$day = date("d", strtotime("last Monday"));		//day from last monday
 		$month = date("m", strtotime("last Monday"));	//month from last monday
 		$year = date("Y", strtotime("last Monday"));	//year from last monday
 		$stmt->execute();			//execute statement
 		$result = $stmt->get_result();		//save result
 		 while($data = $result->fetch_array()){
-			if(empty($data['avgPrice']) ||$data['avgPrice'] == "null"){die();}} ?>
-			<h3><?=ucfirst($type)?><h3>
+			if(empty($data[$type]) || $data[$type] == "null"){return;}
+		}
+		?>
+		<h3><?=ucfirst($type)?><h3>
 		<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 			<colgroup>
 				<col style="width: 15%">
@@ -90,10 +91,10 @@
 		  <tr>
 		    <th>Montag</th>
 				<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-					<?php if($data['avgPrice'] == $lowest){ ?>
-						<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<?php if($data[$type] == $lowest){ ?>
+						<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 					<?php }else{ ?>
-						<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+						<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }}?>
 		  </tr>
 
@@ -114,10 +115,10 @@
 		  <tr>
 		    <th id="tg-yw4l">Dienstag</th>
 			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
-				<?php if($data['avgPrice'] == $lowest){ ?>
-					<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+				<?php if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 			<?php }}?>
 		  </tr>
 
@@ -138,10 +139,10 @@
 		  <tr>
 		    <th id="tg-yw4l">Mittwoch</th>
 			<?php while($data = $result->fetch_array()){
-				 if($data['avgPrice'] == $lowest){ ?>
-					<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+				 if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 			<?php }}?>
 		  </tr>
 
@@ -162,10 +163,10 @@
 		  <tr>
 		    <th id="tg-yw4l">Donnerstag</th>
 			<?php while($data = $result->fetch_array()){
-				if($data['avgPrice'] == $lowest){ ?>
-					<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+				if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 			<?php }}?>
 		  </tr>
 
@@ -186,10 +187,10 @@
 		  <tr>
 		    <th id="tg-yw4l">Freitag</th>
 			<?php while($data = $result->fetch_array()){
-				if($data['avgPrice'] == $lowest){ ?>
-					<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+				if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 			<?php }}?>
 		  </tr>
 
@@ -210,10 +211,10 @@
 		  <tr>
 		    <th id="tg-yw4l">Samstag</th>
 			<?php while($data = $result->fetch_array()){
-				if($data['avgPrice'] == $lowest){ ?>
-					<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+				if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 			<?php }}?>
 		  </tr>
 
@@ -234,17 +235,17 @@
 		  <tr>
 		    <th id="tg-yw4l">Sonntag</th>
 			<?php while($data = $result->fetch_array()){
-				if($data['avgPrice'] == $lowest){ ?>
-					<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+				if($data[$type] == $lowest){ ?>
+					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
 			<?php }}?>
 		  </tr>
 
 		</table>
 	<?php }}}$mysqli->close();}
 
-	function statPrintAll($type){
+	function statsPrintTableAll($type){
 			include "dbConnect.php";
 			//query to get Stats
 			$query = "SELECT * FROM avgPriceDaily WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND type = ? ORDER BY timestamp ASC";
@@ -257,7 +258,7 @@
 			$stmt->execute();			//execute statement
 			$result = $stmt->get_result();		//save result
 			 while($data = $result->fetch_array()){
-				if(empty($data['avgPrice']) ||$data['avgPrice'] == "null"){die();}} ?>
+				if(empty($data['avgPrice']) ||$data['avgPrice'] == "null"){return;}} ?>
 				<h3><?=ucfirst($type)?><h3>
 			<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 				<colgroup>
@@ -317,7 +318,7 @@
 
 				<?php
 				if ($stmt = $mysqli->prepare($query)) {		//prepare statement to get stats
-				$stmt->bind_param("ssss", $month, $day, $year, $type);		//bind parameters
+				$stmt->bind_param("ddds", $month, $day, $year, $type);		//bind parameters
 				$day = date("d", strtotime("last Monday"));		//day from last monday
 				$month = date("m", strtotime("last Monday"));	//month from last monday
 				$year = date("Y", strtotime("last Monday"));	//year from last monday
@@ -474,4 +475,66 @@
 			  </tr>
 
 			</table>
-		<?php }}}$mysqli->close();} ?>
+<?php }}}$mysqli->close();} ?>
+
+<?php
+	function generateBarChart(&$values, $height=400, $css_prefix='')
+	{
+	    $max = -1;
+
+	    foreach($values as $key=>$value) {
+	        if (abs($value) > $max) {
+	            $max = abs($value);
+			}
+		}
+
+	    if ($max != 0) {
+	        $kf = $height / $max;
+	    } else {
+	        $kf = 0;
+		}
+
+	    $out = "<tr class='{$css_prefix}barvrow'>";
+	    foreach($values as $key=>$value) {
+	        $bar_height = abs(round($value*$kf));
+	        $out .= "<td style='border-bottom-width: {$bar_height}px'>{$value}</td>";
+	    }
+	    $out .= '</tr>';
+
+
+	    $out .= "<tr class='{$css_prefix}bartrow'>";
+
+	    foreach($values as $key=>$value) {
+	        $out .= "<td>{$key}</td>";
+		}
+
+	    $out .= "</tr>";
+	    return $out;
+	}
+
+	function getStatsSingle($type, $day, $month, $stationID)
+	{
+		include "dbConnect.php";
+		$query = "SELECT * FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND gasstationID = ?";
+		if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("ddd", $day, $month, $stationID);
+			$stmt->execute();
+			$first = 0;
+			$result = $stmt->get_result();
+			while($data = $result->fetch_array()){
+				$date = $data['timestamp'];
+				$value = $data[$type];
+				if($first != 1){
+					$stats = array($date=>$value);
+				}
+				else{
+					$stats_save = $stats;
+					$stats = array($date=>$value);
+					$stats = $stats_save + $stats;
+				}
+				$first = 1;
+			}
+			return $stats;
+		}
+		$mysqli->close();
+	}

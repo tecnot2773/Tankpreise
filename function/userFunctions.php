@@ -212,7 +212,6 @@
 		}
 		$stmt->close();												//close statement
 		$mysqli->close();												//close mysqli
-		return $address;
 	}
 	function getLowestPrice($address)
 	{
@@ -265,7 +264,11 @@
 				}
 			}
 		}
-		$lowest = array('e5Price'=>$lowestE5, 'e5ID'=>$UUID[$saveE5], 'e5Name'=>$name[$saveE5], 'e10Price'=>$lowestE10, 'e10ID'=>$UUID[$saveE10], 'e10Name'=>$name[$saveE10], 'dieselPrice'=>$lowestDiesel, 'dieselID'=>$UUID[$saveDiesel], 'dieselName'=>$name[$saveDiesel]);
+		$lowest = array('e5Price'=>$lowestE5, 'e5ID'=>$UUID[$saveE5],
+		 				'e5Name'=>$name[$saveE5], 'e10Price'=>$lowestE10,
+						'e10ID'=>$UUID[$saveE10], 'e10Name'=>$name[$saveE10],
+						'dieselPrice'=>$lowestDiesel, 'dieselID'=>$UUID[$saveDiesel],
+						'dieselName'=>$name[$saveDiesel]);
 		$mysqli->close();
 		return $lowest;
 	}
