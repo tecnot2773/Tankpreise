@@ -478,10 +478,10 @@
 <?php }}}$mysqli->close();} ?>
 
 <?php
-	function generateBarChart(&$values, $height=400, $css_prefix='')
+	function generateBarChart(&$values, $height=400, $type, $css_prefix='')
 	{
 	    $max = -1;
-	    $out = "<div id='griddiv-table' class='white'><table class='chart'>";
+	    $out = "<div id='griddiv-table' class='white'><h3>" . ucfirst($type) . "<h3><table class='chart'>";
 	    foreach($values as $key=>$value) {
 	        if (abs($value) > $max) {
 	            $max = abs($value);
@@ -496,7 +496,7 @@
 
 	    $out .= "<tr class='{$css_prefix}barvrow'>";
 	    foreach($values as $key=>$value) {
-	        $bar_height = abs(round($value*$kf));
+	        $bar_height = abs(round((substr($value, 2) / 100)*$kf));
 	        $out .= "<td style='border-bottom-width: {$bar_height}px'>{$value}</td>";
 	    }
 	    $out .= '</tr>';
@@ -516,6 +516,7 @@
 	function getStatsSingle($type, $day, $month, $stationID)
 	{
 		include "dbConnect.php";
+		$check = true;
 		$query = "SELECT * FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND gasstationID = ?";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("ddd", $day, $month, $stationID);
@@ -523,7 +524,7 @@
 			$first = 0;
 			$result = $stmt->get_result();
 			while($data = $result->fetch_array()){
-				$date = $data['timestamp'];
+				$date = date("H", strtotime($data['timestamp']));
 				$value = $data[$type];
 				if(empty($value)){
 					$check = false;

@@ -85,16 +85,25 @@
 			<div id="griddiv-table" class="white">
 				<?php statsPrintTableSingle("$id","E10"); ?>
 			</div>
+			<div id="griddiv-heading" class="white">
+				<h3>Statstik für <?= $name ?> der letzden 24 Stunden</h3>
+			</div>
 			<?php
 				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
-				echo generateBarChart($stats, 150);
+				if($stats == true){
+					echo generateBarChart($stats, 50, "diesel");
+				}
 			?>
 			<?php
 				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
-				echo generateBarChart($stats, 150);
+				if($stats == true){
+					echo generateBarChart($stats, 50, "E5");
+				}
 			?>
 			<?php
 				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
-				echo generateBarChart($stats, 150);
+				if($stats == true){
+					echo generateBarChart($stats, 50, "E10");
+				}
 			?>
 		</div>
