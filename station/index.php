@@ -71,49 +71,58 @@
 			$diesel = getDiesel($http_content);
 		?>
 		<div id="griddiv-left" class="white">
-			<div id="printrow-top" class="white">
-				Name: <?= $name; ?>
-			</div>
-			<div id="printrow-middle" class="white">
-				Marke: <?= $brand; ?>
-			</div>
-			<div id="printrow-middle" class="white">
-				Addresse: <?php echo $place . " " . $street . " " . $housenumber; ?>
-			</div>
-			<div id="printrow-middle" class="white">
-				Öffnungszeiten: <?= $openingTimes[0]; ?>
-			</div>
-			<?php if(isset($openingTimes[1])){ ?>
-			<div id="printrow-middle" class="white">
-				Öffnungszeiten: <?= $openingTimes[1]; ?>
-			</div>
-			<?php } ?>
-			<?php if(isset($openingTimes[2])){ ?>
-			<div id="printrow-middle" class="white">
-				Öffnungszeiten: <?= $openingTimes[2]; ?>
-			</div>
-			<?php } ?>
-			<div id="printrow-middle" class="white">
-				Derzeit geöffnet: <?= $isopen; ?>
-			</div>
-			<?php if(isset($e5)){ ?>
-			<div id="printrow-middle" class="white">
-				E5 Preis <?= $e5; ?> Euro
-			</div>
-			<?php } ?>
-			<?php if(isset($e10)){ ?>
-			<div id="printrow-middle" class="white">
-				E10 Preis: <?= $e10; ?> Euro
-			</div>
-			<?php } ?>
-			<?php if(isset($diesel)){ ?>
-			<div id="printrow-middle" class="white">
-				Diesel Preis: <?= $diesel; ?> Euro
-			</div>
-			<?php } ?>
+			<table style="width:100%">
+			  <tr>
+			    <th>Name</th>
+			    <td><?= $name; ?></td>
+			  </tr>
+			  <tr>
+			    <th>Marke</th>
+			    <td><?= $brand; ?></td>
+			  </tr>
+			  <tr>
+			    <th>Addresse</th>
+			    <td><?php echo $place . " " . $street . " " . $housenumber; ?></td>
+			  </tr>
+			  <tr>
+				<th>Öffnungszeiten</th>
+				<td><?= $openingTimes[0]; ?></td>
+			  </tr>
+			  <?php if(isset($openingTimes[1])){ ?>
+				  <tr>
+					<th>Öffnungszeiten</th>
+					<td><?= $openingTimes[1]; ?></td>
+				  </tr>
+			  <?php } if(isset($openingTimes[2])){ ?>
+				  <tr>
+					<th>Öffnungszeiten</th>
+					<td><?= $openingTimes[2]; ?></td>
+				  </tr>
+			  <?php } ?>
+			  <tr>
+				<th>Derzeit geöffnet</th>
+				<td><?= $isopen; ?></td>
+			  </tr>
+			  <?php if(isset($e5)){ ?>
+				  <tr>
+					<th>E5 Preis</th>
+					<td><?= $e5; ?> Euro</td>
+				  </tr>
+			  <?php } if(isset($e10)){ ?>
+				  <tr>
+					<th>E10 Preis</th>
+					<td><?= $e10; ?> Euro</td>
+				  </tr>
+			  <?php } if(isset($diesel)){ ?>
+				  <tr>
+					<th>Diesel Preis</th>
+					<td><?= $diesel; ?> Euro</td>
+				  </tr>
+			  <?php } ?>
+			</table>
 			<?php if(!empty($id)){ ?>
 			<div id="printrow-middle" class="white">
-				<a href="stats.php?id=<?= $id; ?>">Statistiken der Preise der letzten 7 Tage</a>
+				<a href="stats.php?id=<?= $id; ?>">Statistiken der Preise</a>
 			</div>
 		<?php } ?>
 		</div>

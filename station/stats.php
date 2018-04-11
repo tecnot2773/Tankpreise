@@ -93,14 +93,10 @@
 				if($stats == true){
 					echo generateBarChart($stats, 50, "diesel");
 				}
-			?>
-			<?php
 				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
 				if($stats == true){
 					echo generateBarChart($stats, 50, "E5");
 				}
-			?>
-			<?php
 				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
 				if($stats == true){
 					echo generateBarChart($stats, 50, "E10");

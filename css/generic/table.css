@@ -7,7 +7,6 @@ table.chart td {
 }
 table.chart tr.barvrow td {
     vertical-align: bottom;
-    border-bottom-color: darkblue;
     border-bottom-style: solid;
     text-align: center;
 }

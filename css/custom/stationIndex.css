@@ -40,3 +40,9 @@ padding-top: 3.5%;
 padding-left: 5%;
 padding-right: 5%;
 }
+table {
+    border-spacing: 5px;
+	text-align: left;
+	font-size: 120%;
+	padding: 10px;
+}

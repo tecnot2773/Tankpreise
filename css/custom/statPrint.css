@@ -39,11 +39,12 @@ td#low{
 	text-align: center;
 	margin-top: 0.5%;
 	margin-left: 10%;
+	font-weight: bold;
 }
 #griddiv-heading{
 	width: 80%;
 	text-align: center;
-	margin-top: 0.5%;
+	margin-top: 2%;
 	margin-left: 10%;
 	padding-top: 0.2%;
 	padding-bottom: 0.2%;
