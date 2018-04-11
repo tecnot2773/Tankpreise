@@ -8,21 +8,12 @@
 			getUserInfo();
 		}
 	}
-	include "../function/dbConnect.php";
 	include_once "../function/printStats.php";
+	include_once "../function/getStationDetail.php";
 	$id = $_GET["id"];
-	$sql = "SELECT name FROM gasstation WHERE ID = ?";		//query to get ID from city
-	if ($stmt = $mysqli->prepare($sql)) {			//prepare statement
-		$stmt->bind_param("s", $id);			//bind parameter
-		$stmt->execute();							//execute statement
-		$result = $stmt->get_result();				//save result
-		if($result->num_rows >= 1){
-			while($data = $result->fetch_array()){		//fetch array
-				$name = $data["name"];			//save id in cityID
-			}
-		}
-	}
-	$mysqli->close();
+	$status = $_GET["stats"];
+	$name = getStationName($id);
+	if(empty($_GET["stats"])){header("location: ../index.php");}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +64,7 @@
 		</header>
 		<!--main contents          -->
 		<div id="center">
+			<?php if($status == "week"){ ?>
 			<div id="griddiv-heading" class="white">
 				<h3>Statstik für <?= $name ?> der letzden 7 Tage</h3>
 			</div>
@@ -85,6 +77,7 @@
 			<div id="griddiv-table" class="white">
 				<?php statsPrintTableSingle("$id","E10"); ?>
 			</div>
+		<?php } if($status == "day"){ ?>
 			<div id="griddiv-heading" class="white">
 				<h3>Statstik für <?= $name ?> der letzden 24 Stunden</h3>
 			</div>
@@ -101,5 +94,6 @@
 				if($stats == true){
 					echo generateBarChart($stats, 50, "E10");
 				}
+			}
 			?>
 		</div>

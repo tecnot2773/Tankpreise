@@ -99,4 +99,20 @@
 				return $diesel;
 			}
 		}
+		function getStationName($id)
+		{
+			include "../function/dbConnect.php";
+			$sql = "SELECT name FROM gasstation WHERE ID = ?";		//query to get ID from city
+			if ($stmt = $mysqli->prepare($sql)) {			//prepare statement
+				$stmt->bind_param("s", $id);			//bind parameter
+				$stmt->execute();							//execute statement
+				$result = $stmt->get_result();				//save result
+				if($result->num_rows >= 1){
+					while($data = $result->fetch_array()){		//fetch array
+						$name = $data["name"];			//save id in cityID
+					}
+				}
+			}
+			$mysqli->close();
+		}
  ?>
