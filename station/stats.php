@@ -86,15 +86,15 @@
 				<?php statsPrintTableSingle("$id","E10"); ?>
 			</div>
 			<?php
-				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
 				echo generateBarChart($stats, 150);
 			?>
 			<?php
-				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
 				echo generateBarChart($stats, 150);
 			?>
 			<?php
-				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), 1);
+				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
 				echo generateBarChart($stats, 150);
 			?>
 		</div>
