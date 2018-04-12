@@ -320,7 +320,7 @@ function statsPrintTableAll($type){
 	{
 		include "dbConnect.php";
 		$check = true;
-		$query = "SELECT timestamp, ROUND(avgPrice, 3) AS avgPrice FROM `avgpricedaily` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND YEAR(timestamp) = ? AND type = ?";
+		$query = "SELECT timestamp, ROUND(avgPrice, 3) AS avgPrice FROM `avgPriceDaily` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND YEAR(timestamp) = ? AND type = ?";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("ddds", $day, $month, $year, $type);
 			$stmt->execute();
