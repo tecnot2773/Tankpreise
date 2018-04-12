@@ -34,7 +34,15 @@
 				<nav>
 					<ul>
 						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
-						<li><a href="../statistics.php">Statistik</a></li>
+						<li>
+						  <div class="dropdown">
+						    <a>Statstik</a>
+						    <div class="dropdown-content">
+						      <a href="../statistics.php?stats=week">Wöchentlich</a>
+						      <a href="../statistics.php?stats=day">Täglich</a>
+						    </div>
+						  </div>
+						</li>
 						<li>
 							<div class="dropdown">
 								<a><?= $_SESSION['username'] ?></a>

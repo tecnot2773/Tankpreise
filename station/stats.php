@@ -41,7 +41,15 @@
 				<nav>
 					<ul>
 						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
-						<li><a href="../statistics.php">Statistik</a></li>
+						<li>
+							<div class="dropdown">
+								<a>Statstik</a>
+								<div class="dropdown-content">
+									<a href="../statistics.php?stats=week">Wöchentlich</a>
+									<a href="../statistics.php?stats=day">Täglich</a>
+								</div>
+							</div>
+						</li>
 						<li>
 							<div class="dropdown">
 								<a><?= $_SESSION['username'] ?></a>
@@ -54,7 +62,15 @@
 							</div>
 						</li>
 					<?php  }else{ ?>
-						<li><a href="../statistics.php">Statistik</a></li>
+						<li>
+							<div class="dropdown">
+								<a>Statstik</a>
+								<div class="dropdown-content">
+									<a href="../statistics.php?stats=week">Wöchentlich</a>
+									<a href="../statistics.php?stats=day">Täglich</a>
+								</div>
+							</div>
+						</li>
 						<li><a href="../register.php">Registrieren</a></li>
 						<li><a href="../login.php">Login</a></li>
 					<?php } ?>
@@ -79,18 +95,18 @@
 			</div>
 		<?php } if($status == "day"){ ?>
 			<div id="griddiv-heading" class="white">
-				<h3>Statstik für <?= $name ?> der letzden 24 Stunden</h3>
+				<h3>Statstik für <?= $name ?> die letzden 24 Stunden</h3>
 			</div>
 			<?php
-				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
+				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
 				if($stats == true){
 					echo generateBarChart($stats, 50, "diesel");
 				}
-				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
+				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
 				if($stats == true){
 					echo generateBarChart($stats, 50, "E5");
 				}
-				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), $id);
+				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
 				if($stats == true){
 					echo generateBarChart($stats, 50, "E10");
 				}

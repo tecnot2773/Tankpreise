@@ -29,7 +29,15 @@
 				</a>
 				<nav>
 					<ul>
-						<li><a href="statistics.php">Statistik</a></li>
+						<li>
+						  <div class="dropdown">
+						    <a>Statstik</a>
+						    <div class="dropdown-content">
+						      <a href="statistics.php?stats=week">Wöchentlich</a>
+						      <a href="statistics.php?stats=day">Täglich</a>
+						    </div>
+						  </div>
+						</li>
 						<li><a href="register.php">Registrieren</a></li>
 						<li><a href="login.php">Login</a></li>
 					</ul>

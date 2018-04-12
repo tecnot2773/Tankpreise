@@ -282,13 +282,13 @@ function statsPrintTableAll($type){
 	    return $out;
 	}
 
-	function getStatsSingle($type, $day, $month, $stationID)
+	function getStatsSingle($type, $day, $month, $year, $stationID)
 	{
 		include "dbConnect.php";
 		$check = true;
-		$query = "SELECT * FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND gasstationID = ?";
+		$query = "SELECT * FROM `stats` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND YEAR(timestamp) = ? AND gasstationID = ?";
 		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("ddd", $day, $month, $stationID);
+			$stmt->bind_param("dddd", $day, $month, $year, $stationID);
 			$stmt->execute();
 			$first = 0;
 			$result = $stmt->get_result();
@@ -303,6 +303,42 @@ function statsPrintTableAll($type){
 				}
 				elseif($check == true){
 					$stats_save = $stats;
+					$stats = array($date=>$value);
+					$stats = $stats_save + $stats;
+				}
+				elseif($check == false){
+					$stats = false;
+				}
+				$first = 1;
+			}
+			return $stats;
+		}
+		$mysqli->close();
+	}
+
+	function getStatsAll($type, $day, $month, $year)
+	{
+		include "dbConnect.php";
+		$check = true;
+		$query = "SELECT timestamp, ROUND(avgPrice, 3) AS avgPrice FROM `avgpricedaily` WHERE Day(timestamp) = ? AND Month(timestamp) = ? AND YEAR(timestamp) = ? AND type = ?";
+		if ($stmt = $mysqli->prepare($query)) {
+			$stmt->bind_param("ddds", $day, $month, $year, $type);
+			$stmt->execute();
+			$first = 0;
+			$result = $stmt->get_result();
+			while($data = $result->fetch_array()){
+				$date = date("H", strtotime($data['timestamp']));
+				$value = $data['avgPrice'];
+				if(empty($value)){
+					$check = false;
+				}
+				if($first != 1 && $check == true){
+					$value = number_format($value, 3, '.', '');
+					$stats = array($date=>$value);
+				}
+				elseif($check == true){
+					$stats_save = $stats;
+					$value = number_format($value, 3, '.', '');
 					$stats = array($date=>$value);
 					$stats = $stats_save + $stats;
 				}
