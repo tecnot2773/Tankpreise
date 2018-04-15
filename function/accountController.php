@@ -86,7 +86,7 @@
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
 							header("location: user/index.php");															//refer to index.php
-							include_once "userFunctions.php";
+							include_once "userFunctionsController.php";
 							getUserInfo();
 						}
 						else{
