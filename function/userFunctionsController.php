@@ -131,7 +131,7 @@
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dd", $userID, $carID);
 			if($stmt->execute()){
-				header("location: ../user/userConfig.php");				//refer to userConfig.php
+				header("location: ../user/userConfig");				//refer to userConfig.php
 			}
 			$stmt->close();					//close statement
 		}

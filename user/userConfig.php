@@ -54,7 +54,7 @@
 								</div>
 							</div>
 						</li>
-						<?php }else{ header("location: ../login.php"); } ?>
+						<?php }else{ header("location: ../login"); } ?>
 					</ul>
 				</nav>
 			</div>

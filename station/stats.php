@@ -13,7 +13,7 @@
 	$id = $_GET["id"];
 	$status = $_GET["stats"];
 	$name = getStationName($id);
-	if(empty($_GET["stats"])){header("location: ../index.php");}
+	if(empty($_GET["stats"])){header("location: ../index");}
 ?>
 <!DOCTYPE html>
 <html lang="en">

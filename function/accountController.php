@@ -20,7 +20,7 @@
 								$stmt->execute();				//execute statement
 
 								$status = "Benutzer wurde erfolgreich angelegt.";	//status
-								header("location: login.php");			//refer to login
+								header("location: login");			//refer to login
 								$stmt->close();			//close statement
 							}
 						}
@@ -85,7 +85,7 @@
 							$_SESSION['username'] = $username;													//save username in session
 							$_SESSION['loggedin'] = true;																//save loggedin status in session
 							$_SESSION['userID'] = $userID;
-							header("location: user/index.php");															//refer to index.php
+							header("location: user/index");															//refer to index.php
 							include_once "userFunctionsController.php";
 							getUserInfo();
 						}
