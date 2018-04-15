@@ -2,7 +2,7 @@
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
-	include_once "../function/accountFunctions.php";
+	include_once "../function/accountController";
 	include_once "../function/userFunctions.php";
 	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
 		getUserInfo();

@@ -3,7 +3,7 @@
 	    session_start();
 	}
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {header("location: index.php");}else{
-	include_once "function/accountFunctions.php";
+	include_once "function/accountController";
 ?>
 <!DOCTYPE html>
 <html lang="en">
