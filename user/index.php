@@ -27,7 +27,7 @@
 		<!--navbar -->
 		<header>
 			<div class="container">
-				<a href="../index.php">
+				<a href="../index">
 					<img src="../images/Header.png" alt="logo" class="logo" />
 				</a>
 				<nav>
@@ -37,8 +37,8 @@
 						  <div class="dropdown">
 						    <a>Statstik</a>
 						    <div class="dropdown-content">
-						      <a href="../statistics.php?stats=week">Wöchentlich</a>
-						      <a href="../statistics.php?stats=day">Täglich</a>
+						      <a href="../statistics?stats=week">Wöchentlich</a>
+						      <a href="../statistics?stats=day">Täglich</a>
 						    </div>
 						  </div>
 						</li>
@@ -47,9 +47,9 @@
 								<a><?= $_SESSION['username'] ?></a>
 								<span class="icon icon-arrow-down2"></span>
 								<div class="dropdown-content">
-									<a href="../user/index.php">Benutzer Seite</a>
-									<a href="../user/userConfig.php">Einstellungen</a>
-									<a href="../function/logout.php">Logout</a>
+									<a href="../user/index">Benutzer Seite</a>
+									<a href="../user/userConfig">Einstellungen</a>
+									<a href="../function/logout">Logout</a>
 								</div>
 							</div>
 						</li>
@@ -118,7 +118,7 @@
 					<td width='10%'><?= number_format($consumption * $lowestDiesel, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $lowestDiesel ?> Euro</td>
 					<td width='10%'>
-						<a href='../station/index.php?id=<?= $dieselUUID ?>'><?= $dieselName ?></a>
+						<a href='../station/index?id=<?= $dieselUUID ?>'><?= $dieselName ?></a>
 					</td>
 					<?php } ?>
 					<?php if($type == "E5"){ ?>
@@ -130,7 +130,7 @@
 					<td width='10%'><?= number_format($consumption * $lowestE5, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $lowestE5 ?> Euro</td>
 					<td width='10%'>
-						<a href='../station/index.php?id=<?= $e5UUID ?>'><?= $e5Name ?></a>
+						<a href='../station/index?id=<?= $e5UUID ?>'><?= $e5Name ?></a>
 					</td>
 					<?php } ?>
 					<?php if($type == "E10"){ ?>
@@ -142,7 +142,7 @@
 					<td width='10%'><?= number_format($consumption * $lowestE10, 2, ',', '') ?> Euro</td>
 					<td width='10%'><?= $lowestE10 ?> Euro</td>
 					<td width='10%'>
-						<a href='../station/index.php?id=<?= $e10UUID ?>'><?= $e10Name ?></a>
+						<a href='../station/index?id=<?= $e10UUID ?>'><?= $e10Name ?></a>
 					</td>
 					<?php } ?>
 				</tr>

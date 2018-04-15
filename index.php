@@ -26,7 +26,7 @@
 		<!--navbar -->
 		<header>
 			<div class="container">
-				<a href="index.php">
+				<a href="index">
 					<img src="images/Header.png" alt="logo" class="logo" />
 				</a>
 				<nav>
@@ -36,8 +36,8 @@
 						  <div class="dropdown">
 						    <a>Statstik</a>
 						    <div class="dropdown-content">
-						      <a href="statistics.php?stats=week">Wöchentlich</a>
-						      <a href="statistics.php?stats=day">Täglich</a>
+						      <a href="statistics?stats=week">Wöchentlich</a>
+						      <a href="statistics?stats=day">Täglich</a>
 						    </div>
 						  </div>
 						</li>
@@ -46,9 +46,9 @@
 								<a><?= $_SESSION['username'] ?></a>
 								<span class="icon icon-arrow-down2"></span>
 								<div class="dropdown-content">
-									<a href="user/index.php">Benutzer Seite</a>
-									<a href="user/userConfig.php">Einstellungen</a>
-									<a href="function/logout.php">Logout</a>
+									<a href="user/index">Benutzer Seite</a>
+									<a href="user/userConfig">Einstellungen</a>
+									<a href="function/logout">Logout</a>
 								</div>
 							</div>
 						</li>
@@ -57,13 +57,13 @@
 						  <div class="dropdown">
 						    <a>Statstik</a>
 						    <div class="dropdown-content">
-						      <a href="statistics.php?stats=week">Wöchentlich</a>
-						      <a href="statistics.php?stats=day">Täglich</a>
+						      <a href="statistics?stats=week">Wöchentlich</a>
+						      <a href="statistics?stats=day">Täglich</a>
 						    </div>
 						  </div>
 						</li>
-						<li><a href="register.php">Registrieren</a></li>
-						<li><a href="login.php">Login</a></li>
+						<li><a href="register">Registrieren</a></li>
+						<li><a href="login">Login</a></li>
 					<?php } ?>
 					</ul>
 				</nav>
@@ -151,7 +151,7 @@
 					 if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
 						for ($i = 0; $i < $count; $i++) { ?>
 							<div id="rowstart" class="white">
-								<a href="station/index.php?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
+								<a href="station/index?id=<?= $UUID[$i] ?>"><?= $name[$i] ?></a>
 							</div>
 							<div id="rowmid" class="white">
 								Marke: <?= $brand[$i] ?>
