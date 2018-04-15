@@ -1,5 +1,5 @@
 <?php
-	function changePlace(){				//new changePlace
+	function changePlace($userID){				//new changePlace
 		include "dbConnect.php";			//new mysqli
 		include_once "UTF8Convert.php";
 		include_once "getKoordinates.php";		//include getKoordinates
@@ -44,7 +44,6 @@
 			$query = "SELECT * FROM userPlace WHERE userID = ?;";		//query to select userplace
 			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 				$stmt->bind_param("d", $userID);				//bind parameter
-				$userID = $_SESSION['userID'];
 				$stmt->execute();
 				$result = $stmt->get_result();				//save result
 				if(!empty($result)){					//if result is not empty
@@ -76,13 +75,12 @@
 
 		return $status;					//return status
 	}
-	function addCar(){
+	function addCar($userID){
 		include "dbConnect.php";
 		$carName = $mysqli->real_escape_string($_POST["text-carname"]);				//save and escape text-carname
 		$type = $mysqli->real_escape_string($_POST["text-type"]);				//save and escape text-type
 		$volume = $mysqli->real_escape_string($_POST["text-volume"]);				//save and escape text-volume
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);				//save and escape text-consumption
-		$userID = $_SESSION["userID"];
 		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
 
 			if($type != "Diesel" && $type != "E5" && $type != "E10"){
@@ -104,10 +102,8 @@
 		}
 		return $status;				//return status
 	}
-	function carTable(){
+	function carTable($userID){
 		include "dbConnect.php";			//new mysqli
-		$userID = $_SESSION["userID"];
-
 		$query = "SELECT ID, name, volume, consumption, type FROM cars WHERE userID = ?";		//query to get values from cars
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("d", $userID);
@@ -137,7 +133,7 @@
 		}
 		$mysqli->close();				//close mysqli
 	}
-	function editCar()
+	function editCar($userID)
 	{
 		include "dbConnect.php";
 		$carName = $mysqli->real_escape_string($_POST["text-carname"]);
@@ -145,7 +141,6 @@
 		$volume = $mysqli->real_escape_string($_POST["text-volume"]);
 		$consumption = $mysqli->real_escape_string($_POST["text-consumption"]);
 		$id = $mysqli->real_escape_string($_POST["box-edit"]);
-		$userID = $_SESSION["userID"];
 
 		if(preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $volume) && preg_match("^[0-9]{1,3}([,.][0-9]{1,3})?$^", $consumption)){
 			if($type != "Diesel" && $type != "E5" && $type != "E10"){

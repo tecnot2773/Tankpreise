@@ -103,13 +103,12 @@
 		if(isset($status)){return $status;};
 	}
 
-	function changePassword()
+	function changePassword($userID)
 	{
 		include "dbConnect.php";
 		$currentPassword = $mysqli->real_escape_string($_POST["text-currentpassword"]);							//save and escape text-currentpassword
 		$newPassword = $mysqli->real_escape_string($_POST["text-newpassword"]);									//save and escape text-newpassword
 		$reNewPassword = $mysqli->real_escape_string($_POST["text-renewpassword"]);								//save and escape text-renewpassword
-		$userID = $_SESSION['userID'];
 
 		if($newPassword == $reNewPassword){					//if password matches repassword
 			$password_error = "false";							//no error
