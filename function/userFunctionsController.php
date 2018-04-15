@@ -216,7 +216,7 @@
 	function getLowestPrice($address)
 	{
 		include "dbConnect.php";
-		include_once "getStation.php";
+		include_once "getGasStation.php";
 		$sql = "SELECT latitude, longitude FROM city WHERE name = ?";
 		if($stmt = $mysqli->prepare($sql)){																		//prepare to get car type
 			$stmt->bind_param("s", $_SESSION['address']);

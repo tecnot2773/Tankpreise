@@ -9,7 +9,7 @@
 		}
 	}
 	include_once "../function/printStats.php";
-	include_once "../function/getStationDetail.php";
+	include_once "../function/getGasStationDetail.php";
 	$id = $_GET["id"];
 	$status = $_GET["stats"];
 	$name = getStationName($id);

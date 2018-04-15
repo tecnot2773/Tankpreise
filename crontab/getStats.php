@@ -1,6 +1,6 @@
 <?php
 	include_once "dbConnect.php";		//new mysqli
-	include_once "getStation.php";
+	include_once "getGasStation.php";
 
 	$sort = "stats";
 	$lat = "52.9127"; 		//Syke

@@ -89,7 +89,7 @@
 				$status = "ready";			//if user has not filed the fields but has user data in database
 			}
 			if($status == "ready"){
-				include_once "function/getStation.php";
+				include_once "function/getGasStation.php";
 				$sort = "request";
 			 	list($error, $decoded)= getStations($address, $radius, $type);
 				if($error == "OK"){

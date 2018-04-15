@@ -4,7 +4,7 @@
 	}
 	include_once "../function/dbConnect.php";
 	include_once "../function/printStats.php";
-	include_once "../function/getStationDetail.php";
+	include_once "../function/getGasStationDetail.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
