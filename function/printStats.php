@@ -79,18 +79,25 @@ function statsPrintTableSingle($stationID, $type){
 					switch ($i) {
 						case 0: $name = "Monday";
 								$nameGer = "Montag";
+								break;
 						case 1: $name = "Tuesday";
 								$nameGer = "Dienstag";
+								break;
 						case 2: $name = "Wednesday";
 								$nameGer = "Mittwoch";
+								break;
 						case 3: $name = "Thursday";
 								$nameGer = "Donnerstag";
+								break;
 						case 4: $name = "Friday";
 								$nameGer = "Freitag";
-						case 1: $name = "Saturday";
+								break;
+						case 5: $name = "Saturday";
 								$nameGer = "Samstag";
-						case 1: $name = "Sunday";
+								break;
+						case 6: $name = "Sunday";
 								$nameGer = "Sonntag";
+								break;
 					}
 					$stmt->bind_param("dsss", $stationID, $month, $day, $year);		//bind parameters
 					$day = date("d", strtotime("last ${name}"));		//day from last monday
@@ -195,18 +202,25 @@ function statsPrintTableAll($type){
 					  switch ($i) {
 						  case 0: $name = "Monday";
 								  $nameGer = "Montag";
+								  break;
 						  case 1: $name = "Tuesday";
 								  $nameGer = "Dienstag";
+								  break;
 						  case 2: $name = "Wednesday";
 								  $nameGer = "Mittwoch";
+								  break;
 						  case 3: $name = "Thursday";
 								  $nameGer = "Donnerstag";
+								  break;
 						  case 4: $name = "Friday";
 								  $nameGer = "Freitag";
-						  case 1: $name = "Saturday";
+								  break;
+						  case 5: $name = "Saturday";
 								  $nameGer = "Samstag";
-						  case 1: $name = "Sunday";
+								  break;
+						  case 6: $name = "Sunday";
 								  $nameGer = "Sonntag";
+								  break;
 					  }
 			$stmt->bind_param("ddds", $month, $day, $year, $type);		//bind parameters
 			$day = date("d", strtotime("last ${name}"));		//day from last monday
