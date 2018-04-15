@@ -19,57 +19,15 @@ function statsPrintTableSingle($stationID, $type){
 	<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 		<colgroup>
 			<col style="width: 15%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
-			<col style="width: 10%">
+			<?php for($i = 0; $i < 24; $i++){ ?>
+				<col style="width: 10%">
+			<?php } ?>
 		</colgroup>
 	  <tr>
 		<th id="tg-yw4l">\</th> <!-- hours -->
-		<th id="tg-yw4l">0</th>
-		<th id="tg-yw4l">1</th>
-		<th id="tg-yw4l">2</th>
-		<th id="tg-yw4l">3</th>
-		<th id="tg-yw4l">4</th>
-		<th id="tg-yw4l">5</th>
-		<th id="tg-yw4l">6</th>
-		<th id="tg-yw4l">7</th>
-		<th id="tg-yw4l">8</th>
-		<th id="tg-yw4l">9</th>
-		<th id="tg-yw4l">10</th>
-		<th id="tg-yw4l">11</th>
-		<th id="tg-yw4l">12</th>
-		<th id="tg-yw4l">13</th>
-		<th id="tg-yw4l">14</th>
-		<th id="tg-yw4l">15</th>
-		<th id="tg-yw4l">16</th>
-		<th id="tg-yw4l">17</th>
-		<th id="tg-yw4l">18</th>
-		<th id="tg-yw4l">19</th>
-		<th id="tg-yw4l">20</th>
-		<th id="tg-yw4l">21</th>
-		<th id="tg-yw4l">22</th>
-		<th id="tg-yw4l">23</th>
+		<?php for($i = 0; $i < 24; $i++){ ?>
+			<th id="tg-yw4l"><?= $i ?></th>
+		<?php } ?>
 	  </tr>
 
 		<?php
@@ -114,11 +72,11 @@ function statsPrintTableSingle($stationID, $type){
 		?>
 	  <tr>
 		<th><?= $nameGer ?></th>
-			<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+			<?php while($data = $result->fetch_array()){ ?>
 				<?php if($data[$type] == $lowest){ ?>
-					<td id="low"><?= $data[$type]; ?></td> 		<!-- echo type -->
+					<td id="low"><?= $data[$type]; ?></td>
 				<?php }else{ ?>
-					<td id="tg-yw4l"><?= $data[$type]; ?></td> 		<!-- echo type -->
+					<td id="tg-yw4l"><?= $data[$type]; ?></td>
 			<?php }}?>
 	  </tr>
 <?php }}} echo "</table>"; }} ?>
@@ -142,57 +100,15 @@ function statsPrintTableAll($type){
 		<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 			<colgroup>
 				<col style="width: 15%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
-				<col style="width: 10%">
+				<?php for($i = 0; $i < 24; $i++){ ?>
+					<col style="width: 10%">
+				<?php } ?>
 			</colgroup>
 		  <tr>
 			<th id="tg-yw4l">\</th> <!-- hours -->
-			<th id="tg-yw4l">0</th>
-			<th id="tg-yw4l">1</th>
-			<th id="tg-yw4l">2</th>
-			<th id="tg-yw4l">3</th>
-			<th id="tg-yw4l">4</th>
-			<th id="tg-yw4l">5</th>
-			<th id="tg-yw4l">6</th>
-			<th id="tg-yw4l">7</th>
-			<th id="tg-yw4l">8</th>
-			<th id="tg-yw4l">9</th>
-			<th id="tg-yw4l">10</th>
-			<th id="tg-yw4l">11</th>
-			<th id="tg-yw4l">12</th>
-			<th id="tg-yw4l">13</th>
-			<th id="tg-yw4l">14</th>
-			<th id="tg-yw4l">15</th>
-			<th id="tg-yw4l">16</th>
-			<th id="tg-yw4l">17</th>
-			<th id="tg-yw4l">18</th>
-			<th id="tg-yw4l">19</th>
-			<th id="tg-yw4l">20</th>
-			<th id="tg-yw4l">21</th>
-			<th id="tg-yw4l">22</th>
-			<th id="tg-yw4l">23</th>
+			<?php for($i = 0; $i < 24; $i++){ ?>
+				<th id="tg-yw4l"><?= $i ?></th>
+			<?php } ?>
 		  </tr>
 
 		  <?php
@@ -237,11 +153,11 @@ function statsPrintTableAll($type){
 			?>
 		  <tr>
 			<th><?= $nameGer ?></th>
-				<?php while($data = $result->fetch_array()){ ?>		<!-- fetch array -->
+				<?php while($data = $result->fetch_array()){ ?>
 					<?php if($data['avgPrice'] <= $lowest){ ?>
-						<td id="low"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+						<td id="low"><?= $data['avgPrice']; ?></td>
 					<?php }else{ ?>
-						<td id="tg-yw4l"><?= $data['avgPrice']; ?></td> 		<!-- echo type -->
+						<td id="tg-yw4l"><?= $data['avgPrice']; ?></td>
 				<?php }}}?>
 		  </tr>
 		</table>
