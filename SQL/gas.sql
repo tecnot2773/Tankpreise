@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 17. Apr 2018 um 10:47
+-- Erstellungszeit: 17. Apr 2018 um 10:57
 -- Server-Version: 5.7.21-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -32,7 +32,7 @@ USE `gas`;
 
 DROP TABLE IF EXISTS `avgPriceDaily`;
 CREATE TABLE `avgPriceDaily` (
-  `ID` int(4) NOT NULL,
+  `ID` int(11) NOT NULL,
   `timestamp` timestamp NULL DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `avgPrice` varchar(50) NOT NULL
@@ -188,7 +188,7 @@ ALTER TABLE `userPlace`
 -- AUTO_INCREMENT für Tabelle `avgPriceDaily`
 --
 ALTER TABLE `avgPriceDaily`
-  MODIFY `ID` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `cars`
@@ -225,30 +225,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `userPlace`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints der exportierten Tabellen
---
-
---
--- Constraints der Tabelle `gasstation`
---
-ALTER TABLE `gasstation`
-  ADD CONSTRAINT `gasstation_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `stats` (`gasStationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints der Tabelle `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `userPlace` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`ID`) REFERENCES `cars` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints der Tabelle `userPlace`
---
-ALTER TABLE `userPlace`
-  ADD CONSTRAINT `userPlace_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `userPlace_ibfk_3` FOREIGN KEY (`cityID`) REFERENCES `city` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
