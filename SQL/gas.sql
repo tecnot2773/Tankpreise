@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 28. Feb 2018 um 12:36
+-- Erstellungszeit: 17. Apr 2018 um 10:47
 -- Server-Version: 5.7.21-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -23,6 +23,20 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `gas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `gas`;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `avgPriceDaily`
+--
+
+DROP TABLE IF EXISTS `avgPriceDaily`;
+CREATE TABLE `avgPriceDaily` (
+  `ID` int(4) NOT NULL,
+  `timestamp` timestamp NULL DEFAULT NULL,
+  `type` varchar(10) NOT NULL,
+  `avgPrice` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -109,9 +123,9 @@ CREATE TABLE `user` (
 
 DROP TABLE IF EXISTS `userPlace`;
 CREATE TABLE `userPlace` (
-  `ID` int(3) NOT NULL,
-  `userID` int(3) NOT NULL,
-  `cityID` int(3) NOT NULL
+  `ID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `cityID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -119,10 +133,17 @@ CREATE TABLE `userPlace` (
 --
 
 --
+-- Indizes für die Tabelle `avgPriceDaily`
+--
+ALTER TABLE `avgPriceDaily`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indizes für die Tabelle `cars`
 --
 ALTER TABLE `cars`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- Indizes für die Tabelle `city`
@@ -134,13 +155,16 @@ ALTER TABLE `city`
 -- Indizes für die Tabelle `gasstation`
 --
 ALTER TABLE `gasstation`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `place` (`place`),
+  ADD KEY `place_2` (`place`);
 
 --
 -- Indizes für die Tabelle `stats`
 --
 ALTER TABLE `stats`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `gasStationID` (`gasStationID`);
 
 --
 -- Indizes für die Tabelle `user`
@@ -152,11 +176,19 @@ ALTER TABLE `user`
 -- Indizes für die Tabelle `userPlace`
 --
 ALTER TABLE `userPlace`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `cityID` (`cityID`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
 --
+
+--
+-- AUTO_INCREMENT für Tabelle `avgPriceDaily`
+--
+ALTER TABLE `avgPriceDaily`
+  MODIFY `ID` int(4) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `cars`
@@ -192,7 +224,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `userPlace`
 --
 ALTER TABLE `userPlace`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `gasstation`
+--
+ALTER TABLE `gasstation`
+  ADD CONSTRAINT `gasstation_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `stats` (`gasStationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints der Tabelle `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `userPlace` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`ID`) REFERENCES `cars` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints der Tabelle `userPlace`
+--
+ALTER TABLE `userPlace`
+  ADD CONSTRAINT `userPlace_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `userPlace_ibfk_3` FOREIGN KEY (`cityID`) REFERENCES `city` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
