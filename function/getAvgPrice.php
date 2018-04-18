@@ -1,5 +1,5 @@
 <?php
-	include "function/dbConnect.php";
+	include "dbConnect.php";
 	$query = "SELECT TRUNCATE(avg(diesel),4) avg FROM stats WHERE MONTH(timestamp) = ? AND DAY(timestamp) = ? AND YEAR(timestamp) = ? AND HOUR(timestamp) = ?;";
 	$query1 = "INSERT INTO avgPriceDaily (`timestamp`, `avgPrice`, `type`) VALUES (?,?,?)";
 	if ($stmt1 = $mysqli->prepare($query1)) {		//prepare statement to get stats
