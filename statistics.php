@@ -94,16 +94,16 @@
 				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzden 24 Stunden</h3>
 			</div>
 			<?php
-				$stats = getStatsAll("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
-				if($stats == true){
+				list($error, $stats) = getStatsAll("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
+				if($error == false){
 					echo generateBarChart($stats, 50, "diesel");
 				}
-				$stats = getStatsAll("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
-				if($stats == true){
+				list($error, $stats) = getStatsAll("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
+				if($error == false){
 					echo generateBarChart($stats, 50, "E5");
 				}
-				$stats = getStatsAll("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
-				if($stats == true){
+				list($error, $stats) = getStatsAll("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
+				if($error == false){
 					echo generateBarChart($stats, 50, "E10");
 				}
 			}

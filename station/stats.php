@@ -82,7 +82,7 @@
 		<div id="center">
 			<?php if($status == "week"){ ?>
 			<div id="griddiv-heading" class="white">
-				<h3>Statstik für <?= $name ?> der letzden 7 Tage</h3>
+				<h3>Statstik für <?= $name ?> der letzten 7 Tage</h3>
 			</div>
 			<div id="griddiv-table" class="white">
 				<?php statsPrintTableSingle("$id","diesel"); ?>
@@ -95,19 +95,19 @@
 			</div>
 		<?php } if($status == "day"){ ?>
 			<div id="griddiv-heading" class="white">
-				<h3>Statstik für <?= $name ?> die letzden 24 Stunden</h3>
+				<h3>Statstik für <?= $name ?> die letzten 24 Stunden</h3>
 			</div>
 			<?php
-				$stats = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($stats == true){
+				list($error, $stats) = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
+				if($error == false){
 					echo generateBarChart($stats, 50, "diesel");
 				}
-				$stats = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($stats == true){
+				list($error, $stats) = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
+				if($error == false){
 					echo generateBarChart($stats, 50, "E5");
 				}
-				$stats = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($stats == true){
+				list($error, $stats) = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
+				if($error == false){
 					echo generateBarChart($stats, 50, "E10");
 				}
 			}

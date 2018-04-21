@@ -91,7 +91,7 @@
 			if($status == "ready"){
 				include_once "function/getGasStation.php";
 				$sort = "request";
-			 	list($error, $decoded)= getStations($address, $radius, $type);
+			 	list($error, $decoded) = getStations($address, $radius, $type);
 				if($error == "OK"){
 					$name = getName($decoded, $sort);
 					$place = getPlace($decoded, $sort);

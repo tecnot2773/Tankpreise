@@ -241,7 +241,9 @@ function statsPrintTableAll($type){
 				}
 				$first = 1;
 			}
-			return $stats;
+			!isset($stats) ? $error = true : $error = false;
+			!isset($stats) ? $stats = "empty" : $stats = $stats;
+			return array($error, $stats);
 		}
 		$mysqli->close();
 	}
@@ -277,7 +279,9 @@ function statsPrintTableAll($type){
 				}
 				$first = 1;
 			}
-			return $stats;
+			!isset($stats) ? $error = true : $error = false;
+			!isset($stats) ? $stats = "empty" : $stats = $stats;
+			return array($error, $stats);
 		}
 		$mysqli->close();
 	}
