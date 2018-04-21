@@ -95,7 +95,7 @@ function statsPrintTableAll($type){
 		$stmt->execute();			//execute statement
 		$result = $stmt->get_result();		//save result
 		 while($data = $result->fetch_array()){
-			if(empty($data['avgPrice']) ||$data['avgPrice'] == "null"){return;}} ?>
+			if(empty($data['avgPrice']) || $data['avgPrice'] == "null"){return;}} ?>
 			<h3>Preis pro Liter <?=ucfirst($type)?><h3>
 		<table id="stats" style="undefined;table-layout: fixed; width: 100%">
 			<colgroup>
