@@ -99,15 +99,15 @@
 			</div>
 			<?php
 				list($error, $stats) = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($error == false){
+				if($error == false && $stats == true){
 					echo generateBarChart($stats, 50, "diesel");
 				}
 				list($error, $stats) = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($error == false){
+				if($error == false && $stats == true){
 					echo generateBarChart($stats, 50, "E5");
 				}
 				list($error, $stats) = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($error == false){
+				if($error == false && $stats == true){
 					echo generateBarChart($stats, 50, "E10");
 				}
 			}
