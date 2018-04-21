@@ -173,7 +173,7 @@
 						if(!isset($_GET["address"]) && !isset($_GET["radius"]) && !isset($_GET["type"]) && !isset($_SESSION["type"]) && !isset($_SESSION["address"])){
 					?>
 					<div id="rowstart" class="white">
-						Geben Sie bitte eine Stadt ein, in der Sie am günstigsten Tanken möchten.
+						Geben Sie bitte die Stadt ein, in der Sie am günstigsten Tanken möchten.
 					</div>
 					<div id="rowend" class="white"></div>
 					<?php

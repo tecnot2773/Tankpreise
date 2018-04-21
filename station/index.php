@@ -138,10 +138,10 @@
 			</table>
 			<?php if(!empty($id)){ ?>
 			<div id="printrow-middle" class="white">
-				<a href="stats?id=<?= $id; ?>&stats=week">Statistiken der Preise der letzten 7 Tage</a>
+				<a href="stats?id=<?= $id; ?>&stats=week">Statistiken für die Preise der letzten 7 Tage</a>
 			</div>
 			<div id="printrow-middle" class="white">
-				<a href="stats?id=<?= $id; ?>&stats=day">Statistiken der Preise des letzten Tages</a>
+				<a href="stats?id=<?= $id; ?>&stats=day">Statistiken für die Preise des letzten Tages</a>
 			</div>
 		<?php } ?>
 		</div>
