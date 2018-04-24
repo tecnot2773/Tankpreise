@@ -3,7 +3,7 @@
 	    session_start();
 	}
 	include_once "function/userFunctionsController.php";
-	if(!isset($_SESSION["address"]) && isset($_SESSION['loggedin']) || !isset($_SESSION["type"]) && isset($_SESSION['loggedin']) == true){
+	if(!isset($_SESSION["address"]) && isset($_SESSION['loggedin']) || !isset($_SESSION["type"]) && isset($_SESSION['loggedin'])){
 		getUserInfo();		//Get userinfo
 	}
  ?>
@@ -31,7 +31,7 @@
 				</a>
 				<nav>
 					<ul>
-						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) { ?>
 						<li>
 						  <div class="dropdown">
 						    <a>Statstik</a>

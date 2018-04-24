@@ -4,7 +4,7 @@
 	}
 	include_once "../function/userFunctionsController.php";
 	include_once "../function/accountController.php";
-	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] == true || !isset($_SESSION["type"]) && $_SESSION['loggedin'] == true){
+	if(!isset($_SESSION["address"]) && $_SESSION['loggedin'] || !isset($_SESSION["type"]) && $_SESSION['loggedin']){
 		getUserInfo();
 	}
 ?>
@@ -32,7 +32,7 @@
 				</a>
 				<nav>
 					<ul>
-						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) { ?>
 						<li>
 						  <div class="dropdown">
 						    <a>Statstik</a>
