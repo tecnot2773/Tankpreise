@@ -40,7 +40,7 @@
 				</a>
 				<nav>
 					<ul>
-						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) { ?>
+						<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
 						<li>
 							<div class="dropdown">
 								<a>Statstik</a>
