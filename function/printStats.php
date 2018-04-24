@@ -228,15 +228,15 @@ function statsPrintTableAll($type){
 				if(empty($value)){
 					$check = false;
 				}
-				if($first != 1 && $check == true){
+				if($first != 1 && $check){
 					$stats = array($date=>$value);
 				}
-				elseif($check == true){
+				elseif($check){
 					$stats_save = $stats;
 					$stats = array($date=>$value);
 					$stats = $stats_save + $stats;
 				}
-				elseif($check == false){
+				elseif(!$check){
 					$stats = false;
 				}
 				$first = 1;
@@ -264,17 +264,17 @@ function statsPrintTableAll($type){
 				if(empty($value)){
 					$check = false;
 				}
-				if($first != 1 && $check == true){
+				if($first != 1 && $check){
 					$value = number_format($value, 3, '.', '');
 					$stats = array($date=>$value);
 				}
-				elseif($check == true){
+				elseif($check){
 					$stats_save = $stats;
 					$value = number_format($value, 3, '.', '');
 					$stats = array($date=>$value);
 					$stats = $stats_save + $stats;
 				}
-				elseif($check == false){
+				elseif(!$check){
 					$stats = false;
 				}
 				$first = 1;

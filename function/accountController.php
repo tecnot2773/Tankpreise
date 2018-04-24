@@ -57,7 +57,7 @@
 
 		if(empty(trim($_POST['text-password']))){														//check if password is emtpy
 	    $password_error = 'Bitte geben Sie ihr Passwort ein.';						//if empty echo error
-			$status = $password_error;
+		$status = $password_error;
 	  }
 		else{
 	    $password = $mysqli->real_escape_string($_POST['text-password']);			//save escaped password
@@ -111,18 +111,18 @@
 		$reNewPassword = $mysqli->real_escape_string($_POST["text-renewpassword"]);								//save and escape text-renewpassword
 
 		if($newPassword == $reNewPassword){					//if password matches repassword
-			$password_error = "false";							//no error
+			$password_error = false;							//no error
 		}
 		else{
-			$password_error = "true";									//error
+			$password_error = true;									//error
 			$status = "Die Passwörter stimmen nicht überein";			//status
 		}
-		if($password_error == "false"){
+		if(!$password_error){
 			if(strlen($newPassword) >= 6){
 				$password_error = "false";
 			}
 			else{
-				$password_error = "true";
+				$password_error = true;
 				$status = "Das Password muss aus mindestens 6 Zeichen bestehen";
 			}
 		}

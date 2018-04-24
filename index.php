@@ -72,7 +72,7 @@
 		<!--main contents          -->
 		<?php
 			$status = "notReady";
-			$error0 = "false";
+			$error0 = false;
 			if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"])){
 				include "function/dbConnect.php";
 				$address = $mysqli->real_escape_string($_GET["address"]);
@@ -104,7 +104,7 @@
 					$count = count($name);
 				}
 				else{
-					$error0 = "true";
+					$error0 = true;
 					if($error == "OVER_QUERY_LIMIT"){
 						$error = "Zu viele Anfragen bei der Google API, bitte laden Sie die Seite neu.";
 					}
@@ -147,7 +147,7 @@
 					</div>
 				</div>
 				<div id="griddiv-left" class="white">
-					<?php if($error0 != "true"){
+					<?php if(!$error0){
 					 if(isset($_GET["address"]) && isset($_GET["radius"]) && isset($_GET["type"]) || isset($_SESSION["type"]) && isset($_SESSION["address"])){
 						for ($i = 0; $i < $count; $i++) { ?>
 							<div id="rowstart" class="white">

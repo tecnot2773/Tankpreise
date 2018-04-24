@@ -95,18 +95,18 @@
 			</div>
 			<?php
 				list($error, $stats) = getStatsAll("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
-				if($error == false){
+				if(!$error){
 					echo generateBarChart($stats, 50, "diesel");
 				}
-				if($error == true){ ?>
+				if($error){ ?>
 					<div id='griddiv-table' class='white'><H3>Keine Stats vorhanden</H3></div>
 				<?php }
 				list($error, $stats) = getStatsAll("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
-				if($error == false){
+				if(!$error){
 					echo generateBarChart($stats, 50, "E5");
 				}
 				list($error, $stats) = getStatsAll("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
-				if($error == false){
+				if(!$error){
 					echo generateBarChart($stats, 50, "E10");
 				}
 			}

@@ -99,18 +99,18 @@
 			</div>
 			<?php
 				list($error, $stats) = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($error == false && $stats == true){
+				if($error == false && $stats){
 					echo generateBarChart($stats, 50, "diesel");
 				}
-				if($error == true){ ?>
+				if($error){ ?>
 					<div id='griddiv-table' class='white'><H3>Keine Stats vorhanden</H3></div>
 				<?php }
 				list($error, $stats) = getStatsSingle("E5", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($error == false && $stats == true){
+				if($error == false && $stats){
 					echo generateBarChart($stats, 50, "E5");
 				}
 				list($error, $stats) = getStatsSingle("E10", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
-				if($error == false && $stats == true){
+				if($error == false && $stats){
 					echo generateBarChart($stats, 50, "E10");
 				}
 			}

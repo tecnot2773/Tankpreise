@@ -18,7 +18,7 @@
 					while($data = $result->fetch_array()){		//fetch array
 						$cityID = $data["ID"];			//save id in cityID
 					}
-					$error0 = "false";
+					$error0 = false;
 				}
 				else{
 					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
@@ -28,7 +28,7 @@
 						$error0 = "false";
 					}
 					else{
-						$error0 =  "true";
+						$error0 =  true;
 						if($error == "OVER_QUERY_LIMIT"){
 							$status = "Zu viele Anfragen bei der Google API, bitte laden Sie die Seite neu.";
 						}
@@ -40,7 +40,7 @@
 			}
 			$stmt->close();											//close statement
 		}
-		if($error0 == "false"){
+		if(!$error0){
 			$query = "SELECT * FROM userPlace WHERE userID = ?;";		//query to select userplace
 			if ($stmt = $mysqli->prepare($query)) {						//prepare statement
 				$stmt->bind_param("d", $userID);				//bind parameter
