@@ -119,7 +119,7 @@
 		}
 		if(!$password_error){
 			if(strlen($newPassword) >= 6){
-				$password_error = "false";
+				$password_error = false;
 			}
 			else{
 				$password_error = true;
