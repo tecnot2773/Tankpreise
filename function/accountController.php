@@ -119,14 +119,14 @@
 		}
 		if(!$password_error){
 			if(strlen($newPassword) >= 6){
-				$password_error = "false";
+				$password_error = false;
 			}
 			else{
 				$password_error = true;
 				$status = "Das Password muss aus mindestens 6 Zeichen bestehen";
 			}
 		}
-		if($password_error == "false"){													//if there was no error
+		if(!$password_error){													//if there was no error
 			$sql = "SELECT hashed_password FROM user WHERE ID = ?";							//query to get hashed_password from user
 			if($stmt = $mysqli->prepare($sql)){																		//prepare to get hashed_password
 				$stmt->bind_param("d", $userID);
