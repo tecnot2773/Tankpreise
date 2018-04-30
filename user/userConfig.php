@@ -179,7 +179,7 @@
 							</a>
 						</td>
 						<td width='7px'>
-							<a href='../function/userFunctions?id=<?= $id ?>&delete=true'>
+							<a href='../function/userFunctionsController?id=<?= $id ?>&delete=true'>
 								<span>
 									<span class="icon icon-bin"></span>
 								</span>
