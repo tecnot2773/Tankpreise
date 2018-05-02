@@ -32,7 +32,7 @@
 						if($error == "OVER_QUERY_LIMIT"){
 							$status = "Zu viele Anfragen bei der Google API, bitte laden Sie die Seite neu.";
 						}
-						if($error == "ZERO_RESULTS"){
+						elseif($error == "ZERO_RESULTS"){
 							$status = "Zu Ihrer Anfrage konnte kein Ort gefunden werden.";
 						}
 					}
@@ -72,7 +72,6 @@
 				$mysqli->close();				//close mysqli
 			}
 		}
-
 		return $status;					//return status
 	}
 	function addCar($userID){
