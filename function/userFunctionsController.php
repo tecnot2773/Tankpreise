@@ -23,7 +23,6 @@
 				else{
 					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
 					$cityID = $return[2];		//get CityID out of Array
-					print_r($return);
 					if($error == "OK"){			//if no error
 						$cityID = $cityID;
 						$error0 = false;
