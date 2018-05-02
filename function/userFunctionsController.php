@@ -35,6 +35,9 @@
 						elseif($error == "ZERO_RESULTS"){
 							$status = "Zu Ihrer Anfrage konnte kein Ort gefunden werden.";
 						}
+						elseif($error == "Addresse ist nicht in Deutschland"){
+							$status = "Addresse ist nicht in Deutschland";
+						}
 					}
 				}
 			}
