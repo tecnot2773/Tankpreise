@@ -22,10 +22,11 @@
 				}
 				else{
 					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
-					$cityID = $return[2];
-					if($error == "OK"){
-						$cityID = $cityID[2];
-						$error0 = "false";
+					$cityID = $return[2];		//get CityID out of Array
+					print_r($return);
+					if($error == "OK"){			//if no error
+						$cityID = $cityID;
+						$error0 = false;
 					}
 					else{
 						$error0 =  true;
@@ -72,7 +73,6 @@
 						}
 					}
 				}
-				$mysqli->close();				//close mysqli
 			}
 		}
 		return $status;					//return status
