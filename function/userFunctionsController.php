@@ -123,7 +123,6 @@
 	function carDelete($userID, $carID){					//carDelete function
 		include "dbConnect.php";				//new mysqli
 		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?"; 		//query to delete car
-		echo "DELETE FROM cars WHERE userID = $userID AND ID = $carID";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dd", $userID, $carID);
 			if($stmt->execute()){
