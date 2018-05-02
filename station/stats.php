@@ -95,7 +95,7 @@
 			</div>
 		<?php } if($status == "day"){ ?>
 			<div id="griddiv-heading" class="white">
-				<h3>Statstik für <?= $name ?> die letzten 24 Stunden</h3>
+				<h3>Statstik für <?= $name ?> den letzten Tag</h3>
 			</div>
 			<?php
 				list($error, $stats) = getStatsSingle("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")), $id);
