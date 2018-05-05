@@ -101,7 +101,7 @@
 		}
 		function getStationName($id)
 		{
-			include "../function/dbConnect.php";
+			include "dbConnect.php";
 			$sql = "SELECT name FROM gasstation WHERE ID = ?";		//query to get ID from city
 			if ($stmt = $mysqli->prepare($sql)) {			//prepare statement
 				$stmt->bind_param("s", $id);			//bind parameter

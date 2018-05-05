@@ -78,7 +78,7 @@
 		<div id="center">
 			<?php if($status == "week") { ?>
 			<div id="griddiv-heading" class="white">
-				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzden 7 Tage</h3>
+				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzten 7 Tage</h3>
 			</div>
 			<div id="griddiv-table" class="white">
 				<?php statsPrintTableAll("diesel"); ?>
@@ -91,7 +91,7 @@
 			</div>
 		<?php } if($status == "day") { ?>
 			<div id="griddiv-heading" class="white">
-				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzden 24 Stunden</h3>
+				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzten 24 Stunden</h3>
 			</div>
 			<?php
 				list($error, $stats) = getStatsAll("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));
