@@ -91,7 +91,11 @@
 			</div>
 		<?php } if($status == "day") { ?>
 			<div id="griddiv-heading" class="white">
+<<<<<<< HEAD
 				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke der letzten 24 Stunden</h3>
+=======
+				<h3>Statstik für alle Tankstellen im Radius von 25km um Syke des letzten Tages</h3>
+>>>>>>> 95cfe44b401ce53999dc1e1cdd6f21582f99c4b0
 			</div>
 			<?php
 				list($error, $stats) = getStatsAll("diesel", date("d", strtotime("yesterday")), date("m", strtotime("yesterday")), date("Y", strtotime("yesterday")));

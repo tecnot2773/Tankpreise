@@ -22,18 +22,21 @@
 				}
 				else{
 					list($error, $return) = getKoordinates($address, $mysqli); 		//getKoordinates from city
-					$cityID = $return[2];
-					if($error == "OK"){
-						$cityID = $cityID[2];
-						$error0 = "false";
+					$cityID = $return[2];		//get CityID out of Array
+					if($error == "OK"){			//if no error
+						$cityID = $cityID;
+						$error0 = false;
 					}
 					else{
 						$error0 =  true;
 						if($error == "OVER_QUERY_LIMIT"){
 							$status = "Zu viele Anfragen bei der Google API, bitte laden Sie die Seite neu.";
 						}
-						if($error == "ZERO_RESULTS"){
+						elseif($error == "ZERO_RESULTS"){
 							$status = "Zu Ihrer Anfrage konnte kein Ort gefunden werden.";
+						}
+						elseif($error == "Addresse ist nicht in Deutschland"){
+							$status = "Addresse ist nicht in Deutschland";
 						}
 					}
 				}
@@ -69,10 +72,8 @@
 						}
 					}
 				}
-				$mysqli->close();				//close mysqli
 			}
 		}
-
 		return $status;					//return status
 	}
 	function addCar($userID){
@@ -123,7 +124,6 @@
 	function carDelete($userID, $carID){					//carDelete function
 		include "dbConnect.php";				//new mysqli
 		$query = "DELETE FROM cars WHERE userID = ? AND ID = ?"; 		//query to delete car
-		echo "DELETE FROM cars WHERE userID = $userID AND ID = $carID";
 		if ($stmt = $mysqli->prepare($query)) {
 			$stmt->bind_param("dd", $userID, $carID);
 			if($stmt->execute()){
