@@ -110,6 +110,7 @@
 				if($result->num_rows >= 1){
 					while($data = $result->fetch_array()){		//fetch array
 						$name = $data["name"];			//save id in cityID
+						return $name;
 					}
 				}
 			}
