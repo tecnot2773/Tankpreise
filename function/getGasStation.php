@@ -2,11 +2,11 @@
 
 	function getStations($address, $radius, $type)
 	{
-		include "dbConnect.php";
-		if($radius > 25 || $radius < 5){
+		include "dbConnect.php";					//database connection
+		if($radius > 25 || $radius < 5){			//savety because max radius should be 25 and min radius should be 5
 			$radius = 25;
 		}
-		if($type == "Diesel"){
+		if($type == "Diesel"){					// types are Diesel, E5 or E10, if it is something else, it is set to Diesel
 			$type = "diesel";
 		}
 		if($type == "E5"){
@@ -19,12 +19,12 @@
 			$type = "diesel";
 		}
 		include "getKoordinates.php";
-		list($error, $koordiates) = getKoordinates($address, $mysqli);
+		list($error, $koordiates) = getKoordinates($address, $mysqli);		//get koordiates for given address
 		$decoded = "false";
-		if(isset($koordiates) && $error == "OK"){
+		if(isset($koordiates) && $error == "OK"){			//only if error is "OK"
 			//include "UTF8Convert.php";
-			$lat = $koordiates[0];
-			$lng = $koordiates[1];
+			$lat = $koordiates[0];		//koordiates1 == lat
+			$lng = $koordiates[1];		//koordiates2 == lng
 
 			$sort = 'price';
 			$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
@@ -35,26 +35,26 @@
 			    ."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
 			    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
 
-			$json = convert($http_content);
-			$decoded = json_decode($json);
+			$json = convert($http_content);				//call API to get Prices
+			$decoded = json_decode($json);				//decode JSON format
 		}
-		return array($error, $decoded);
+		return array($error, $decoded);				//return the decoded data, and the error if there is one
 	}
 	function getName($decoded, $type)
 	{
-		$nameArray = array();
-		foreach($decoded->stations as $station){
+		$nameArray = array();						//set nameArray to array type
+		foreach($decoded->stations as $station){		//
 			$name = $station->name;
-			array_push($nameArray, $name);
-			if($type == "request"){
-				if(!isset($station->price)){
-					array_pop($nameArray);
+			array_push($nameArray, $name);			//fill array with names
+			if($type == "request"){				//if type == request
+				if(!isset($station->price)){	// and price is not set
+					array_pop($nameArray);	//delete last element of array, this is needed because the API sets the Price to 0 if the Station dont has the SpritType
 				}
 			}
 		}
-		return $nameArray;
+		return $nameArray;			//return filled array
 	}
-	function getPlace($decoded, $type)
+	function getPlace($decoded, $type)	//everything below is same as the function above
 	{
 		$placeArray = array();
 		foreach($decoded->stations as $station){
