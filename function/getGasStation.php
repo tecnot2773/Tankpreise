@@ -3,6 +3,7 @@
 	function getStations($address, $radius, $type)
 	{
 		include "dbConnect.php";					//database connection
+		include_once "curl.php";
 		if($radius > 25 || $radius < 5){			//savety because max radius should be 25 and min radius should be 5
 			$radius = 25;
 		}
@@ -142,6 +143,7 @@
 	function getStations25($lat, $lng, $radius)
 	{
 		include_once "UTF8Convert.php";
+		include_once "curl.php";
 		$type = "all";	//get all but without best price check
 
 		$url = 'https://creativecommons.tankerkoenig.de/json/list.php'
