@@ -1,6 +1,7 @@
 <?php
 	function getKoordinates($address, $mysqli){		//get getKoordinates function
 		include_once "UTF8Convert.php";
+		include_once "curl.php";
 		$address = umlauts($address);			//format
 		$address = strtolower($address);		//change to lower characters
 		$query = "SELECT latitude, longitude FROM city WHERE name = ?;";	//select query
@@ -23,7 +24,7 @@
 		}
 		if(empty($latitude) && empty($longitude)){		//if no koordinates are given
 			$url = 'https://maps.googleapis.com/maps/api/geocode/json'."?address=$address&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";		//get koordinates via googleAPI
-			$json = file_get_contents($url);	//get contents
+			$json = curl_get_contents($url);	//get contents
 			$decoded = json_decode($json);		//decode json
 			if($decoded->status == "OK"){
 				if(isset($decoded->results[0]->address_components[2]->long_name)){$land = $decoded->results[0]->address_components[2]->long_name;}	//check if address is in Germany

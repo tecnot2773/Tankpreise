@@ -3,8 +3,9 @@
 		function getDetail($UUID)	//function getDetail
 		{
 			include_once "UTF8Convert.php";
+			include_once "curl.php";
 			$url = 'https://creativecommons.tankerkoenig.de/json/detail.php'."?id=$UUID&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";
-			$json = file_get_contents($url);
+			$json = curl_get_contents($url);
 			$json = convert($json);		//convert UTF8
 			$decoded = json_decode($json);		//decode json
 

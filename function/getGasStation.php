@@ -27,13 +27,14 @@
 			$lng = $koordiates[1];		//koordiates2 == lng
 
 			$sort = 'price';
-			$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
+			$url = 'https://creativecommons.tankerkoenig.de/json/list.php'
 			    ."?lat=$lat"
 			    ."&lng=$lng"
 			    ."&rad=$radius"  // Suchradius in km
 			    ."&sort=$sort"   // Sortierung: 'price' oder 'dist' - bei type=all diesen Parameter weglassen
 			    ."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
-			    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
+			    ."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";   // API-Key
+			$http_content = curl_get_contents($url);
 
 			$json = convert($http_content);				//call API to get Prices
 			$decoded = json_decode($json);				//decode JSON format
@@ -143,14 +144,14 @@
 		include_once "UTF8Convert.php";
 		$type = "all";	//get all but without best price check
 
-
-		$http_content = file_get_contents('https://creativecommons.tankerkoenig.de/json/list.php'
+		$url = 'https://creativecommons.tankerkoenig.de/json/list.php'
 				."?lat=$lat"
 				."&lng=$lng"
 				."&rad=$radius"  // Suchradius in km
 				//."&sort=$sort"   // Sortierung: 'price' oder 'dist' - bei type=all diesen Parameter weglassen
 				."&type=$type"   // Spritsorte: 'e5', 'e10', 'diesel' oder 'all'
-				."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd");   // API-Key
+				."&apikey=8b284941-6a9c-30c6-1f12-9791a0b841dd";
+		$http_content = curl_get_contents($url);   // API-Key
 
 
 		$json = convert($http_content);
