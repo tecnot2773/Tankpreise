@@ -169,7 +169,7 @@
 						<tr>
 						<td width='40%'><?= $name ?></td>
 						<td width='20%'><?= $volume ?> Liter</td>
-						<td width='20%'><?= $consumption ?></td>
+						<td width='20%'><?= $consumption ?> Liter</td>
 						<td width='20%'><?= $type ?></td>
 						<td width='7px'>
 							<a href='userConfig?id=<?= $id ?>&name=<?= preg_replace('/\s+/', '_', $name); ?>&volume=<?= $volume ?>&consumption=<?= $consumption ?>&type=<?= $type ?>'>
